@@ -14,6 +14,9 @@ class Solution:
 for strs in [
                ['flower','flow','flight'],
                ['dog','racecar','car'],
+               ['aaa','aa','aaa'],
+               ['a'],
+               [''],
             ]:
     print(f'strs = {strs}')
     sol = Solution()

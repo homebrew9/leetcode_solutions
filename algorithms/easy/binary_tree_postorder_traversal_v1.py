@@ -40,7 +40,7 @@ def deserialize(string):
 #         self.left = left
 #         self.right = right
 class Solution:
-    def postorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+    def postorderTraversalRec(self, root: Optional[TreeNode]) -> List[int]:
         def postorderTraversalHelper(node, res):
             if node:
                 if node.left:
@@ -51,6 +51,38 @@ class Solution:
         res = []
         postorderTraversalHelper(root, res)
         return res
+    def postorderTraversalItr(self, root: Optional[TreeNode]) -> List[int]:
+        # Iterative Postorder Traversal using one stack and last_visited pointer
+        p = root
+        last_visited = None
+        stack = list()
+        res = list()
+        while p and last_visited != root:
+            while p and last_visited != p:
+                stack.append(p)
+                p = p.left
+            p = stack.pop()
+            if not p.right or p.right == last_visited:
+                res.append(p.val)
+                last_visited = p
+            else:
+                stack.append(p)
+                p = p.right
+        return res
+    def postorderTraversalItr_1(self, root: Optional[TreeNode]) -> List[int]:
+        # Iterative Postorder Traversal using one stack with reversal at end
+        stack = list()
+        res = list()
+        if root:
+            stack.append(root)
+        while stack:
+            p = stack.pop()
+            res.append(p.val)
+            if p.left:
+                stack.append(p.left)
+            if p.right:
+                stack.append(p.right)
+        return res[::-1]
 
 # Main section
 for btree in [
@@ -59,12 +91,17 @@ for btree in [
                 ('[1]'),
                 ('[4,2,6,1,3,5,7]'),
                 ('[1,2,3,4,5,6,7]'),
+                ('[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]'),
              ]:
     print(f'btree = {btree}')
     root = deserialize(btree)
     sol = Solution()
-    r = sol.postorderTraversal(root)
-    print(f'r = {r}')
+    r1 = sol.postorderTraversalRec(root)
+    print(f'r1    = {r1}')
+    r2 = sol.postorderTraversalItr(root)
+    print(f'r2    = {r2}')
+    r3 = sol.postorderTraversalItr_1(root)
+    print(f'r3    = {r3}')
     print('===========================')
 
 
