@@ -1,6 +1,8 @@
 from collections import defaultdict
 class Solution:
     def countPalindromicSubsequence(self, s: str) -> int:
+        # If a character occurs more than once, then its value is [i, j] where
+        # i and j are indices of first and last occurrences of the character.
         hsh = defaultdict(list)
         for i, v in enumerate(s):
             if v not in hsh:
@@ -10,6 +12,9 @@ class Solution:
             else:
                 hsh[v][1] = i
         res = 0
+        # If a character x occurs more than once, then find the count of all distinct
+        # characters between the first and last occurrence of x. Do that for all
+        # such multiple frequency characters and add up the counts for the answer.
         for k, v in hsh.items():
             if len(v) == 2:
                 i, j = v

@@ -1,3 +1,8 @@
+#
+# Incorrect solution. Does not work for the test case: ('abcde', ['ab','abcd','cde']).
+# The code here returns 1 but the correct answer is 0.
+# Check the DP solution in version 1
+#
 from typing import List
 from collections import defaultdict
 
@@ -41,6 +46,13 @@ for s, dictionary in [
                         ('leetscode', ['leet','code','leetcode']),
                         ('sayhelloworld', ['hello','world']),
                         ('dwmodizxvvbosxxw', ['ox','lb','diz','gu','v','ksv','o','nuq','r','txhe','e','wmo','cehy','tskz','ds','kzbu']),
+                        ('leetscode', ['leet','code','leetcode']),
+                        ('sayhelloworld', ['hello','world']),
+                        ('abcde', ['ab','abcd','cde']),
+                        ('metzeaencgpgvsckjrqafkxgyzbe', ['zdzz','lgrhy','r','ohk','zkowk','g','zqpn','anoni','ka','qafkx','t','jr','xdye','mppc','bqqb','encgp','yf','vl','ctsxk','gn','cujh','ce','rwrpq','tze','zxhg','yzbe','c','o','hnk','gv','uzbc','xn','kk','ujjd','vv','mxhmv','ugn','at','kumr','ensv','x','uy','gb','ae','jljuo','xqkgj']),
+                        ('azvzulhlwxwobowijiyebeaskecvtjqwkmaqnvnaomaqnvf', ['na','i','edd','wobow','kecv','b','n','or','jj','zul','vk','yeb','qnfac','azv','grtjba','yswmjn','xowio','u','xi','pcmatm','maqnv']),
+                        ('dwmodizxvvbosxxw', ['ox','lb','diz','gu','v','ksv','o','nuq','r','txhe','e','wmo','cehy','tskz','ds','kzbu']),
+                        ('enknouowgowcipfipojlrpuowgoiogiiebfjiafwksaigjyd', ['gw','lq','yzqch','sah','giieb','kfqczw','qxqz','jb','ucxmpe','hpwr','y','vzlhe','i','kn','ip','iafwk','zl','dw','yhxeqi','egktb','xasq','f','c','vrllz','p','uowgo','pgxd','gnjgkm','rnug','sa','vfccq','j']),
                      ]:
     print(f's, dictionary = {s}, {dictionary}')
     sol = Solution()

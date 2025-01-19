@@ -4,7 +4,46 @@
 from typing import List
 
 class Solution:
+    #def longestSquareStreak(self, nums: List[int]) -> int:
+    #    def getStreak(n, arr, max_val):
+    #        cnt = 0
+    #        while n <= max_val:
+    #            found = False
+    #            low, high = 0, len(arr) - 1
+    #            while low <= high:
+    #                mid = (low + high) // 2
+    #                if arr[mid] == n:
+    #                    cnt += 1
+    #                    found = True
+    #                    break
+    #                elif arr[mid] < n:
+    #                    low = mid + 1
+    #                else:
+    #                    high = mid - 1
+    #            if not found:
+    #                break
+    #            n = n*n
+    #        return cnt
+    #    nums.sort()
+    #    max_val = nums[-1]
+    #    longest_streak = 0
+    #    for i, v in enumerate(nums):
+    #        curr_streak = getStreak(v, nums[i:], max_val)
+    #        if curr_streak > longest_streak:
+    #            longest_streak = curr_streak
+    #    if longest_streak < 2:
+    #        return -1
+    #    else:
+    #        return longest_streak
+
     def longestSquareStreak(self, nums: List[int]) -> int:
+        def bsearch(nums, n):
+            left, right = 0, len(nums)
+            while left <= right:
+                mid = (left + right) // 2
+                if nums[mid] == n:
+                    return True
+
         def getStreak(n, arr, max_val):
             cnt = 0
             while n <= max_val:
