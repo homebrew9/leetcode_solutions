@@ -24,12 +24,14 @@ class Solution:
                 curr += gaps[i]
         res = max(res, curr)
         return res
-                    
+
 # Main section
 for eventTime, k, startTime, endTime in [
                                            (5, 1, [1,3], [2,5]),
                                            (10, 1, [0,2,9],  [1,4,10]),
                                            (5, 2, [0,1,2,3,4], [1,2,3,4,5]),
+                                           (227, 3, [12,16,215,222], [14,201,219,225]),
+                                           (21, 1, [7,10,16], [10,14,18]),
                                         ]:
     print(f'eventTime, k, startTime, endTime = {eventTime}, {k}, {startTime}, {endTime}')
     sol = Solution()
