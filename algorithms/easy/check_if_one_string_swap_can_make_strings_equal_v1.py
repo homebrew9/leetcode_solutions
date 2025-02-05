@@ -1,17 +1,17 @@
-from collections import Counter
-
 class Solution:
     def areAlmostEqual(self, s1: str, s2: str) -> bool:
-        if Counter(s1) != Counter(s2):
-            return False
-        cnt = 0
+        diff = 0
+        a, b, c, d = None, None, None, None
         for x, y in zip(s1, s2):
             if x != y:
-                cnt += 1
-        if cnt in (0, 2):
-            return True
-        else:
-            return False
+                diff += 1
+                if diff == 1:
+                    a, b = x, y
+                elif diff == 2:
+                    c, d = x, y
+                else:
+                    return False
+        return (a, b) == (d, c)
 
 # Main section
 for s1, s2 in [
