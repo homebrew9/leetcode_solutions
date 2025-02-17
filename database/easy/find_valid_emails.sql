@@ -41,13 +41,20 @@ import pandas as pd
 import re
 
 def is_valid(email):
-    if re.search(r'^\w+@[a-z]+.com$', email.lower()):
-        return True
-    return False
+    if len(re.findall(r'@', email)) != 1:
+        return False
+    if email[-4:].lower() != '.com':
+        return False
+    left_part, right_part = [x.lower() for x in email.split('@')]
+    if not re.match(r'^\w+$', left_part):
+        return False
+    if not re.match(r'^[a-z.]+$', right_part):
+        return False
+    return True
 
 def find_valid_emails(users: pd.DataFrame) -> pd.DataFrame:
     return users[users['email'].apply(is_valid)].sort_values('user_id')
-
+    
 
 # Pandas - Solution 2
 import pandas as pd
