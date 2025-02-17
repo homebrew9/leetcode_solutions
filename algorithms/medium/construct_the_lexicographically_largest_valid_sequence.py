@@ -1,3 +1,13 @@
+# Use backtracking. The most important point to keep in mind is this:
+# At a given index i of array "res", we try to fit integers from max to min. If we cannot fit
+# an integer, we move to the next smaller one. Thus, backtrack function takes index i as parameter.
+# As per the problem constraints, we will be always be able to construct a distanced sequence.
+# If a suitable integer is found, then do the following:
+#     1) add it to "used" set
+#     2) update in the array "res"
+# Then find the next open slot and call the recursive function. If this function returns False,
+# then backtrack i.e. undo the steps 1) and 2) above. And move on to the next iteration.
+#
 from typing import List
 
 class Solution:
