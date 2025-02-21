@@ -1,12 +1,20 @@
+#
+# Recursive backtracking solution.
+#
 from typing import List
 
 class Solution:
     def findDifferentBinaryString(self, nums: List[str]) -> str:
+        def solve(s):
+            if len(s) == N:
+                return s if s not in num_set else None
+            if (res := solve(s + '0')):
+                return res
+            if (res := solve(s + '1')):
+                return res
         N = len(nums[0])
-        num_set = set([int(n, 2) for n in nums])
-        for i in range(0, int('1'*N, 2) + 1):
-            if i not in num_set:
-                return bin(i).replace('0b', '').zfill(N)
+        num_set = set(nums)
+        return solve('')
 
 # Main section
 for nums in [
