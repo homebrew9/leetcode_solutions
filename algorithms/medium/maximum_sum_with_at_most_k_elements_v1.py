@@ -1,19 +1,23 @@
+#
+# Another solution using heap instead of SortedList
+#
 from typing import List
-from sortedcontainers import SortedList
+import heapq
 
 class Solution:
     def maxSum(self, grid: List[List[int]], limits: List[int], k: int) -> int:
-        sl = SortedList()
         rows = len(grid)
+        arr = list()
         for r in range(rows):
-            t = limits[r]
-            if t > 0:
-                arr = sorted(grid[r])[-t:]
-                for elem in arr:
-                    sl.add(elem)
-        if k == 0:
-            return 0
-        return sum(sl[-k:])
+            h = [-x for x in grid[r]]
+            heapq.heapify(h)
+            for _ in range(limits[r]):
+                arr.append(heapq.heappop(h))
+        heapq.heapify(arr)
+        res = 0
+        for _ in range(k):
+            res += -heapq.heappop(arr)
+        return res
 
 # Main section
 for grid, limits, k in [
