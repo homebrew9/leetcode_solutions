@@ -3,6 +3,7 @@ from typing import List
 class Solution:
     def mergeArrays(self, nums1: List[List[int]], nums2: List[List[int]]) -> List[List[int]]:
         # We simply apply the "merge" function of the MergeSort algorithm!
+        # TC = O(N), SC = O(N)
         res = list()
         N, M = len(nums1), len(nums2)
         i, j = 0, 0
