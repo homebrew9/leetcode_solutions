@@ -43,6 +43,7 @@ for left, right in [
                       (4, 6),
                       (220456, 770899),
                       (19, 31),
+                      (1, 1000000),
                    ]:
     print(f'left, right = {left}, {right}')
     sol = Solution()
