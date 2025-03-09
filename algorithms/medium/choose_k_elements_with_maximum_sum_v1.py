@@ -5,22 +5,23 @@
 #             Use *Max Heap* to maintain top k *smallest* elements.
 #
 from typing import List
-from sortedcontainers import SortedList
+import heapq
 
 class Solution:
     def findMaxSum(self, nums1: List[int], nums2: List[int], k: int) -> List[int]:
         N = len(nums1)
-        sl = SortedList()
+        h = list()
+        heapq.heapify(h)
         arr = sorted([(v, i) for i, v in enumerate(nums1)])
         res = [0 for _ in range(N)]
         total = 0
         for i in range(0, N-1):
             idx = arr[i][1]
-            sl.add(-nums2[idx])
+            heapq.heappush(h, nums2[idx])
             total += nums2[idx]
-            if len(sl) > k:
-                val = sl.pop()
-                total -= -val
+            if len(h) > k:
+                val = heapq.heappop(h)
+                total -= val
             if arr[i+1][0] > arr[i][0]:
                 res[arr[i+1][1]] = total
             else:
