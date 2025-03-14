@@ -22,6 +22,25 @@ order by country
 
 
 -- PostgreSQL
+-- Write your PostgreSQL query statement below
+with t (country, winery, total_points) as (
+    select country, winery, sum(points) as total_points
+      from wineries
+     group by country, winery
+),
+t1 as (
+select country, winery, total_points,
+       row_number() over (partition by country order by total_points desc, winery) as rnum
+from t
+)
+select country,
+       max(case when rnum=1 then winery||' ('||total_points::text||')' end) as top_winery,
+       coalesce(max(case when rnum=2 then winery||' ('||total_points::text||')' end), 'No second winery') as second_winery,
+       coalesce(max(case when rnum=3 then winery||' ('||total_points::text||')' end), 'No third winery') as third_winery
+from t1
+group by country
+order by country
+;
 
 
 -- SQL Server
