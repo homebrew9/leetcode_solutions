@@ -56,6 +56,21 @@ from t
 
 
 # MySQL
+# Write your MySQL query statement below
+with t as (
+select distinct date_format(s.pay_date, '%Y-%m') as pay_month, e.department_id,
+       avg(s.amount) over (partition by date_format(s.pay_date, '%Y-%m')) as cmp_avg,
+       avg(s.amount) over (partition by date_format(s.pay_date, '%Y-%m'), e.department_id) as dpt_avg
+from salary s
+     inner join employee e on (e.employee_id = s.employee_id)
+)
+select pay_month, department_id,
+       case when dpt_avg > cmp_avg then 'higher'
+            when dpt_avg < cmp_avg then 'lower'
+            else 'same'
+       end as comparison
+  from t
+;
 
 
 # Pandas
