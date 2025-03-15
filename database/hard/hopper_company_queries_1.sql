@@ -65,6 +65,41 @@ order by 1
 ;
 
 
+-- SQL Server
+/* Write your T-SQL query statement below */
+with t_hier (mth) as (
+    select 1
+    union all
+    select th.mth + 1
+      from t_hier th
+     where th.mth + 1 <= 12
+),
+acpt_rides (mth, accepted_rides) as (
+    select month(r.requested_at), count(*)
+      from rides r
+           inner join acceptedrides ar on (r.ride_id = ar.ride_id)
+     where year(r.requested_at) = 2020
+     group by month(r.requested_at)
+),
+driver_num (driver_id, join_date, driver_num) as (
+    select driver_id, join_date, row_number() over (order by join_date) as driver_num
+      from drivers
+),
+actv_drivers (mth, driver_id, join_date, driver_num) as (
+    select month(join_date), driver_id, join_date, driver_num
+      from driver_num dn
+     where year(join_date) = 2020
+)
+select distinct th.mth as month,
+       isnull(max(ad.driver_num) over (order by th.mth), 0) as active_drivers,
+       isnull(ar.accepted_rides, 0) as accepted_rides
+from t_hier th
+     left outer join actv_drivers ad on (th.mth = ad.mth)
+     left outer join acpt_rides ar on (th.mth = ar.mth)
+order by 1
+;
+
+
 # Pandas
 import pandas as pd
 
