@@ -102,4 +102,24 @@ order by country
 
 
 # Pandas
+import pandas as pd
+
+def top_three_wineries(wineries: pd.DataFrame) -> pd.DataFrame:
+    df_ranks = pd.DataFrame(data={'rnum':[1,2,3], 'values':['No top winery','No second winery','No third winery']})
+    df_cntry_ranks = df_ranks.merge(wineries[['country']].drop_duplicates(), how='cross')
+    df = ( wineries
+        .groupby(['country','winery'],as_index=0)['points']
+        .sum()
+        .sort_values(['country','points','winery'],ascending=[True,False,True])
+        )
+    df['rnum'] = df.groupby(['country']).cumcount()+1
+    df['wp'] = df['winery'] + ' (' + df['points'].astype('str') + ')'
+    df1 = df_cntry_ranks.merge(df, how='left', on=['country','rnum'])
+    df1['wp'] = np.where(df1['wp'].isna(), df1['values'], df1['wp'])
+    df1 = ( df1
+        .pivot_table(index='country', columns='rnum', values='wp', aggfunc='max')
+        .reset_index()[['country',1,2,3]]
+        .rename(columns={1:'top_winery', 2:'second_winery', 3:'third_winery'})
+        )
+    return df1
 
