@@ -25,6 +25,23 @@ order by a.id
 
 
 # MySQL
+# Write your MySQL query statement below
+with t as (
+select a.id, a.login_date,
+       row_number() over (partition by a.id order by a.login_date) as rn,
+       DATE_SUB(a.login_date, INTERVAL row_number() over (partition by a.id order by a.login_date) DAY) as group_id
+from (
+        select distinct id, login_date
+        from logins
+     ) a
+)
+select distinct a.id, a.name
+from accounts a
+     inner join t on (t.id = a.id)
+group by a.id, a.name, t.group_id
+having DATEDIFF(max(t.login_date), min(t.login_date)) + 1 >= 5
+order by a.id
+;
 
 
 # Pandas
