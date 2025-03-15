@@ -40,7 +40,6 @@ class Solution:
                 return retval
             retval += ''.join(row)
         return retval
-        
 
 # Main section
 sol = Solution()
@@ -57,5 +56,4 @@ for s, numRows in [
     r = sol.convert(s, numRows)
     print('r = %s'%(r))
     print('=====================================')
-
 
