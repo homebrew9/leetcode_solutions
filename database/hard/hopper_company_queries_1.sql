@@ -100,6 +100,40 @@ order by 1
 ;
 
 
+# MySQL
+# Write your MySQL query statement below
+with recursive t_hier (dt, num) as (
+    select cast('2020-01-01' as date) as dt, 1
+    union all
+    select th.dt + interval '1' month, th.num + 1
+      from t_hier th
+     where th.num + 1 <= 12
+),
+acpt_rides (dt, num, accepted_rides) as (
+    select th.dt, th.num, count(r.ride_id) as accepted_rides
+      from t_hier th
+           left outer join (
+               select r1.ride_id, r1.requested_at
+                 from rides r1
+                where exists (select null from acceptedrides ar where ar.ride_id = r1.ride_id)
+           ) r
+           on (date_format(r.requested_at, '%Y%m') = date_format(th.dt, '%Y%m'))
+     group by th.dt, th.num
+),
+actv_drivers (dt, num, active_drivers) as (
+    select th.dt, th.num, count(d.driver_id) as active_drivers
+      from t_hier th
+           left outer join drivers d on (date_format(d.join_date, '%Y%m') <= date_format(th.dt, '%Y%m'))
+     group by th.dt, th.num
+)
+select th.num as month, ad.active_drivers, ar.accepted_rides
+from t_hier th
+     inner join actv_drivers ad on (th.dt = ad.dt)
+     inner join acpt_rides ar on (th.dt = ar.dt)
+order by 1
+;
+
+
 # Pandas
 import pandas as pd
 
