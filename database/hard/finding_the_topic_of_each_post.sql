@@ -73,4 +73,20 @@ where post_id not in (select distinct post_id from t)
 
 
 # Pandas
+import pandas as pd
+
+def find_topic(keywords: pd.DataFrame, posts: pd.DataFrame) -> pd.DataFrame:
+    keywords['word_lower'] = keywords['word'].str.lower()
+    posts['content'] = posts['content'].str.split(' ')
+    df = posts.explode('content')
+    df['content_lower'] = df['content'].str.lower()
+    df1 = ( df
+           .merge(keywords, how='inner', left_on='content_lower', right_on='word_lower')[['post_id','topic_id']]
+           .drop_duplicates()
+           .sort_values(['post_id','topic_id'])
+           .groupby('post_id', as_index=0)['topic_id']
+           .apply(lambda x: ','.join(map(str, x)))
+           .rename(columns={'topic_id': 'topic'})
+          )
+    return posts[['post_id']].drop_duplicates().merge(df1, how='left', on='post_id').fillna('Ambiguous!')
 
