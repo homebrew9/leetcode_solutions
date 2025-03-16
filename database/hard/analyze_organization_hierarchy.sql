@@ -90,4 +90,39 @@ select th.employee_id, th.employee_name, th.level,
 
 
 # Pandas
+import pandas as pd
+
+def analyze_organization_hierarchy(employees: pd.DataFrame) -> pd.DataFrame:
+    global res
+    res = None
+    def get_teamsize_budget(p_employee_id):
+        df = employees[employees['employee_id'] == p_employee_id]
+        team_size, budget = 0, 0
+        while len(df) > 0:
+            team_size += len(df)
+            budget += df['salary'].sum()
+            df1 = ( df
+                   .merge(employees, how='inner', left_on='employee_id', right_on='manager_id')[['employee_id_y','salary_y']]
+                   .rename(columns={'employee_id_y':'employee_id', 'salary_y':'salary'})
+                  )
+            df = df1
+        return (team_size-1, budget)
+    def get_hierarchy(p_employee_id):
+        global res
+        res = None
+        level = 0
+        df = employees[employees['employee_id'] == p_employee_id][['employee_id','employee_name']]
+        while len(df) > 0:
+            level += 1
+            df['level'] = level
+            res = df if res is None else pd.concat([res, df])
+            df1 = ( df
+                   .merge(employees, how='inner', left_on='employee_id', right_on='manager_id')[['employee_id_y','employee_name_y']]
+                   .rename(columns={'employee_id_y': 'employee_id', 'employee_name_y': 'employee_name'})
+                  )
+            df = df1
+    employees[employees['manager_id'].isna()]['employee_id'].apply(get_hierarchy)
+    res['team_size'] = res['employee_id'].apply(get_teamsize_budget).str[0]
+    res['budget'] = res['employee_id'].apply(get_teamsize_budget).str[1]
+    return res.sort_values(by=['level','budget','employee_name'], ascending=[True,False,True])
 
