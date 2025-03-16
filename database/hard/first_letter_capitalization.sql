@@ -111,4 +111,13 @@ select content_id, content_text as original_text,
 
 
 # Pandas
+import pandas as pd
+
+def process_text(user_content: pd.DataFrame) -> pd.DataFrame:
+    user_content['ct'] = user_content['content_text'].str.split()
+    df = user_content.explode('ct')
+    df['ct'] = df['ct'].str.capitalize()
+    df = df.groupby(['content_id', 'content_text'], as_index=0)['ct'].agg(list)
+    df['ct'] = df['ct'].apply(lambda x: ' '.join(map(str, x)))
+    return df.rename(columns={'content_text': 'original_text', 'ct': 'converted_text'})
 
