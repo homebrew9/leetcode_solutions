@@ -76,6 +76,38 @@ select content_id, content_text as original_text,
 
 
 # MySQL
+# Write your MySQL query statement below
+with recursive t_hier (n) as (
+    select 1
+    union all
+    select th.n + 1
+      from t_hier th
+     where th.n <= (select max(length(content_text)) from user_content)
+),
+t as (
+    select content_id, content_text, th.n,
+           trim(substring(
+                    substring_index(content_text, ' ', th.n),
+                    length(substring_index(content_text, ' ', th.n - 1)) + 1
+               )) as curr
+      from user_content
+           cross join t_hier th
+     where trim(substring(
+                    substring_index(content_text, ' ', th.n),
+                    length(substring_index(content_text, ' ', th.n - 1)) + 1
+               )) <> ''
+     order by content_id, th.n
+),
+t1 as (
+    select content_id, content_text, n, curr,
+           concat(ucase(left(curr, 1)), lcase(substring(curr,2))) as upd_text
+      from t
+)
+select content_id, content_text as original_text,
+       group_concat(upd_text order by n separator ' ') as converted_text
+  from t1
+ group by content_id, content_text
+;
 
 
 # Pandas
