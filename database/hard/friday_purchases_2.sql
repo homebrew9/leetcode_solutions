@@ -29,6 +29,27 @@ order by t1.week_of_month, t1.purchase_date
 
 
 -- PostgreSQL
+-- Write your PostgreSQL query statement below
+with recursive t_hier(dt, dow, num, wk) as (
+    select '2023-11-01'::timestamp,
+           to_char('2023-11-01'::timestamp, 'Day'),
+           1, 1
+    union all
+    select th.dt + interval '1 day',
+           to_char(th.dt + interval '1 day', 'Day'), 
+           th.num + 1, ceiling((th.num + 1) / 7.0)::int
+      from t_hier th
+     where th.dt + interval '1 day' < '2023-12-01'::timestamp
+)
+select th.wk as week_of_month,
+       to_char(th.dt, 'yyyy-mm-dd') as purchase_date,
+       coalesce(sum(p.amount_spend), 0) as total_amount
+  from t_hier th
+       left outer join purchases p on (p.purchase_date = th.dt)
+ where trim(th.dow) = 'Friday'
+ group by th.wk, to_char(th.dt, 'yyyy-mm-dd')
+ order by th.wk
+;
 
 
 -- SQL Server
