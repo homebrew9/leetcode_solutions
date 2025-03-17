@@ -5,7 +5,7 @@ class Solution:
             if n % 3 == 0:
                 n //= 3
             elif (n - 1) % 3 == 0:
-                n -= 1
+                n -= 2
             else:
                 return False
         return True
