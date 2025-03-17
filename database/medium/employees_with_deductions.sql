@@ -83,4 +83,14 @@ where total_hours < needed_hours
 
 
 # Pandas
+import pandas as pd
+
+def employees_with_deductions(employees: pd.DataFrame, logs: pd.DataFrame) -> pd.DataFrame:
+    logs['minutes_worked'] = np.ceil((logs['out_time'] - logs['in_time']).dt.total_seconds()/60)
+    df = logs.groupby('employee_id', as_index=0)['minutes_worked'].sum()
+    return ( employees
+            .merge(df, how='left', on='employee_id')
+            .fillna(0)
+            .query('minutes_worked < needed_hours * 60')[['employee_id']]
+           )
 
