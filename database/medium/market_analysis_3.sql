@@ -46,7 +46,7 @@ select seller_id, num_items
  order by seller_id
 ;
 
--- Version 2 - Using MAX and avoiding the DENSE_RANK analytic function
+-- Version 2 - Using MAX and avoiding the DENSE_RANK analytic function - this is a bit faster
 with t (seller_id, num_items) as (
     select o.seller_id, count(distinct o.item_id) as num_items
       from orders o
@@ -63,6 +63,21 @@ select seller_id, num_items
  where num_items = (select max(num_items) from t)
  order by seller_id
 ;
+
+-- Version 3 - Using row value expressions i.e. "(col1, col2) in/not in (<query>/<values clause>)"
+with t (seller_id, num_items) as (
+    select o.seller_id, count(distinct o.item_id) as num_items
+      from orders o
+           inner join items i on (i.item_id = o.item_id)
+     where (o.seller_id, i.item_brand) not in (select seller_id, favorite_brand from users)
+     group by o.seller_id
+)
+select seller_id, num_items
+  from t
+ where num_items = (select max(num_items) from t)
+ order by seller_id
+;
+
 
 -- SQL Server
 /* Write your T-SQL query statement below */
