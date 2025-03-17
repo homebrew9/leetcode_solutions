@@ -86,5 +86,21 @@ select round(t2.returning_player_count / t.total_players, 2) as fraction
 
 
 # Pandas
+import pandas as pd
 
+def gameplay_analysis(activity: pd.DataFrame) -> pd.DataFrame:
+    total_count = len(activity[['player_id']].drop_duplicates())
+    activity['prev_day'] = activity['event_date'] + pd.Timedelta(days=-1)
+    relogger_count = (len( activity
+                          .groupby('player_id', as_index=0)['event_date']
+                          .min()
+                          .merge( activity,
+                                  how='inner',
+                                  left_on=['player_id','event_date'],
+                                  right_on=['player_id', 'prev_day']
+                                )[['player_id']]
+                          .drop_duplicates()
+                         )
+                     )
+    return pd.DataFrame(data={'fraction': [round(relogger_count/total_count, 2)]})
 
