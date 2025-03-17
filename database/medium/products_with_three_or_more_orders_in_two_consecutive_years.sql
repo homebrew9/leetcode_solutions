@@ -85,4 +85,18 @@ and t1.cnt >= 3
 
 
 # Pandas
+import pandas as pd
+
+def find_valid_products(orders: pd.DataFrame) -> pd.DataFrame:
+    orders['purchase_year'] = orders['purchase_date'].dt.strftime('%Y').astype('int')
+    df = ( orders
+          .groupby(['product_id','purchase_year'], as_index=0)['order_id']
+          .count()
+          .rename(columns={'order_id': 'order_count'})
+         )
+    return ( df
+            .merge(df, how='inner', on='product_id')
+            .query('order_count_x >= 3 and order_count_y >= 3 and purchase_year_y == purchase_year_x + 1')[['product_id']]
+            .drop_duplicates()
+           )
 
