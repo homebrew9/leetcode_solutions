@@ -24,6 +24,7 @@ END;
 
 
 -- PostgreSQL
+-- There is no option for PostgreSQL in the drop-down.
 
 
 -- SQL Server
