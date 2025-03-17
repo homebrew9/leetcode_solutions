@@ -17,7 +17,8 @@ END;
 
 
 -- PostgreSQL
-
+-- Seems impossible to solve this in PostgreSQL. We can return a refcursor but LC judge will have to
+-- loop through it and it does not. Perhaps it was not tested thoroughly by LC.
 
 -- SQL Server
 CREATE PROCEDURE PivotProducts AS
