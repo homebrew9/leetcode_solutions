@@ -46,6 +46,24 @@ select seller_id, num_items
  order by seller_id
 ;
 
+-- Version 2 - Using MAX and avoiding the DENSE_RANK analytic function
+with t (seller_id, num_items) as (
+    select o.seller_id, count(distinct o.item_id) as num_items
+      from orders o
+           inner join items i on (i.item_id = o.item_id)
+     where not exists (select null
+                         from users u
+                        where u.seller_id = o.seller_id
+                          and u.favorite_brand = i.item_brand
+                      )
+     group by o.seller_id
+)
+select seller_id, num_items
+  from t
+ where num_items = (select max(num_items) from t)
+ order by seller_id
+;
+
 -- SQL Server
 /* Write your T-SQL query statement below */
 with t (seller_id, item_id) as (
