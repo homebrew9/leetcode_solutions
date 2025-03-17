@@ -74,5 +74,19 @@ from t
 
 
 # Pandas
+import pandas as pd
 
+def compute_rating(students: pd.DataFrame) -> pd.DataFrame:
+    students['rank'] = ( students
+                        .groupby('department_id', as_index=0)['mark']
+                        .rank(method='min', ascending=False)
+                       )
+    df = ( students
+          .groupby('department_id', as_index=0)['student_id']
+          .count()
+          .rename(columns={'student_id': 'total_count'})
+         )
+    df = students.merge(df, how='inner', on='department_id')
+    df['percentage'] = np.where(df['total_count']==1, 0, round((df['rank'] - 1) / (df['total_count'] - 1) * 100, 2))
+    return df[['student_id','department_id','percentage']].sort_values(['department_id', 'percentage'])
 
