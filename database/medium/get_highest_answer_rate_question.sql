@@ -43,6 +43,25 @@ and drnk = 1;
 
 
 -- SQL Server
+/* Write your T-SQL query statement below */
+with t (question_id, answer_rate) as (
+select question_id,
+       CONVERT(FLOAT, sum(case when action = 'answer' then 1 else 0 end))
+       /
+       CONVERT(FLOAT, sum(case when action = 'show' then 1 else 0 end)) as answer_rate
+from SurveyLog
+group by question_id
+)
+,
+t1 as (
+select question_id, answer_rate,
+       dense_rank() over (partition by answer_rate order by question_id) as drnk
+from t
+)
+select question_id as survey_log
+from t1
+where answer_rate = (select max(answer_rate) from t1)
+and drnk = 1;
 
 
 # MySQL
@@ -64,8 +83,7 @@ from t
 select question_id as survey_log
 from t1
 where answer_rate = (select max(answer_rate) from t1)
-and drnk = 1
-;
+and drnk = 1;
 
 
 # Pandas
