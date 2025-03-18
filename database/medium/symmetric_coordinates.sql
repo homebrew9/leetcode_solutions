@@ -97,4 +97,19 @@ select x, y
 
 
 # Pandas
+import pandas as pd
+
+def symmetric_pairs(coordinates: pd.DataFrame) -> pd.DataFrame:
+    df1 = ( coordinates
+           .merge(coordinates, how='inner', left_on=['X','Y'], right_on=['Y','X'])
+           .query('X_x < Y_x')[['X_x','Y_x']]
+           .drop_duplicates()
+           .rename(columns={'X_x':'X','Y_x':'Y'})
+          )
+    df2 = ( coordinates[coordinates['X']==coordinates['Y']]
+           .groupby(['X','Y'],as_index=False)
+           .agg(cnt=('X','count'))
+           .query('cnt > 1')[['X','Y']]
+          )
+    return pd.concat([df1, df2]).sort_values(['X','Y'])
 
