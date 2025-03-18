@@ -60,4 +60,10 @@ select distinct t.salary as SecondHighestSalary
 
 
 # Pandas
+import pandas as pd
+
+def second_highest_salary(employee: pd.DataFrame) -> pd.DataFrame:
+    employee['rnk'] = employee['salary'].drop_duplicates().rank(method='first',ascending=False)
+    df = employee[employee['rnk']==2][['salary']].rename(columns={'salary': 'SecondHighestSalary'})
+    return pd.DataFrame(data={'SecondHighestSalary': None}, index=[0]) if len(df) == 0 else df
 
