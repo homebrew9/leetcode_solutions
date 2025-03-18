@@ -123,4 +123,24 @@ select t4.title from t4 where t4.drnk = 1
 
 
 # Pandas
+import pandas as pd
+
+def movie_rating(movies: pd.DataFrame, users: pd.DataFrame, movie_rating: pd.DataFrame) -> pd.DataFrame:
+    df = ( movie_rating
+          .merge(users, how='inner', on='user_id')
+          .groupby(['user_id','name'], as_index=0)['movie_id']
+          .count()
+          .sort_values(by=['movie_id', 'name'], ascending=[0, 1])
+          .head(1)[['name']]
+          .rename(columns={'name': 'results'})
+         )
+    df1 = ( movie_rating[movie_rating['created_at'].dt.strftime('%Y%m') == '202002']
+           .merge(movies, how='inner', on='movie_id')
+           .groupby(['movie_id','title'], as_index=0)['rating']
+           .mean()
+           .sort_values(by=['rating', 'title'], ascending=[0, 1])
+           .head(1)[['title']]
+           .rename(columns={'title': 'results'})
+          )
+    return pd.concat([df, df1])
 
