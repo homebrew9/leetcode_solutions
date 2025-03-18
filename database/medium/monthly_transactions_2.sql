@@ -139,4 +139,25 @@ where not (approved_count=0 and approved_amount=0 and chargeback_count=0 and cha
 
 
 # Pandas
+import pandas as pd
+
+def monthly_transactions(transactions: pd.DataFrame, chargebacks: pd.DataFrame) -> pd.DataFrame:
+    transactions['trans_date'] = transactions['trans_date'].dt.strftime('%Y-%m')
+    chargebacks['trans_date'] = chargebacks['trans_date'].dt.strftime('%Y-%m')
+    df1 = ( transactions[transactions['state']=='approved']
+           .groupby(['trans_date','country'],as_index=False)
+           .agg(approved_count=('id','count'), approved_amount=('amount','sum'))
+           .rename(columns={'trans_date':'month'})
+          )
+    df2 = ( chargebacks
+           .merge(transactions, how='inner', left_on='trans_id', right_on='id')
+           .rename(columns={'trans_date_x':'month'})
+           .groupby(['month','country'],as_index=False)
+           .agg(chargeback_count=('trans_id','count'), chargeback_amount=('amount','sum'))
+          )
+    return ( df1
+            .merge(df2, how='outer', on=['month','country'])
+            .fillna(0)
+            .query('approved_count != 0 or approved_amount != 0 or chargeback_count != 0 or chargeback_amount != 0')
+           )
 
