@@ -67,4 +67,21 @@ select b.book_id, b.name
 
 
 # Pandas
+import pandas as pd
+
+def unpopular_books(books: pd.DataFrame, orders: pd.DataFrame) -> pd.DataFrame:
+    df = ( orders
+          .assign(to_date=pd.to_datetime('2019-06-23'),
+                  from_date=pd.to_datetime('2019-06-23')-pd.DateOffset(years=1)
+                 )
+          .query('dispatch_date >= from_date and dispatch_date <= to_date')
+          .groupby('book_id',as_index=False)['quantity']
+          .sum()
+         )
+    return ( books
+            .assign(cutoff_date=pd.to_datetime('2019-06-23')-pd.DateOffset(months=1))
+            .query('available_from <= cutoff_date')
+            .merge(df, how='left', on='book_id')
+            .query('quantity.isnull() | quantity < 10')[['book_id','name']]
+           )
 
