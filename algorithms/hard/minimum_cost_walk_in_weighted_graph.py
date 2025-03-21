@@ -72,3 +72,4 @@ for n, edges, queries in [
     r = sol.minimumCost(n, edges, queries)
     print(f'r = {r}')
     print('===================')
+
