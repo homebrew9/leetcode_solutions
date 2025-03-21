@@ -39,4 +39,3 @@ for recipes, ingredients, supplies in [
     r = sol.findAllRecipes(recipes, ingredients, supplies)
     print(f'r = {r}')
     print('===================')
-
