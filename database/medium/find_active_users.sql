@@ -55,4 +55,19 @@ where (abs(created_at - next_dt) <= 7 or abs(created_at - prev_dt) <= 7)
 
 
 # Pandas
+import pandas as pd
+
+def find_active_users(users: pd.DataFrame) -> pd.DataFrame:
+    users = users.sort_values(['user_id','created_at'])
+    df = ( pd
+          .concat([ users,
+                    users
+                   .shift(1)[['user_id','created_at']]
+                   .rename(columns={'user_id':'prev_user_id', 'created_at':'prev_dt'})
+                  ],
+                  axis=1
+                 )
+         )
+    df['date_diff'] = (df['created_at'] - df['prev_dt']).dt.days
+    return df.query('user_id == prev_user_id and date_diff <= 7')[['user_id']].drop_duplicates()
 
