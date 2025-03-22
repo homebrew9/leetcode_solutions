@@ -83,3 +83,14 @@ def consecutive_numbers(logs: pd.DataFrame) -> pd.DataFrame:
             .rename(columns={'num': 'ConsecutiveNums'})
            )
 
+# Pandas Version 1
+import pandas as pd
+
+def consecutive_numbers(logs: pd.DataFrame) -> pd.DataFrame:
+    logs['prev_num'] = logs[['num']].shift(1)
+    logs['prev_to_prev_num'] = logs[['num']].shift(2)
+    return ( logs[(logs['num']==logs['prev_num']) & (logs['num']==logs['prev_to_prev_num'])][['num']]
+            .drop_duplicates()
+            .rename(columns={'num': 'ConsecutiveNums'})
+           )
+
