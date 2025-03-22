@@ -55,4 +55,15 @@ order by viewer_id
 
 
 # Pandas
+import pandas as pd
+
+def article_views(views: pd.DataFrame) -> pd.DataFrame:
+    views = views.drop_duplicates().rename(columns={'viewer_id': 'id'})
+    return ( views
+            .groupby(['id','view_date'],as_index=False)['article_id']
+            .count()
+            .query('article_id > 1')[['id']]
+            .drop_duplicates()
+            .sort_values('id')
+           )
 
