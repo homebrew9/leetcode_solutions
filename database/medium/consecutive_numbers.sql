@@ -71,4 +71,15 @@ where valid = 'Y'
 
 
 # Pandas
+import pandas as pd
+
+def consecutive_numbers(logs: pd.DataFrame) -> pd.DataFrame:
+    return ( logs
+            .merge(logs, how='inner', on='num')
+            .query('id_y == id_x + 1')
+            .merge(logs, how='inner', on='num')
+            .query('id == id_y + 1')[['num']]
+            .drop_duplicates()
+            .rename(columns={'num': 'ConsecutiveNums'})
+           )
 
