@@ -101,4 +101,21 @@ and prev_mth_income > max_income
 
 
 # Pandas
+import pandas as pd
+
+def suspicious_bank_accounts(accounts: pd.DataFrame, transactions: pd.DataFrame) -> pd.DataFrame:
+    transactions['month'] = transactions['day'].dt.strftime('%Y%m').astype('int')
+    df = ( transactions[transactions['type']=='Creditor']
+          .groupby(['account_id','month'], as_index=0)['amount']
+          .sum()
+          .merge(accounts, how='inner', on='account_id')
+          .query('amount > max_income')
+          .sort_values(['account_id', 'month'])
+         )
+    df['prev_account_id'] = df['account_id'].shift(1)
+    df['prev_month'] = df['month'].shift(1)
+    return ( df
+            .query('account_id == prev_account_id and month == prev_month + 1')[['account_id']]
+            .drop_duplicates()
+           )
 
