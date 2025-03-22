@@ -51,4 +51,13 @@ where year = min_year
 
 
 # Pandas
+import pandas as pd
+
+def sales_analysis(sales: pd.DataFrame, product: pd.DataFrame) -> pd.DataFrame:
+    df = sales.groupby('product_id', as_index=0)['year'].min()
+    return ( sales
+            .merge(product, how='inner', on='product_id')
+            .merge(df, how='inner', on=['product_id', 'year'])[['product_id', 'year', 'quantity', 'price']]
+            .rename(columns={'year': 'first_year'})
+           )
 
