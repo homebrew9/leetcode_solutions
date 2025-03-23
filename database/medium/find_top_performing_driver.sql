@@ -1,0 +1,93 @@
+-- Oracle
+/* Write your PL/SQL query statement below */
+with t as (
+    select v.fuel_type, v.driver_id, d.accidents, round(avg(t.rating), 2) as rating, sum(t.distance) as distance
+      from vehicles v
+           inner join trips t on (t.vehicle_id = v.vehicle_id)
+           inner join drivers d on (v.driver_id = d.driver_id)
+     group by v.fuel_type, v.driver_id, d.accidents
+)
+,
+t1 as (
+    select fuel_type, driver_id, accidents, rating, distance,
+           dense_rank() over (partition by fuel_type order by rating desc, distance desc, accidents) as drnk
+      from t
+)
+select fuel_type, driver_id, rating, distance
+  from t1
+ where drnk = 1
+ order by fuel_type
+;
+
+
+-- PostgreSQL
+-- Write your PostgreSQL query statement below
+with t as (
+    select v.fuel_type, v.driver_id, d.accidents, round(avg(t.rating), 2) as rating, sum(t.distance) as distance
+      from vehicles v
+           inner join trips t on (t.vehicle_id = v.vehicle_id)
+           inner join drivers d on (v.driver_id = d.driver_id)
+     group by v.fuel_type, v.driver_id, d.accidents
+)
+,
+t1 as (
+    select fuel_type, driver_id, accidents, rating, distance,
+           dense_rank() over (partition by fuel_type order by rating desc, distance desc, accidents) as drnk
+      from t
+)
+select fuel_type, driver_id, rating, distance
+  from t1
+ where drnk = 1
+ order by fuel_type
+;
+
+
+-- SQL Server
+/* Write your T-SQL query statement below */
+with t as (
+    select v.fuel_type, v.driver_id, d.accidents,
+           round(avg(convert(float, t.rating)), 2) as rating,
+           sum(t.distance) as distance
+      from vehicles v
+           inner join trips t on (t.vehicle_id = v.vehicle_id)
+           inner join drivers d on (v.driver_id = d.driver_id)
+     group by v.fuel_type, v.driver_id, d.accidents
+)
+,
+t1 as (
+    select fuel_type, driver_id, accidents, rating, distance,
+           dense_rank() over (partition by fuel_type order by rating desc, distance desc, accidents) as drnk
+      from t
+)
+select fuel_type, driver_id, rating, distance
+  from t1
+ where drnk = 1
+ order by fuel_type
+;
+
+
+# MySQL
+# Write your MySQL query statement below
+with t as (
+    select v.fuel_type, v.driver_id, d.accidents,
+           round(avg(t.rating), 2) as rating, sum(t.distance) as distance
+      from vehicles v
+           inner join trips t on (t.vehicle_id = v.vehicle_id)
+           inner join drivers d on (v.driver_id = d.driver_id)
+     group by v.fuel_type, v.driver_id, d.accidents
+)
+,
+t1 as (
+    select fuel_type, driver_id, accidents, rating, distance,
+           dense_rank() over (partition by fuel_type order by rating desc, distance desc, accidents) as drnk
+      from t
+)
+select fuel_type, driver_id, rating, distance
+  from t1
+ where drnk = 1
+ order by fuel_type
+;
+
+
+# Pandas
+
