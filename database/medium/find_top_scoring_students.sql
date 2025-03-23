@@ -95,4 +95,17 @@ order by s.student_id
 
 
 # Pandas
+import pandas as pd
+
+def find_top_scoring_students(enrollments: pd.DataFrame, students: pd.DataFrame, courses: pd.DataFrame) -> pd.DataFrame:
+    df = ( students
+          .merge(courses, how='inner', on='major')[['student_id', 'course_id']]
+         )
+    non_top_scoring = ( df
+                       .merge(enrollments, how='left', on=['student_id', 'course_id'])
+                       .query('grade.isna() or grade != "A"')['student_id']
+                      )
+    return ( students[~students['student_id'].isin(non_top_scoring)][['student_id']]
+            .sort_values('student_id')
+           )
 
