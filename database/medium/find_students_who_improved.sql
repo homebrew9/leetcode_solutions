@@ -119,4 +119,22 @@ inner join
 
 
 # Pandas
+import pandas as pd
+
+def find_students_who_improved(scores: pd.DataFrame) -> pd.DataFrame:
+    df_min_ed = scores.groupby(['student_id','subject'], as_index=0)['exam_date'].min()
+    df_max_ed = scores.groupby(['student_id','subject'], as_index=0)['exam_date'].max()
+    df_min = ( scores
+              .merge(df_min_ed, on=['student_id','subject','exam_date'], how='inner')
+              .rename(columns={'score':'first_score', 'exam_date': 'first_exam_date'})
+             )
+    df_max = ( scores
+              .merge(df_max_ed, on=['student_id','subject','exam_date'], how='inner')
+              .rename(columns={'score':'latest_score', 'exam_date': 'latest_exam_date'})
+             )
+    return ( df_min
+            .merge(df_max, on=['student_id','subject'], how='inner')
+            .query('latest_exam_date > first_exam_date and latest_score > first_score')
+            .sort_values(['student_id', 'subject'])[['student_id','subject','first_score','latest_score']]
+           )
 
