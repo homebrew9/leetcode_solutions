@@ -81,4 +81,23 @@ order by f1.user_id1, f1.user_id2
 
 
 # Pandas
+import pandas as pd
+
+def friends_with_no_mutual_friends(friends: pd.DataFrame) -> pd.DataFrame:
+    df = (pd.concat(
+                     [friends[['user_id1','user_id2']].rename(columns={'user_id1':'id1', 'user_id2':'id2'}),
+                      friends[['user_id2','user_id1']].rename(columns={'user_id2':'id1', 'user_id1':'id2'})
+                     ]
+                   )
+         )
+    df1 = ( friends
+           .merge(df, how='inner', left_on='user_id1', right_on='id1')
+           .merge(df, how='inner', left_on='user_id2', right_on='id2')
+           .query('id2_x == id1_y')
+          )
+    return ( friends
+            .merge(df1, how='left', on=['user_id1','user_id2'])
+            .query('id1_x.isna()')[['user_id1','user_id2']]
+            .sort_values(['user_id1','user_id2'])
+           )
 
