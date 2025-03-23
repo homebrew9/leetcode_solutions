@@ -103,4 +103,19 @@ from platform_experiment pe
 
 
 # Pandas
+import pandas as pd
+
+def count_experiments(experiments: pd.DataFrame) -> pd.DataFrame:
+    df_platform = pd.DataFrame(data={'platform': ['Android','IOS','Web']})
+    df_experiment = pd.DataFrame(data={'experiment_name': ['Reading','Sports','Programming']})
+    df = ( experiments
+          .groupby(['platform', 'experiment_name'], as_index=0)['experiment_id']
+          .count()
+          .rename(columns={'experiment_id': 'num_experiments'})
+         )
+    return ( df_platform
+            .merge(df_experiment, how='cross')
+            .merge(df, how='left', on=['platform', 'experiment_name'])
+            .fillna(0)
+           )
 
