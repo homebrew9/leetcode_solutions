@@ -75,4 +75,17 @@ and spend > prev_trx_2
 
 
 # Pandas
+import pandas as pd
+
+def find_third_transaction(transactions: pd.DataFrame) -> pd.DataFrame:
+    transactions['drnk'] = transactions.groupby('user_id')['transaction_date'].rank(method='dense')
+    transactions = transactions.sort_values(by=['user_id','drnk'])
+    transactions['prev_day1_spend'] = transactions.shift(1)['spend']
+    transactions['prev_day2_spend'] = transactions.shift(2)['spend']
+    return ( transactions
+            .query('drnk==3 and spend > prev_day1_spend and spend > prev_day2_spend')
+             [['user_id','spend','transaction_date']]
+            .sort_values('user_id')
+            .rename(columns={'spend': 'third_transaction_spend', 'transaction_date': 'third_transaction_date'})
+           )
 
