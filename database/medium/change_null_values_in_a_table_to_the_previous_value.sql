@@ -68,4 +68,23 @@ select c.id, coalesce(c.drink, t.drink) as drink
 
 
 # Pandas
+import pandas as pd
+
+def change_null_values(coffee_shop: pd.DataFrame) -> pd.DataFrame:
+    coffee_shop['rnum'] = coffee_shop.index + 1
+    df = ( coffee_shop
+          .merge(coffee_shop, how='cross')
+          .query('(rnum_x == 1) or (rnum_y < rnum_x and ~drink_y.isna())')
+          .sort_values('rnum_x')
+          .groupby('rnum_x', as_index=0)['rnum_y']
+          .max()
+         )
+    df.rename(columns={'rnum_x': 'rnum_curr', 'rnum_y': 'rnum_prev'}, inplace=True)
+    df1 = ( df
+           .merge(coffee_shop, how='inner', left_on='rnum_curr', right_on='rnum')
+           .merge(coffee_shop, how='inner', left_on='rnum_prev', right_on='rnum')[['id_x','drink_x','rnum_x','drink_y']]
+           .rename(columns={'id_x': 'id', 'rnum_x':'rnum'})
+          )
+    df1['drink'] = df1['drink_x'].combine_first(df1['drink_y'])
+    return df1.sort_values('rnum')[['id','drink']]
 
