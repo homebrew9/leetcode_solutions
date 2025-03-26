@@ -67,4 +67,24 @@ having count(*) >= 3
 
 
 # Pandas
+import pandas as pd
+
+def strong_friendship(friendship: pd.DataFrame) -> pd.DataFrame:
+    df = ( pd
+          .concat([friendship, friendship[['user2_id','user1_id']]
+          .rename(columns={'user2_id':'user1_id', 'user1_id':'user2_id'})])
+          .sort_values(['user1_id','user2_id'])
+          .reset_index(drop=True)
+         )
+    return ( friendship
+            .merge(df, how='inner', on='user1_id')
+            .rename(columns={'user2_id_y':'friend_of_user1', 'user2_id_x': 'user2_id'})
+            .merge(df, how='inner', on='user2_id')
+            .query('user1_id_y == friend_of_user1')
+            .rename(columns={'user1_id_y':'friend_of_user2', 'user1_id_x': 'user1_id'})
+            .groupby(['user1_id', 'user2_id'], as_index=0)['friend_of_user1']
+            .count()
+            .query('friend_of_user1 >= 3')
+            .rename(columns={'friend_of_user1': 'common_friend'})
+           )
 
