@@ -52,4 +52,17 @@ select d.name as department, e.name as employee, e.salary
 
 
 # Pandas
+import pandas as pd
+
+def department_highest_salary(employee: pd.DataFrame, department: pd.DataFrame) -> pd.DataFrame:
+    df = ( employee
+          .merge(department, how='inner', left_on='departmentId', right_on='id')
+          .groupby(['id_y','name_y'], as_index=0)['salary']
+          .max()
+          .rename(columns={'id_y':'departmentId', 'name_y':'department'})
+         )
+    return ( employee
+            .merge(df, how='inner', on=['departmentId','salary'])[['department','name','salary']]
+            .rename(columns={'name':'employee'})
+           )
 
