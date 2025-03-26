@@ -1,4 +1,15 @@
 -- Oracle
+/* Write your PL/SQL query statement below */
+with t as (
+    select d.name as department, e.name as employee, e.salary,
+           max(e.salary) over (partition by e.departmentId) as dept_max_salary
+      from employee e
+           inner join department d on (d.id = e.departmentId)
+)
+select department, employee, salary
+  from t
+ where salary = dept_max_salary
+;
 
 
 -- PostgreSQL
