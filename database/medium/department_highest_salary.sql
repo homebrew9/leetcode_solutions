@@ -2,6 +2,17 @@
 
 
 -- PostgreSQL
+-- Write your PostgreSQL query statement below
+with t as (
+    select d.name as department, e.name as employee, e.salary,
+           dense_rank() over (partition by e.departmentId order by e.salary desc) as drnk
+      from employee e
+           inner join department d on (d.id = e.departmentId)
+)
+select department, employee, salary
+  from t
+ where drnk = 1
+;
 
 
 -- SQL Server
