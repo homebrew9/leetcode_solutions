@@ -81,5 +81,16 @@ select round(
 
 
 # Pandas
+import pandas as pd
 
+def immediate_food_delivery(delivery: pd.DataFrame) -> pd.DataFrame:
+    total_customers = delivery['customer_id'].drop_duplicates().count()
+    delivery['rnk'] = delivery.groupby('customer_id', as_index=False)['order_date'].rank(method='first')
+    immediate_orders = ( delivery[(delivery['rnk']==1)
+                                   &
+                                  (delivery['order_date']==delivery['customer_pref_delivery_date'])
+                                 ]['customer_id']
+                         .count()
+                       )
+    return pd.DataFrame(data={'immediate_percentage': [round(immediate_orders/total_customers * 100, 2)]})
 
