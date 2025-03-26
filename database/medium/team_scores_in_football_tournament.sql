@@ -98,4 +98,31 @@ order by num_points desc, t.team_id
 
 
 # Pandas
+import pandas as pd
+
+def team_scores(teams: pd.DataFrame, matches: pd.DataFrame) -> pd.DataFrame:
+    matches['host_points'] = np.where(
+                               matches['host_goals'] > matches['guest_goals'], 3,
+                               np.where(matches['host_goals'] == matches['guest_goals'], 1, 0)
+                             )
+    matches['guest_points'] = np.where(
+                                matches['guest_goals'] > matches['host_goals'], 3,
+                                np.where(matches['guest_goals'] == matches['host_goals'], 1, 0)
+                              )
+    df1 = (  matches[['host_team','host_points']]
+             .rename(columns={'host_team':'team_id', 'host_points':'num_points'})
+             .groupby('team_id',as_index=False)['num_points']
+             .sum()
+          )
+    df2 = (  matches[['guest_team','guest_points']]
+             .rename(columns={'guest_team':'team_id', 'guest_points':'num_points'})
+             .groupby('team_id',as_index=False)['num_points']
+             .sum()
+          )
+    df = pd.concat([df1, df2]).groupby('team_id',as_index=False)['num_points'].sum()
+    return (  teams
+              .merge(df, how='left', on='team_id')
+              .fillna(0)
+              .sort_values(by=['num_points','team_id'], ascending=[False,True])
+           )
 
