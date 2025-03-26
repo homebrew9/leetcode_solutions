@@ -75,4 +75,24 @@ from users u
 
 
 # Pandas
+import pandas as pd
+
+def bank_account_summary(users: pd.DataFrame, transactions: pd.DataFrame) -> pd.DataFrame:
+    df = ( users
+          .merge( transactions
+                 .groupby('paid_to',as_index=0)['amount']
+                 .sum(), how='left', left_on='user_id',  right_on='paid_to'
+                )
+          .fillna(0)
+    )
+    df = ( df
+          .merge( transactions
+                 .groupby('paid_by',as_index=0)['amount']
+                 .sum(), how='left', left_on='user_id', right_on='paid_by'
+                )
+          .fillna(0)
+    )
+    df['credit'] = df['credit'] + df['amount_x'] - df['amount_y']
+    df['credit_limit_breached'] = np.where(df['credit'] < 0, 'Yes', 'No')
+    return df[['user_id','user_name','credit','credit_limit_breached']]
 
