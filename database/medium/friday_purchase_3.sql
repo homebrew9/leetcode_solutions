@@ -121,4 +121,28 @@ order by t1.week_of_month, t1.membership
 
 
 # Pandas
+import pandas as pd
+
+def friday_purchases(purchases: pd.DataFrame, users: pd.DataFrame) -> pd.DataFrame:
+    consolidated = ( purchases
+                    .merge(users, how='inner', on='user_id')
+                    .groupby(['purchase_date','membership'], as_index=0)['amount_spend']
+                    .sum()
+                    .rename(columns={'amount_spend': 'total_amount'})
+                   )
+    m = pd.DataFrame(data = {'membership': ['Premium', 'VIP']})
+    df = pd.DataFrame(data = {'purchase_date': pd.date_range(start='2023-11-01', end='2023-11-30')})
+    df['first_of_month'] = pd.to_datetime('2023-11-01')
+    df['week_of_month'] = (   df['purchase_date'].dt.strftime('%U').astype(int)
+                            - df['first_of_month'].dt.strftime('%U').astype(int)
+                            + 1
+                          )
+    df = ( df[df['purchase_date'].dt.day_name() == 'Friday']
+          .merge(m, how='cross')[['purchase_date','week_of_month','membership']]
+         )
+    return ( df
+            .merge(consolidated, how='left', on=['purchase_date', 'membership'])
+            .fillna(0)[['week_of_month','membership','total_amount']]
+            .sort_values(['week_of_month', 'membership'])
+           )
 
