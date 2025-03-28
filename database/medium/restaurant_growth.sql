@@ -95,4 +95,17 @@ select visited_on, amount, average_amount
 
 
 # Pandas
+import pandas as pd
 
+def restaurant_growth(customer: pd.DataFrame) -> pd.DataFrame:
+    df = customer.groupby('visited_on',as_index=0)['amount'].sum()
+    df['rnum'] = df.index + 1
+    df = ( df
+          .merge(df, how='cross')
+          .query('rnum_y >= rnum_x - 6 and rnum_y <= rnum_x')
+          .groupby(['visited_on_x','rnum_x'], as_index=0)['amount_y']
+          .agg(amount='sum', average_amount='mean')
+          .rename(columns={'visited_on_x': 'visited_on'})
+         )
+    df['average_amount'] = df['average_amount'].apply(lambda x: round(x, 2))
+    return df[df['rnum_x'] >= 7][['visited_on','amount','average_amount']].sort_values('visited_on')
