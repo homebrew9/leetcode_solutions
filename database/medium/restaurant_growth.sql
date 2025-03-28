@@ -45,7 +45,6 @@ select visited_on, amount, average_amount
  order by rnum
 ;
 
-
 -- SQL Server
 
 
