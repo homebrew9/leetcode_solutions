@@ -109,3 +109,4 @@ def restaurant_growth(customer: pd.DataFrame) -> pd.DataFrame:
          )
     df['average_amount'] = df['average_amount'].apply(lambda x: round(x, 2))
     return df[df['rnum_x'] >= 7][['visited_on','amount','average_amount']].sort_values('visited_on')
+
