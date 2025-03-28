@@ -21,7 +21,6 @@ from t2
 where rnum >= 7
 ;
 
-
 -- PostgreSQL
 -- Write your PostgreSQL query statement below
 with t (visited_on, amount) as (
