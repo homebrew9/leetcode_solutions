@@ -61,6 +61,7 @@ select first_seat_id, last_seat_id, consecutive_seats_len
  order by first_seat_id
 ;
 
+
 # MySQL
 # Write your MySQL query statement below
 with recursive t (seat_id, free, root_node) as (
