@@ -41,6 +41,21 @@ select distinct p.product_id, coalesce(t.price, 10) as price
 
 
 -- SQL Server
+/* Write your T-SQL query statement below */
+with t (product_id, price) as (
+    select p1.product_id, p1.new_price as price
+      from products p1
+     where p1.change_date = (
+                                select max(p2.change_date)
+                                  from products p2
+                                 where p2.product_id = p1.product_id
+                                   and p2.change_date <= '2019-08-16'
+                            )
+)
+select distinct p.product_id, coalesce(t.price, 10) as price
+  from products p
+       left outer join t on (t.product_id = p.product_id)
+;
 
 
 # MySQL
