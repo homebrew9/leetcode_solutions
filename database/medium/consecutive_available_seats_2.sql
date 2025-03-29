@@ -31,6 +31,7 @@ select first_seat_id, last_seat_id, consecutive_seats_len
  order by first_seat_id
 ;
 
+
 -- PostgreSQL
 -- Write your PostgreSQL query statement below
 with t (seat_id, free, grp) as (
