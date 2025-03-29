@@ -27,6 +27,7 @@ select first_seat_id, last_seat_id, consecutive_seats_len
 ;
 
 
+
 -- SQL Server
 
 
