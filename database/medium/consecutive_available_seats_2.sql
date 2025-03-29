@@ -29,7 +29,37 @@ select first_seat_id, last_seat_id, consecutive_seats_len
 
 
 -- SQL Server
-
+/* Write your T-SQL query statement below */
+with t (seat_id, free, root_node) as (
+    select seat_id, free,
+           case
+               when free = 1 and coalesce(lag(free) over (order by seat_id), 0) = 0
+               then 1
+           end as root_node
+      from cinema
+),
+t_hier (first_seat_id, last_seat_id, seat_length) as (
+    select t.seat_id, t.seat_id, 1
+      from t
+     where t.root_node = 1
+    union all
+    select t_hier.first_seat_id, t.seat_id, t_hier.seat_length + 1
+      from t_hier
+           inner join t on (t.seat_id = t_hier.last_seat_id + 1 and t.free = 1)
+),
+t1 as (
+    select first_seat_id, max(last_seat_id) as last_seat_id,
+           max(seat_length) as consecutive_seats_len
+      from t_hier
+     group by first_seat_id
+)
+select first_seat_id, last_seat_id, consecutive_seats_len
+  from t1
+ where t1.consecutive_seats_len = (select max(consecutive_seats_len)
+                                    from t1
+                                 )
+ order by first_seat_id
+;
 
 # MySQL
 # Write your MySQL query statement below
