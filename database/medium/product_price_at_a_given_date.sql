@@ -77,4 +77,18 @@ select distinct p.product_id, coalesce(t.price, 10) as price
 
 
 # Pandas
+import pandas as pd
+
+def price_at_given_date(products: pd.DataFrame) -> pd.DataFrame:
+    df = ( products[products['change_date'] <= pd.to_datetime('2019-08-16')]
+          .groupby('product_id', as_index=0)['change_date']
+          .max()
+          .merge(products, how='inner', on=['product_id', 'change_date'])
+          .rename(columns={'new_price': 'price'})[['product_id','price']]
+         )
+    return ( products[['product_id']]
+            .drop_duplicates()
+            .merge(df, how='left', on='product_id')
+            .fillna(10)
+           )
 
