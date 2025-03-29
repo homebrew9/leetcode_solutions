@@ -46,4 +46,15 @@ group by u.user_id, u.join_date
 
 
 # Pandas
+import pandas as pd
+
+def market_analysis(users: pd.DataFrame, orders: pd.DataFrame, items: pd.DataFrame) -> pd.DataFrame:
+    df = ( orders[orders['order_date'].dt.strftime('%Y') == '2019']
+          .groupby('buyer_id', as_index=0)['order_id'].count()
+         )
+    return ( users
+            .merge(df, how='left', left_on='user_id', right_on='buyer_id')
+            .fillna(0)[['user_id','join_date','order_id']]
+            .rename(columns={'user_id': 'buyer_id', 'order_id': 'orders_in_2019'})
+           )
 
