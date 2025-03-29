@@ -58,7 +58,6 @@ select first_seat_id, last_seat_id, consecutive_seats_len
 ;
 
 
-
 -- SQL Server
 /* Write your T-SQL query statement below */
 with t (seat_id, free, root_node) as (
