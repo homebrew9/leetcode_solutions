@@ -1,4 +1,17 @@
 -- Oracle
+/* Write your PL/SQL query statement below */
+with t as (
+    select order_id, order_date, buyer_id
+    from orders
+    where to_char(order_date, 'YYYY') = '2019'
+)
+select u.user_id as "buyer_id",
+       to_char(u.join_date, 'YYYY-MM-DD') as "join_date",
+       sum(decode(t.order_id,null,0,1)) as "orders_in_2019"
+from users u
+     left outer join t on (t.buyer_id = u.user_id)
+group by u.user_id, to_char(u.join_date, 'YYYY-MM-DD')
+;
 
 
 -- PostgreSQL
