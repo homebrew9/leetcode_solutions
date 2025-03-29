@@ -127,4 +127,17 @@ select first_seat_id, last_seat_id, consecutive_seats_len
 
 
 # Pandas
+import pandas as pd
+
+def consecutive_available_seats(cinema: pd.DataFrame) -> pd.DataFrame:
+    cinema['prev'] = cinema['free'].shift(1)
+    cinema['marker'] = np.where(cinema['free'] != cinema['prev'], 1, 0)
+    cinema['group_id'] = cinema['marker'].cumsum()
+    df = ( cinema[cinema['free'] == 1]
+          .groupby('group_id', as_index=0)['seat_id']
+          .agg(first_seat_id='min', last_seat_id='max', consecutive_seats_len='count')
+         )
+    return ( df[df['consecutive_seats_len'] == df['consecutive_seats_len'].max()]
+            .sort_values('first_seat_id')[['first_seat_id','last_seat_id','consecutive_seats_len']]
+           )
 
