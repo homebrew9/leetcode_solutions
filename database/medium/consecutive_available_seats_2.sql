@@ -64,5 +64,6 @@ select first_seat_id, last_seat_id, consecutive_seats_len
  order by first_seat_id
 ;
 
+
 # Pandas
 
