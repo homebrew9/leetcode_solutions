@@ -28,7 +28,6 @@ group by x.team_name
 order by points desc, goal_diff desc, team_name
 ;
 
-
 -- PostgreSQL
 -- Write your PostgreSQL query statement below
 with t as (
