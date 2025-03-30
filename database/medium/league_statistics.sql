@@ -58,7 +58,6 @@ group by x.team_name
 order by points desc, goal_diff desc, team_name
 ;
 
-
 -- SQL Server
 /* Write your T-SQL query statement below */
 with t as (
