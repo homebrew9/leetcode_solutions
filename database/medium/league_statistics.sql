@@ -28,6 +28,7 @@ group by x.team_name
 order by points desc, goal_diff desc, team_name
 ;
 
+
 -- PostgreSQL
 -- Write your PostgreSQL query statement below
 with t as (
@@ -57,6 +58,7 @@ from t
 group by x.team_name
 order by points desc, goal_diff desc, team_name
 ;
+
 
 -- SQL Server
 /* Write your T-SQL query statement below */
