@@ -71,4 +71,30 @@ from t
 
 
 # Pandas
+import pandas as pd
+
+def snap_analysis(activities: pd.DataFrame, age: pd.DataFrame) -> pd.DataFrame:
+    df_total = ( age
+                .merge(activities, how='inner', on='user_id')
+                .groupby('age_bucket', as_index=0)['time_spent']
+                .sum()
+               )
+    df_send = ( age
+               .merge(activities[activities['activity_type'] == 'send'], how='inner', on='user_id')
+               .groupby('age_bucket', as_index=0)['time_spent']
+               .sum()
+              )
+    df_open = ( age
+               .merge(activities[activities['activity_type'] == 'open'], how='inner', on='user_id')
+               .groupby('age_bucket', as_index=0)['time_spent']
+               .sum()
+              )
+    df = ( df_total
+          .merge(df_send,how='left',on='age_bucket')
+          .merge(df_open,how='left',on='age_bucket')
+          .fillna(0)
+         )
+    df['send_perc'] = round(df['time_spent_y'] / df['time_spent_x'] * 100, 2)
+    df['open_perc'] = round(df['time_spent'] / df['time_spent_x'] * 100, 2)
+    return df[['age_bucket','send_perc','open_perc']]
 
