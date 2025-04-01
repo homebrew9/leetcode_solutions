@@ -14,6 +14,7 @@ WHERE t.top_percentile_score <= 0.05
 ORDER BY state, fraud_score DESC, policy_id
 ;
 
+
 -- PostgreSQL
 
 
