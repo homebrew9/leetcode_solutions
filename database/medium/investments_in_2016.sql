@@ -15,6 +15,7 @@ select round(sum(x.tiv_2016)::numeric, 2) as tiv_2016
    and not exists (select null from Insurance z where z.pid != x.pid and z.lat = x.lat and z.lon = x.lon)
 ;
 
+
 -- SQL Server
 
 
