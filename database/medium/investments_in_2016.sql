@@ -52,4 +52,3 @@ def find_investments(insurance: pd.DataFrame) -> pd.DataFrame:
                        )
     tiv_2016_sum = round(df[~df['pid'].isin(invalid_pid_list['pid'])]['tiv_2016'].sum(), 2)
     return pd.DataFrame(data={'tiv_2016': [tiv_2016_sum]})
-
