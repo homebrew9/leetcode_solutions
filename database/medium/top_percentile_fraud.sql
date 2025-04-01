@@ -80,3 +80,4 @@ def top_percentile_fraud(fraud: pd.DataFrame) -> pd.DataFrame:
     fraud = fraud[fraud['fraud_score'] >= fraud['top_5_percentile']][['policy_id','state','fraud_score']]
     # Return data in the correct sorted order
     return fraud.sort_values(by=['state','fraud_score','policy_id'],ascending=[1,0,1])
+
