@@ -51,4 +51,15 @@ select date_format(trans_date, '%Y-%m') as month,
 
 
 # Pandas
+import pandas as pd
+
+def monthly_transactions(transactions: pd.DataFrame) -> pd.DataFrame:
+    transactions['month'] = transactions['trans_date'].dt.strftime('%Y-%m')
+    transactions['approved_count'] = np.where(transactions['state']=='approved', 1, 0)
+    transactions['approved_total_amount'] = np.where(transactions['state']=='approved', transactions['amount'], 0)
+    return ( transactions
+            .groupby(['month', 'country'], dropna=False, as_index=0)
+            .agg({'id': 'count', 'approved_count': 'sum', 'amount': 'sum', 'approved_total_amount': 'sum'})
+            .rename(columns={'id': 'trans_count', 'amount': 'trans_total_amount'})
+           )
 
