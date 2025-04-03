@@ -90,4 +90,23 @@ select fuel_type, driver_id, rating, distance
 
 
 # Pandas
+import pandas as pd
+
+def get_top_performing_drivers(drivers: pd.DataFrame, vehicles: pd.DataFrame, trips: pd.DataFrame) -> pd.DataFrame:
+    df = ( drivers
+          .merge(vehicles, how='inner', on='driver_id')
+          .merge(trips, how='inner', on='vehicle_id')
+          .groupby(['fuel_type', 'driver_id', 'accidents'], as_index=0)
+          .agg({'rating': 'mean', 'distance': 'sum'})
+         )
+    df['rating'] = round(df['rating'], 2)
+    # Great technique for dense rank with partition by and order by on multiple columns:
+    # https://stackoverflow.com/questions/76309894/pandas-group-by-dense-rank-partitioned-by-multiple-columns
+    df['rnk'] = ( df
+                 .sort_values(['fuel_type','rating','distance','accidents'], ascending=[True,False,False,True])
+                 .groupby('fuel_type')
+                 .cumcount()
+                 .add(1)
+                )
+    return df[df['rnk']==1][['fuel_type','driver_id','rating','distance']]
 
