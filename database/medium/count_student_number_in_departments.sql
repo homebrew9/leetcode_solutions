@@ -55,4 +55,14 @@ order by student_number desc, dept_name
 
 
 # Pandas
+import pandas as pd
+
+def count_students(student: pd.DataFrame, department: pd.DataFrame) -> pd.DataFrame:
+    return ( department
+            .merge(student, how='left', on='dept_id')
+            .groupby(['dept_id','dept_name'], as_index=False)['student_id']
+            .count()
+            .rename(columns={'student_id':'student_number'})
+            .sort_values(by=['student_number','dept_name'],ascending=[False,True])[['dept_name','student_number']]
+           )
 
