@@ -5,6 +5,25 @@
 
 
 -- SQL Server
+/* Write your T-SQL query statement below */
+select distinct t.customer_id
+  from customer t
+ where t.customer_id not in (
+                               select x.customer_id
+                                 from (
+                                            select distinct c.customer_id, p.product_key
+                                              from customer c
+                                                   cross join product p
+                                      ) x
+                                      left outer join
+                                      (select m.customer_id, m.product_key
+                                         from customer m
+                                                       inner join product n on (n.product_key = m.product_key)
+                                      ) y
+                                      on (x.customer_id = y.customer_id and x.product_key = y.product_key)
+                                where y.product_key is null
+                            )
+;
 
 
 # MySQL
