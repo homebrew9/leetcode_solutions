@@ -2,6 +2,26 @@
 
 
 -- PostgreSQL
+-- Write your PostgreSQL query statement below
+
+-- Solution 2
+with t_free as (
+    select user_id, round(avg(activity_duration), 2) as trial_avg_duration
+      from UserActivity
+     where activity_type = 'free_trial'
+     group by user_id
+),
+t_paid as (
+    select user_id, round(avg(activity_duration), 2) as paid_avg_duration
+      from UserActivity
+     where activity_type = 'paid'
+     group by user_id
+)
+select tf.user_id, tf.trial_avg_duration, tp.paid_avg_duration
+  from t_free tf
+       inner join t_paid tp on (tp.user_id = tf.user_id)
+ order by tf.user_id
+;
 
 
 -- SQL Server
