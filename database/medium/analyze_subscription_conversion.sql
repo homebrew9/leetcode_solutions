@@ -109,4 +109,21 @@ select user_id,
 
 
 # Pandas
+import pandas as pd
+
+def analyze_subscription_conversion(user_activity: pd.DataFrame) -> pd.DataFrame:
+    df = user_activity.groupby(['user_id','activity_type'], as_index=0)['activity_duration'].mean()
+    # Python implements Banker''s rounding which rounds to the nearest even number.
+    # round(2.5) = 2 and round(3.5) = 4. In this problem, if the average is 70.625 then
+    # round(70.625, 2) returns 70.62, but we want 70.63 i.e. rounded up value. Hence the customized
+    # lambda function has been used.
+    #df['activity_duration'] = round(df['activity_duration'], 2)
+    df['activity_duration'] = df['activity_duration'].apply(lambda x: np.floor(x * 100 + 0.5)/100)
+    return ( df[df['activity_type']=='free_trial']
+            .merge(
+                     df[df['activity_type'] == 'paid'], how='inner', on='user_id'
+                  )[['user_id','activity_duration_x','activity_duration_y']]
+            .rename(columns={'activity_duration_x': 'trial_avg_duration', 'activity_duration_y': 'paid_avg_duration'})
+            .sort_values('user_id')
+           )
 
