@@ -19,6 +19,7 @@ select distinct t.customer_id
                             )
 ;
 
+
 -- PostgreSQL
 -- Write your PostgreSQL query statement below
 select distinct t.customer_id
