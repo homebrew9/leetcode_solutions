@@ -33,6 +33,20 @@ order by order_date
 
 
 -- SQL Server
+/* Write your T-SQL query statement below */
+select order_date,
+       round(
+               convert(float, sum(case order_date when customer_pref_delivery_date then 1 else 0 end))
+               /
+               convert(float, count(*))
+               *
+               100,
+             2
+            ) as immediate_percentage
+from delivery
+group by order_date
+order by order_date
+;
 
 
 # MySQL
