@@ -32,4 +32,14 @@ order by order_date
 
 
 # Pandas
+import pandas as pd
+
+def immediate_delivery(delivery: pd.DataFrame) -> pd.DataFrame:
+    delivery['immediate'] = delivery['order_date'] == delivery['customer_pref_delivery_date']
+    df = ( delivery
+          .groupby('order_date', as_index=False)
+          .agg(imm_cnt=('immediate','sum'), total_cnt=('delivery_id','count'))
+         )
+    df['immediate_percentage'] = round(df['imm_cnt']/df['total_cnt']*100, 2)
+    return df[['order_date','immediate_percentage']].sort_values('order_date')
 
