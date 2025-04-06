@@ -63,3 +63,25 @@ def monthly_transactions(transactions: pd.DataFrame) -> pd.DataFrame:
             .rename(columns={'id': 'trans_count', 'amount': 'trans_total_amount'})
            )
 
+# Solution 2 : Grouping by derived columns and using named aggregations. Also note how fillna() is used on specific columns.
+import pandas as pd
+
+def monthly_transactions(transactions: pd.DataFrame) -> pd.DataFrame:
+    df_total = ( transactions
+                .groupby([transactions.trans_date.dt.strftime('%Y-%m'), 'country'], dropna=False)
+                .agg(trans_count=('amount','count'),trans_total_amount=('amount','sum'))
+                .reset_index()
+               )
+    df_approved = ( transactions[transactions.state=='approved']
+                   .groupby([transactions.trans_date.dt.strftime('%Y-%m'), 'country'], dropna=False)
+                   .agg(approved_count=('amount','count'), approved_total_amount=('amount','sum'))
+                   .reset_index()
+                  )
+    return ( df_total
+            .merge(df_approved, how='left', on=['trans_date','country'])
+            .fillna(
+                      {'approved_count': 0, 'approved_total_amount': 0}
+                   )[['trans_date','country','trans_count','approved_count','trans_total_amount','approved_total_amount']]
+            .rename(columns={'trans_date': 'month'})
+           )
+
