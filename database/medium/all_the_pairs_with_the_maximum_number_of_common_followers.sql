@@ -2,6 +2,18 @@
 
 
 -- PostgreSQL
+-- Write your PostgreSQL query statement below
+with t (user1_id, user2_id, follower_count) as (
+select x.user_id, y.user_id, count(*) as followers_count
+from relations x
+     inner join relations y on (x.user_id < y.user_id and x.follower_id = y.follower_id)
+group by x.user_id, y.user_id
+order by x.user_id, y.user_id
+)
+select user1_id, user2_id
+from t
+where follower_count = (select max(follower_count) from t)
+;
 
 
 -- SQL Server
