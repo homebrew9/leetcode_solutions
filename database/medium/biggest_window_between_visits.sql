@@ -1,4 +1,22 @@
 -- Oracle
+/* Write your PL/SQL query statement below */
+with t as (
+    select user_id, visit_date
+      from UserVisits
+    union all
+    select distinct user_id, DATE'2021-01-01' as visit_date
+      from UserVisits
+),
+t1 as (
+    select user_id,
+           visit_date - lag(visit_date) over (partition by user_id order by visit_date) as visit_window
+      from t
+)
+select user_id, max(visit_window) as biggest_window
+  from t1
+ group by user_id
+ order by user_id
+;
 
 
 -- PostgreSQL
