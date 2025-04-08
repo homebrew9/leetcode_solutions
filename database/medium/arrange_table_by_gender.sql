@@ -5,6 +5,38 @@
 
 
 -- SQL Server
+/* Write your T-SQL query statement below */
+with t (user_id, gender, rn) as (
+select user_id, gender,
+       row_number() over (partition by gender order by user_id) as rn
+from genders
+),
+t1 (user_id, gender, id) as (
+select user_id, gender,
+       case when gender = 'female'
+            then
+                case
+                    when rn = 1 then 1
+                    else 1 + (rn - 1) * 3
+                end
+            when gender = 'other'
+            then
+                case
+                    when rn = 1 then 2
+                    else 2 + (rn - 1) * 3
+                end
+            else
+                case
+                    when rn = 1 then 3
+                    else 3 + (rn - 1) * 3
+                end
+       end as id
+from t
+)
+select user_id, gender
+from t1
+order by id
+;
 
 
 # MySQL
