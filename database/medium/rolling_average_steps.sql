@@ -11,6 +11,15 @@ order by s1.user_id, s1.steps_date
 
 
 -- PostgreSQL
+-- Write your PostgreSQL query statement below
+-- Old-style
+select s1.user_id, s1.steps_date,
+       round((s1.steps_count+s2.steps_count+s3.steps_count)::numeric/3::numeric, 2) as rolling_average
+from steps s1
+     inner join steps s2 on (s2.user_id = s1.user_id and s2.steps_date = s1.steps_date - 1)
+     inner join steps s3 on (s3.user_id = s2.user_id and s3.steps_date = s2.steps_date - 1)
+order by s1.user_id, s1.steps_date
+;
 
 
 -- SQL Server
