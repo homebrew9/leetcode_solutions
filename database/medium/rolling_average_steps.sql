@@ -47,4 +47,20 @@ order by s1.user_id, s1.steps_date
 
 
 # Pandas
+import pandas as pd
+
+def rolling_average(steps: pd.DataFrame) -> pd.DataFrame:
+    df1 = steps.sort_values(['user_id','steps_date']).shift(1)
+    df2 = steps.sort_values(['user_id','steps_date']).shift(2)
+    steps['1_day_prior'] = steps['steps_date'] - pd.Timedelta(1,'D')
+    steps['2_day_prior'] = steps['steps_date'] - pd.Timedelta(2,'D')
+    df = ( steps
+          .merge(df1, how='inner', left_on=['user_id','1_day_prior'], right_on=['user_id','steps_date'])
+          .merge(df2, how='inner', left_on=['user_id','2_day_prior'], right_on=['user_id','steps_date'])
+         )
+    df['rolling_average'] = round((df['steps_count_x']+df['steps_count_y']+df['steps_count'])/3, 2)
+    return ( df[['user_id','steps_date_x','rolling_average']]
+            .rename(columns={'steps_date_x':'steps_date'})
+            .sort_values(['user_id','steps_date'])
+           )
 
