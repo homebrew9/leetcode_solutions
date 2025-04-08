@@ -57,7 +57,6 @@ from members m
 group by m.member_id, m.name
 ;
 
-
 # Pandas
 import pandas as pd
 
