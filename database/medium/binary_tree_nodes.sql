@@ -5,6 +5,28 @@
 
 
 -- SQL Server
+/* Write your T-SQL query statement below */
+with t_hier(node, parent, [type]) as (
+    select t.n, t.p, convert(varchar(10), 'Root')
+      from tree t
+     where t.p is null
+    union all
+    select t1.n, t1.p,
+           convert(varchar(10), 'Inner')
+      from tree t1
+           inner join t_hier t on (t.node = t1.p)
+     where exists (select null from tree x where x.p = t1.n)
+    union all
+    select t1.n, t1.p,
+           convert(varchar(10), 'Leaf')
+      from tree t1
+           inner join t_hier t on (t.node = t1.p)
+     where not exists (select null from tree x where x.p = t1.n)
+)
+select node as n, [type]
+from t_hier
+order by node
+;
 
 
 # MySQL
