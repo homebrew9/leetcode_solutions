@@ -29,6 +29,15 @@ order by t1.week_of_month, t1.purchase_date
 
 
 -- PostgreSQL
+-- Write your PostgreSQL query statement below
+select ((to_char(purchase_date, 'dd')::int - 1) / 7.0)::int + 1 as week_of_month,
+       purchase_date,
+       sum(amount_spend) as total_amount
+  from purchases
+ where to_char(purchase_date, 'fmDay') = 'Friday'
+ group by ((to_char(purchase_date, 'dd')::int - 1) / 7.0)::int + 1, purchase_date
+ order by week_of_month
+;
 
 
 -- SQL Server
