@@ -1,5 +1,18 @@
 -- Oracle
-
+/* Write your PL/SQL query statement below */
+with t as (
+    select id, recordDate, temperature,
+           case
+                when recordDate = lag(recordDate) over (order by recordDate) + 1 and
+                     temperature > lag(temperature) over (order by recordDate)
+                then 'Y'
+           end as is_higher
+      from weather
+)
+select id
+  from t
+ where is_higher = 'Y'
+;
 
 -- PostgreSQL
 -- Write your PostgreSQL query statement below
