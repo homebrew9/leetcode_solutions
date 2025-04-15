@@ -5,6 +5,20 @@
 
 
 -- SQL Server
+/* Write your T-SQL query statement below */
+with t as (
+    select id, recordDate, temperature,
+           case
+                when recordDate = DATEADD(DAY, 1, lag(recordDate) over (order by recordDate)) and
+                     temperature > lag(temperature) over (order by recordDate)
+                then 'Y'
+           end as is_higher
+      from weather
+)
+select id
+  from t
+ where is_higher = 'Y'
+;
 
 
 # MySQL
