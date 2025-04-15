@@ -14,6 +14,7 @@ select id
  where is_higher = 'Y'
 ;
 
+
 -- PostgreSQL
 -- Write your PostgreSQL query statement below
 with t as (
