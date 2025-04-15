@@ -1,8 +1,24 @@
 -- Oracle
+/* Write your PL/SQL query statement below */
+with t (project_id, employee_count) as (
+    select project_id, count(employee_id)
+      from project
+     group by project_id
+),
+t1 (project_id, employee_count, max_employee_count) as (
+    select project_id, employee_count,
+           max(employee_count) over () as max_employee_count
+      from t
+)
+select project_id as "project_id"
+from t1
+where employee_count = max_employee_count
+;
 
 
 -- PostgreSQL
-
+-- There is no option for PostgreSQL in the drop-down menu. However, the query
+-- for Oracle or MySQL will also work for PostgreSQL.
 
 -- SQL Server
 /* Write your T-SQL query statement below */
