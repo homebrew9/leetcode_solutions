@@ -54,4 +54,20 @@ END
 
 
 # Pandas
+import pandas as pd
+from datetime import datetime
+
+def find_valid_users(purchases: pd.DataFrame, start_date: datetime, end_date: datetime, min_amount: int) -> pd.DataFrame:
+    # Just to make sure that the "HMS" part is all zeros, irrespective of what is passed in!
+    start_date = datetime.strptime(start_date.strftime('%Y%m%d')+' 00:00:00', '%Y%m%d %H:%M:%S')
+    end_date = datetime.strptime(end_date.strftime('%Y%m%d')+' 00:00:00', '%Y%m%d %H:%M:%S')
+    # Set up the filter conditions
+    valid_start_time = purchases['time_stamp'] >= start_date
+    valid_end_time = purchases['time_stamp'] <= end_date
+    valid_amount = purchases['amount'] >= min_amount
+    # Query, dedupe, sort, and return
+    return ( purchases[valid_start_time & valid_end_time & valid_amount][['user_id']]
+            .drop_duplicates()
+            .sort_values('user_id')
+           )
 
