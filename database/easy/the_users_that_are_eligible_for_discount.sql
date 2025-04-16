@@ -5,6 +5,15 @@
 
 
 -- SQL Server
+CREATE PROCEDURE getUserIDs(@startDate DATE, @endDate DATE, @minAmount INT) AS
+BEGIN
+    /* Write your T-SQL query statement below. */
+   select distinct p.user_id
+      from purchases p
+     where p.time_stamp between @startDate and @endDate
+       and p.amount >= @minAmount
+     order by p.user_id;
+END
 
 
 # MySQL
