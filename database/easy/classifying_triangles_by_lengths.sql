@@ -21,6 +21,14 @@ from triangles
 
 
 -- SQL Server
+/* Write your T-SQL query statement below */
+select case when not (a + b > c and b + c > a and c + a > b) then 'Not A Triangle'
+            when a = b and b = c and c = a then 'Equilateral'
+            when a = b or b = c or c = a then 'Isosceles'
+            else 'Scalene'
+       end as triangle_type
+from triangles
+;
 
 
 # MySQL
