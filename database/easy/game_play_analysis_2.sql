@@ -13,6 +13,16 @@ select a.player_id, a.device_id
 
 
 -- SQL Server
+/* Write your T-SQL query statement below */
+with t as (
+select player_id, device_id, event_date,
+       row_number() over (partition by player_id order by event_date) as rnum
+  from activity
+)
+select player_id as "player_id", device_id as "device_id"
+from t
+where rnum = 1
+;
 
 
 # MySQL
