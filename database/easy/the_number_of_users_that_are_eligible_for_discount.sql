@@ -1,4 +1,6 @@
 -- Oracle
+
+-- PostgreSQL
 CREATE OR REPLACE FUNCTION getUserIDs(startDate DATE, endDate DATE, minAmount INT) RETURNS INT AS $$
 BEGIN
   RETURN (
@@ -10,9 +12,6 @@ BEGIN
   );
 END;
 $$ LANGUAGE plpgsql;
-
-
--- PostgreSQL
 
 
 -- SQL Server
