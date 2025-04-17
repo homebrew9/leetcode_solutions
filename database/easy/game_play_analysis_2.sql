@@ -29,4 +29,9 @@ select a.player_id, a.device_id
 
 
 # Pandas
+import pandas as pd
+
+def game_analysis(activity: pd.DataFrame) -> pd.DataFrame:
+    activity['rnum'] = activity.groupby(['player_id'])['event_date'].rank(method='first')
+    return activity[activity['rnum']==1][['player_id','device_id']]
 
