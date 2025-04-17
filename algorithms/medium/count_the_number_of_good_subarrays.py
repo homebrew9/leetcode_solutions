@@ -43,6 +43,7 @@ class Solution:
             j += 1
         #print(cnt, hsh)
         return cnt
+
 # Main section
 for nums, k in [
                   ([1,1,1,1,1], 10),
