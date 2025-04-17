@@ -1,3 +1,7 @@
+# =============================================================================
+# Incorrect algorithm. The solution for test case # 4 should be 5 and not 4.
+# I need to review the logic more closely. Version 1 has the correct algo.
+# =============================================================================
 from typing import List
 from collections import defaultdict
 import math
@@ -10,7 +14,7 @@ class Solution:
         st = set()
         while i < len(nums):
             n = nums[i]
-            print(i, n)
+            #print(i, n)
             hsh[n] += 1
             if hsh[n] >= 2:
                 if n in st:
@@ -18,12 +22,12 @@ class Solution:
                 else:
                     st.add(n)
                     total += math.comb(hsh[n], 2)
-                print(f'\ttotal = {total}')
+                #print(f'\ttotal = {total}')
                 if total >= k:
                     cnt += 1
-                print(f'\ttotal, cnt = {total}, {cnt}')
+                #print(f'\ttotal, cnt = {total}, {cnt}')
             i += 1
-        print(cnt, hsh)
+        #print(cnt, hsh)
         j = 0
         while j < len(nums):
             n = nums[j]
@@ -39,12 +43,11 @@ class Solution:
             j += 1
         #print(cnt, hsh)
         return cnt
-
 # Main section
 for nums, k in [
-                  #([1,1,1,1,1], 10),
-                  #([3,1,4,3,2,2,4], 2),
-                  #([1,1,1,1,1,1], 10),
+                  ([1,1,1,1,1], 10),
+                  ([3,1,4,3,2,2,4], 2),
+                  ([1,1,1,1,1,1], 10),
                   ([3,3,2,2,4,4], 2),
                ]:
     print(f'nums, k = {nums}, {k}')
