@@ -1,0 +1,24 @@
+-- Oracle
+
+
+-- PostgreSQL
+
+
+-- SQL Server
+
+
+# MySQL
+CREATE FUNCTION getUserIDs(startDate DATE, endDate DATE, minAmount INT) RETURNS INT
+BEGIN
+  RETURN (
+      # Write your MySQL query statement below.
+      select count(distinct user_id)
+        from purchases
+       where time_stamp between startDate and endDate
+         and amount >= minAmount
+  );
+END
+
+
+# Pandas
+
