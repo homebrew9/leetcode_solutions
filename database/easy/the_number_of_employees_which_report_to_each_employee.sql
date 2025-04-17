@@ -7,6 +7,19 @@ group by e.reports_to, e1.name
 order by e.reports_to
 ;
 
+/* Write your PL/SQL query statement below */
+with t_manager (employee_id, name) as (
+select x.employee_id, x.name
+from employees x
+where x.employee_id in (select y.reports_to from employees y where y.reports_to is not null)
+)
+select m.employee_id, m.name, count(*) as reports_count, round(avg(e.age)) as average_age
+from t_manager m
+     inner join employees e on (m.employee_id = e.reports_to)
+group by m.employee_id, m.name
+order by m.employee_id
+;
+
 
 -- PostgreSQL
 
