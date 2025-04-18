@@ -2,6 +2,16 @@
 
 
 -- PostgreSQL
+-- Write your PostgreSQL query statement below
+with t (user_id, time_stamp, action, time_diff) as (
+select user_id, time_stamp, action,
+       time_stamp - lag(time_stamp) over (partition by user_id order by time_stamp) as time_diff
+from confirmations
+)
+select distinct user_id
+from t
+where time_diff <= interval '1 DAY'
+;
 
 
 -- SQL Server
