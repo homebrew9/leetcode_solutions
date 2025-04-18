@@ -22,6 +22,16 @@ order by m.employee_id
 
 
 -- PostgreSQL
+-- Write your PostgreSQL query statement below
+select e1.reports_to as employee_id,
+       e2.name,
+       count(e1.employee_id) as reports_count,
+       round(avg(e1.age)) as average_age
+  from employees e1
+       inner join employees e2 on (e2.employee_id = e1.reports_to)
+ group by e1.reports_to, e2.name
+ order by e1.reports_to
+;
 
 
 -- SQL Server
