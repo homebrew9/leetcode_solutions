@@ -53,4 +53,13 @@ END
 
 
 # Pandas
+import pandas as pd
+from datetime import datetime
+
+def count_valid_users(purchases: pd.DataFrame, start_date: datetime, end_date: datetime, min_amount: int) -> pd.DataFrame:
+    valid_start = purchases['time_stamp'] >= start_date
+    valid_end = purchases['time_stamp'] <= end_date
+    valid_amount = purchases['amount'] >= min_amount
+    user_count = len(purchases[(valid_start) & (valid_end) & (valid_amount)][['user_id']].drop_duplicates())
+    return pd.DataFrame(data={'user_cnt': [user_count]})
 
