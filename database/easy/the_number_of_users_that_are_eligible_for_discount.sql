@@ -57,6 +57,7 @@ import pandas as pd
 from datetime import datetime
 
 def count_valid_users(purchases: pd.DataFrame, start_date: datetime, end_date: datetime, min_amount: int) -> pd.DataFrame:
+    # I think this should not get accepted since I did not fix the timestamps of start_date and end_date before filtering.
     valid_start = purchases['time_stamp'] >= start_date
     valid_end = purchases['time_stamp'] <= end_date
     valid_amount = purchases['amount'] >= min_amount
