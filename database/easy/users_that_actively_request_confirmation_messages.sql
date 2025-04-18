@@ -8,6 +8,16 @@
 
 
 # MySQL
+# Write your MySQL query statement below
+with t (user_id, time_stamp, action, seconds) as (
+select user_id, time_stamp, action,
+       timestampdiff(second, lag(time_stamp) over (partition by user_id order by time_stamp), time_stamp) as seconds
+from confirmations
+)
+select distinct user_id
+from t
+where seconds <= 24 * 60 * 60
+;
 
 
 # Pandas
