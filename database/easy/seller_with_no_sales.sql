@@ -31,4 +31,9 @@ order by seller_name
 
 
 # Pandas
+import pandas as pd
+
+def sellers_with_no_sales(customer: pd.DataFrame, orders: pd.DataFrame, seller: pd.DataFrame) -> pd.DataFrame:
+    sellers_in_2020 = orders[orders['sale_date'].dt.strftime('%Y')=='2020']['seller_id']
+    return seller[~seller['seller_id'].isin(sellers_in_2020)][['seller_name']].sort_values('seller_name')
 
