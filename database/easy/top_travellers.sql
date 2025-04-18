@@ -41,6 +41,17 @@ select t.name, t.travelled_distance
 
 
 # MySQL
+# Write your MySQL query statement below
+with t as (
+    select u.id, u.name, coalesce(sum(r.distance), 0) as travelled_distance
+      from users u
+           left join rides r on (r.user_id = u.id)
+     group by u.id, u.name
+     order by travelled_distance desc, u.name
+)
+select t.name, t.travelled_distance
+  from t
+;
 
 
 # Pandas
