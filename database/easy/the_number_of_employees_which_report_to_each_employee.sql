@@ -61,4 +61,18 @@ select e1.reports_to as employee_id,
 
 
 # Pandas
+import pandas as pd
+
+def count_employees(employees: pd.DataFrame) -> pd.DataFrame:
+    df = ( employees
+          .groupby('reports_to', as_index=0)
+          .agg(reports_count=('employee_id', 'count'), average_age=('age', 'mean'))
+          .rename(columns={'reports_to': 'employee_id'})
+         )
+    # The lambda function is the alternative to Python's "Banker's rounding"
+    df['average_age'] = df['average_age'].apply(lambda x: int(x + 0.5))
+    return ( df
+            .merge(employees, how='inner', on='employee_id')[['employee_id', 'name', 'reports_count', 'average_age']]
+            .sort_values('employee_id')
+           )
 
