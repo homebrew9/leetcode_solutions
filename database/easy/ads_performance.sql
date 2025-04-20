@@ -17,6 +17,21 @@ order by ctr desc, ad_id
 
 
 -- PostgreSQL
+-- Write your PostgreSQL query statement below
+with t (ad_id, total_clicked_and_viewed, total_clicked) as (
+select ad_id,
+       sum(case when action in ('Clicked','Viewed') then 1 else 0 end)::float as total_clicked_and_viewed,
+       sum(case when action = 'Clicked' then 1 else 0 end)::float as total_clicked
+from ads
+group by ad_id
+)
+select ad_id,
+       round(case when total_clicked_and_viewed = 0 then 0
+                  else total_clicked / total_clicked_and_viewed
+             end::numeric*100, 2) as ctr
+from t
+order by ctr desc, ad_id
+;
 
 
 -- SQL Server
