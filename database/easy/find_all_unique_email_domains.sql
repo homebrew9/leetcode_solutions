@@ -1,4 +1,11 @@
 -- Oracle
+/* Write your PL/SQL query statement below */
+select regexp_replace(email, '^.*@(.*)$', '\1') as email_domain, count(*) as count
+from emails
+where regexp_like(email, '^.*\@\w+\.com')
+group by regexp_replace(email, '^.*@(.*)$', '\1')
+order by email_domain
+;
 
 
 -- PostgreSQL
