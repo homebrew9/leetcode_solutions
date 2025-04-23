@@ -1,4 +1,11 @@
 -- Oracle
+/* Write your PL/SQL query statement below */
+select s.user_id, sum(s.quantity*p.price) as spending
+from sales s
+     inner join product p on (p.product_id = s.product_id)
+group by s.user_id
+order by spending desc, user_id
+;
 
 
 -- PostgreSQL
