@@ -5,6 +5,14 @@
 
 
 -- SQL Server
+/* Write your T-SQL query statement below */
+select substring(email, charindex('@', email)+1, len(email)) as email_domain,
+       count(*) as count
+from emails
+where email like '%.com'
+group by substring(email, charindex('@', email)+1, len(email))
+order by email_domain
+;
 
 
 # MySQL
