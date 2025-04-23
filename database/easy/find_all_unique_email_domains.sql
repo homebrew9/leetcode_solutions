@@ -16,6 +16,13 @@ order by email_domain
 
 
 # MySQL
+# Write your MySQL query statement below
+select substr(email, instr(email, '@')+1) as email_domain, count(*) as count
+from emails
+where email like '%.com'
+group by substr(email, instr(email, '@')+1)
+order by email_domain
+;
 
 
 # Pandas
