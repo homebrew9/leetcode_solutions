@@ -23,6 +23,7 @@ select c.name as "Customers"
  )
 ;
 
+
 # MySQL
 # Write your MySQL query statement below
 select c.name as customers
