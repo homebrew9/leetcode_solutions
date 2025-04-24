@@ -6,6 +6,7 @@ select actor_id, director_id
 having count(*) >= 3
 ;
 
+
 -- PostgreSQL
 -- Write your PostgreSQL query statement below
 select actor_id, director_id
