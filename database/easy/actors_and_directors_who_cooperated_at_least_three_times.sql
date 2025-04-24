@@ -27,6 +27,7 @@ having count(*) >= 3
 select actor_id, director_id from t
 ;
 
+
 # MySQL
 # Write your MySQL query statement below
 select actor_id, director_id
