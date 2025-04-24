@@ -17,7 +17,15 @@ having count(*) >= 3
 
 
 -- SQL Server
-
+/* Write your T-SQL query statement below */
+with t as (
+select actor_id, director_id, count(*) as cnt
+from ActorDirector
+group by actor_id, director_id
+having count(*) >= 3
+)
+select actor_id, director_id from t
+;
 
 # MySQL
 # Write your MySQL query statement below
