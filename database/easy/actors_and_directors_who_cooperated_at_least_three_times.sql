@@ -39,3 +39,4 @@ def actors_and_directors(actor_director: pd.DataFrame) -> pd.DataFrame:
            ).query(
                'cooperated >= 3'
            )[['actor_id','director_id']]
+
