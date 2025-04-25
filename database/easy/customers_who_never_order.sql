@@ -10,6 +10,11 @@ select c.name as customers
 
 
 -- PostgreSQL
+-- Write your PostgreSQL query statement below
+select name as customers
+  from customers
+ where id not in (select customerId from orders)
+;
 
 
 -- SQL Server
