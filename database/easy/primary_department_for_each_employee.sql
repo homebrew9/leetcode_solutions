@@ -22,4 +22,14 @@ select employee_id, department_id
 
 
 # Pandas
+import pandas as pd
+
+def find_primary_department(employee: pd.DataFrame) -> pd.DataFrame:
+    return ( employee
+        .merge( employee.groupby('employee_id', as_index=0).agg(dept_count=('department_id', 'count')),
+                how='inner',
+                on='employee_id'
+              )
+        .query("dept_count==1 or primary_flag=='Y'")[['employee_id','department_id']]
+       )
 
