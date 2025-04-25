@@ -8,6 +8,12 @@ select e.name as "Employee"
 
 
 -- PostgreSQL
+-- Write your PostgreSQL query statement below
+select e.name as Employee
+  from employee e
+       inner join employee m on (m.id = e.managerId)
+ where e.salary > m.salary
+;
 
 
 -- SQL Server
