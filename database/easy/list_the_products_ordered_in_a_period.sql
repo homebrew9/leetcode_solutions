@@ -21,4 +21,3 @@ def list_products(products: pd.DataFrame, orders: pd.DataFrame) -> pd.DataFrame:
             .merge(products, how='inner', on='product_id')[['product_name', 'unit']]
            )
 
-
