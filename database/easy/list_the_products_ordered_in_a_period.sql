@@ -21,7 +21,6 @@ having sum(unit) >= 100
 
 
 
-
 -- SQL Server
 /* Write your T-SQL query statement below */
 select p.product_name, sum(unit) as unit
