@@ -10,7 +10,6 @@ having sum(unit) >= 100
 
 
 
-
 -- PostgreSQL
 
 
