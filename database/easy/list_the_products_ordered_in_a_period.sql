@@ -16,7 +16,6 @@ having sum(unit) >= 100
 ;
 
 
-
 # MySQL
 # Write your MySQL query statement below
 select p.product_name, sum(unit) as unit
