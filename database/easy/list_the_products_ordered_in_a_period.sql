@@ -1,4 +1,14 @@
 -- Oracle
+/* Write your PL/SQL query statement below */
+select p.product_name, sum(unit) as unit
+  from orders o
+       inner join products p on (p.product_id = o.product_id)
+ where to_char(o.order_date, 'YYYY-MM') = '2020-02'
+ group by p.product_name, p.product_id
+having sum(unit) >= 100
+;
+
+
 
 
 -- PostgreSQL
