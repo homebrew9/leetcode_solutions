@@ -19,3 +19,4 @@ def last_used_time(bikes: pd.DataFrame) -> pd.DataFrame:
             .max()
             .sort_values(by='end_time', ascending=False)
            )
+
