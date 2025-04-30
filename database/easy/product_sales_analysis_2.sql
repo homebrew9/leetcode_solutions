@@ -8,7 +8,12 @@ select p.product_id, sum(s.quantity) as total_quantity
 
 
 -- PostgreSQL
-
+-- Write your PostgreSQL query statement below
+select p.product_id, sum(s.quantity) as total_quantity
+  from product p
+       inner join sales s on (s.product_id = p.product_id)
+ group by p.product_id
+;
 
 -- SQL Server
 /* Write your T-SQL query statement below */
