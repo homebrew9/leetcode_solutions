@@ -6,6 +6,7 @@ select p.product_id, sum(s.quantity) as total_quantity
  group by p.product_id
 ;
 
+
 -- PostgreSQL
 
 
