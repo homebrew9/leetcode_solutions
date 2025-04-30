@@ -15,6 +15,7 @@ select p.product_id, sum(s.quantity) as total_quantity
  group by p.product_id
 ;
 
+
 -- SQL Server
 /* Write your T-SQL query statement below */
 select product_id, sum(quantity) as total_quantity
