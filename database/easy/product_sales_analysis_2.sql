@@ -14,6 +14,7 @@ select product_id, sum(quantity) as total_quantity
  group by product_id
 ;
 
+
 # Pandas
 import pandas as pd
 
