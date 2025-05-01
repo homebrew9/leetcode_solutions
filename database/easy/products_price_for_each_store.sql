@@ -5,6 +5,15 @@
 
 
 -- SQL Server
+/* Write your T-SQL query statement below */
+select product_id, store1, store2, store3
+from products as source_set
+pivot
+(
+    max(price)
+    for [store] in ([store1], [store2], [store3])
+) as pivot_set
+;
 
 
 # MySQL
