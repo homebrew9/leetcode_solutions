@@ -5,6 +5,14 @@
 
 
 -- SQL Server
+/* Write your T-SQL query statement below */
+select convert(varchar(7), order_date, 120) as month,
+       count(distinct order_id) as order_count,
+       count(distinct customer_id) as customer_count
+from orders
+where invoice > 20
+group by convert(varchar(7), order_date, 120)
+;
 
 
 # MySQL
