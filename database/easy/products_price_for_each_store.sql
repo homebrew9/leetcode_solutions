@@ -2,6 +2,17 @@
 
 
 -- PostgreSQL
+-- Write your PostgreSQL query statement below
+-- AWS Aurora PostgreSQL has PIVOT/UNPIVOT operators, which are not in core PostgreSQL.
+-- "crosstab" function is in core PostgreSQL, but it requires installation of "tablefunc" module.
+-- So we use our plain old "max decode" trick!
+select product_id,
+       max(case when store = 'store1' then price end) as store1,
+       max(case when store = 'store2' then price end) as store2,
+       max(case when store = 'store3' then price end) as store3
+  from products
+ group by product_id
+;
 
 
 -- SQL Server
