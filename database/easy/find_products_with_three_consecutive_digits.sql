@@ -15,6 +15,11 @@ order by product_id
 
 
 # MySQL
+# Write your MySQL query statement below
+select product_id, name
+  from products
+ where regexp_like(name, '(^|[^[:digit:]])[[:digit:]]{3}([^[:digit:]]|$)')
+;
 
 
 # Pandas
