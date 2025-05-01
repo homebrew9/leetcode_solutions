@@ -18,4 +18,8 @@ order by product_id
 
 
 # Pandas
+import pandas as pd
+
+def find_products(products: pd.DataFrame) -> pd.DataFrame:
+    return products[('X'+products['name']+'X').str.contains(r'\D\d{3}\D')]
 
