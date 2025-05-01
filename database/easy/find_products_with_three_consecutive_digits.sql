@@ -2,6 +2,11 @@
 
 
 -- PostgreSQL
+-- Write your PostgreSQL query statement below
+select product_id, name
+  from products
+ where regexp_like(name, '(^|\D)\d{3}(\D|$)')
+;
 
 
 -- SQL Server
