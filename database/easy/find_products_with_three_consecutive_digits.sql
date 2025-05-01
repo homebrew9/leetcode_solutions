@@ -1,4 +1,9 @@
 -- Oracle
+/* Write your PL/SQL query statement below */
+select product_id, name
+  from products
+ where regexp_like(name, '(^|\D)\d{3}(\D|$)')
+;
 
 
 -- PostgreSQL
