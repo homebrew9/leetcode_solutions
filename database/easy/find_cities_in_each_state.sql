@@ -17,4 +17,17 @@ order by state
 
 
 # Pandas
+import pandas as pd
+from operator import concat
+from functools import reduce
 
+def find_cities(cities: pd.DataFrame) -> pd.DataFrame:
+    cities = cities.sort_values(['state','city'])
+    cities['city'] = ', ' + cities['city']
+    df = ( cities
+          .groupby('state', as_index=0)['city']
+          .apply(lambda x: reduce(concat, x))
+          .rename(columns={'city': 'cities'})
+         )
+    df['cities'] = df['cities'].str.extract('^, (.*)')
+    return df
