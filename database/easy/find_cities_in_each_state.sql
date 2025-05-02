@@ -15,6 +15,7 @@ group by state
 order by state
 ;
 
+
 -- SQL Server
 /* Write your T-SQL query statement below */
 select state, string_agg(city, ', ') within group (order by city) as cities
