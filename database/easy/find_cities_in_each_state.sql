@@ -21,6 +21,7 @@ group by state
 order by state
 ;
 
+
 # Pandas
 import pandas as pd
 from operator import concat
