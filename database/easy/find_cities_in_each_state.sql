@@ -6,6 +6,7 @@ group by state
 order by state
 ;
 
+
 -- PostgreSQL
 
 
