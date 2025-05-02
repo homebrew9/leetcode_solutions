@@ -1,5 +1,10 @@
 -- Oracle
-
+/* Write your PL/SQL query statement below */
+select state, listagg(city, ', ') within group (order by null) as cities
+from cities
+group by state
+order by state
+;
 
 -- PostgreSQL
 
