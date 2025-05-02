@@ -30,9 +30,10 @@ select product_id,
 select *
   from crosstab (
       'select product_id, store, amount from products order by product_id',
-	  'select distinct store from products order by store'
+      'select distinct store from products order by store'
   ) as ct(product_id int, "store1" int, "store2" int, "store3" int, "store4" int)
 ;
+
 -- The single query version of crosstab works as well - but we have to return all combinations
 -- of (product_id, store) otherwise the amounts are displayed under incorrect stores.
 --
