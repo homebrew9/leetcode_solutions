@@ -31,3 +31,4 @@ def find_cities(cities: pd.DataFrame) -> pd.DataFrame:
          )
     df['cities'] = df['cities'].str.extract('^, (.*)')
     return df
+
