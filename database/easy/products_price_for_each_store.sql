@@ -21,6 +21,20 @@ select product_id,
  group by product_id
 ;
 
+-- The LC setup does not have the tablefunc module installed, hence the crosstab queries below fail in LC.
+-- But they can be tested in other PostgreSQL installations that do have the tablefunc module.
+-- If the tablefunc module has been installed, then we can use crosstab function.
+-- Pivot the data so that stores are displayed as columns, indexed by product_id
+-- Documentation of functions in the tablefunc module: normal_rand, crosstab, crosstabN, connectby etc.
+-- https://www.postgresql.org/docs/current/tablefunc.html
+--
+select *
+  from crosstab (
+      'select product_id, store_cd, amount from t_store order by product_id',
+	  'select distinct store_cd from t_store order by store_cd'
+  ) as ct(product_id int, "store_1" int, "store_2" int, "store_3" int, "store_4" int)
+;
+
 
 -- SQL Server
 /* Write your T-SQL query statement below */
