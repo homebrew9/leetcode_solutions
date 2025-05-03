@@ -14,6 +14,7 @@ select q.id, q.year, coalesce(n.npv, 0) as npv
        left outer join npv n on (n.id = q.id and n.year = q.year)
 ;
 
+
 # Pandas
 import pandas as pd
 
