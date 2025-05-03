@@ -5,7 +5,11 @@
 
 
 -- SQL Server
-
+/* Write your T-SQL query statement below */
+select q.id, q.year, coalesce(n.npv, 0) as npv
+  from queries q
+       left outer join npv n on (n.id = q.id and n.year = q.year)
+;
 
 # MySQL
 # Write your MySQL query statement below
