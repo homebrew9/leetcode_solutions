@@ -18,4 +18,14 @@ having sum(t.amount) > 10000
 
 
 # Pandas
+import pandas as pd
+
+def account_summary(users: pd.DataFrame, transactions: pd.DataFrame) -> pd.DataFrame:
+    return ( users
+            .merge(transactions, how='inner', on='account')
+            .groupby(['account','name'],as_index=0)['amount']
+            .sum()
+            .query('amount > 10000')[['name','amount']]
+            .rename(columns={'amount': 'balance'})
+           )
 
