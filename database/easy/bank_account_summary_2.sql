@@ -12,6 +12,17 @@ having sum(t.amount) > 10000
 
 
 -- SQL Server
+/* Write your T-SQL query statement below */
+with t as (
+    select account, sum(amount) as balance
+    from transactions
+    group by account
+    having sum(amount) > 10000
+)
+select u.name, t.balance
+from users u
+     inner join t on (t.account = u.account)
+;
 
 
 # MySQL
