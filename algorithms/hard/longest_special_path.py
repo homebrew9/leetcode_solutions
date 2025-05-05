@@ -7,7 +7,6 @@ class Solution:
         for x, y, w in edges:
             G[x].append((y, w))
             G[y].append((x, w))
-        #print(G)
         cumPathLen, valToIdxPos = [], defaultdict(list)
 
         self.ans = 0
