@@ -17,7 +17,6 @@ class Solution:
                 prevStart = max(prevStart, valToIdxPos[nums[node]][-1])
             if len(cumPathLen) > 0:
                 L = cumPathLen[-1] if prevStart == -1 else cumPathLen[-1] - cumPathLen[prevStart]
-                #print(f'\tInside len(cpl) > 0; L = {L}')
                 if L > self.ans:
                     self.ans = L
                     self.minLen = len(cumPathLen) + 1 - (prevStart + 1)
