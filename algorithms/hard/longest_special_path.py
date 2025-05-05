@@ -13,7 +13,6 @@ class Solution:
         self.minLen = 1
 
         def dfs(node, prevStart, parent):
-            #print('=====')
             #print('node, prevStart, parent = {}, {}, {}'.format(node, prevStart, parent))
             #print('cumPathLen, valToIdxPos = {}, {}'.format(cumPathLen, valToIdxPos))
             #print('self.ans, self.minLen   = {}, {}'.format(self.ans, self.minLen))
