@@ -20,7 +20,6 @@ class Solution:
                 if L > self.ans:
                     self.ans = L
                     self.minLen = len(cumPathLen) + 1 - (prevStart + 1)
-                    #print(f'\t\tInside L > self.ans; now self.ans, self.minLen = {self.ans}, {self.minLen}')
                 elif L == self.ans:
                     self.minLen = min(self.minLen, len(cumPathLen) + 1 - (prevStart + 1))
                     #print(f'\t\tInside L = self.ans; now self.ans, self.minLen = {self.ans}, {self.minLen}')
