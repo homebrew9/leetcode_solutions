@@ -22,7 +22,6 @@ class Solution:
                     self.minLen = len(cumPathLen) + 1 - (prevStart + 1)
                 elif L == self.ans:
                     self.minLen = min(self.minLen, len(cumPathLen) + 1 - (prevStart + 1))
-                    #print(f'\t\tInside L = self.ans; now self.ans, self.minLen = {self.ans}, {self.minLen}')
             for child, length in G[node]:
                 if child == parent:
                     continue
