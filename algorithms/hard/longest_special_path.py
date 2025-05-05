@@ -13,7 +13,6 @@ class Solution:
         self.minLen = 1
 
         def dfs(node, prevStart, parent):
-            #print('cumPathLen, valToIdxPos = {}, {}'.format(cumPathLen, valToIdxPos))
             #print('self.ans, self.minLen   = {}, {}'.format(self.ans, self.minLen))
             if len(valToIdxPos[nums[node]]) > 0:
                 prevStart = max(prevStart, valToIdxPos[nums[node]][-1])
