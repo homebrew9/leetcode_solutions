@@ -18,11 +18,6 @@ class Solution:
             cnt = cnt * perm(word)
         return cnt % MOD
 
-
-
-
-
-
 # Main section
 for s in [
             'too hot',
