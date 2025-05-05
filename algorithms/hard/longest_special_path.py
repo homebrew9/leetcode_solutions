@@ -15,7 +15,6 @@ class Solution:
         def dfs(node, prevStart, parent):
             if len(valToIdxPos[nums[node]]) > 0:
                 prevStart = max(prevStart, valToIdxPos[nums[node]][-1])
-                #print(f'\tInside len(vtip) > 0; prevStart = {prevStart}')
             if len(cumPathLen) > 0:
                 L = cumPathLen[-1] if prevStart == -1 else cumPathLen[-1] - cumPathLen[prevStart]
                 #print(f'\tInside len(cpl) > 0; L = {L}')
