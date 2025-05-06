@@ -6,6 +6,8 @@ class Solution:
         for i in range(len(ans)):
             ans[i] = nums[nums[i]]
         return ans
+    def buildArray_1(self, nums: List[int]) -> List[int]:
+        return [nums[nums[i]] for i in range(len(nums))]
 
 # Main section
 for nums in [
