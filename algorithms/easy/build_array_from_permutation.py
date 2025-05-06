@@ -23,5 +23,6 @@ for nums in [
     r2 = sol.buildArray_2(nums)
     print(f'r    = {r}')
     print(f'r1   = {r1}')
+    print(f'r2   = {r2}')
     print('============================')
 
