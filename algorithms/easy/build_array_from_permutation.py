@@ -19,5 +19,6 @@ for nums in [
     r = sol.buildArray(nums)
     r1 = sol.buildArray_1(nums)
     print(f'r    = {r}')
-    print('========================')
+    print(f'r1   = {r1}')
+    print('============================')
 
