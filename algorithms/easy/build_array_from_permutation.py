@@ -17,6 +17,7 @@ for nums in [
     print(f'nums = {nums}')
     sol = Solution()
     r = sol.buildArray(nums)
+    r1 = sol.buildArray_1(nums)
     print(f'r    = {r}')
     print('========================')
 
