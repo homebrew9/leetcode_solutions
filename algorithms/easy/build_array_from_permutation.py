@@ -6,7 +6,6 @@ class Solution:
             ans[i] = nums[nums[i]]
         return ans
 
-
 # Main section
 for nums in [
                [0,2,1,5,3,4],
