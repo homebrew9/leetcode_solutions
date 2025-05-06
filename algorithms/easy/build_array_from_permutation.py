@@ -20,6 +20,7 @@ for nums in [
     sol = Solution()
     r = sol.buildArray(nums)
     r1 = sol.buildArray_1(nums)
+    r2 = sol.buildArray_2(nums)
     print(f'r    = {r}')
     print(f'r1   = {r1}')
     print('============================')
