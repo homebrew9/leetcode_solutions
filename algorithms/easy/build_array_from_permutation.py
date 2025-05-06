@@ -8,6 +8,8 @@ class Solution:
         return ans
     def buildArray_1(self, nums: List[int]) -> List[int]:
         return [nums[nums[i]] for i in range(len(nums))]
+    def buildArray_2(self, nums: List[int]) -> List[int]:
+        return [nums[i] for i in nums]
 
 # Main section
 for nums in [
