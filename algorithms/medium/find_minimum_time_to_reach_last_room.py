@@ -14,7 +14,6 @@ moveTime =
 '''
 from typing import List
 import heapq
-
 class Solution:
     def minTimeToReach(self, moveTime: List[List[int]]) -> int:
         rows = len(moveTime)
