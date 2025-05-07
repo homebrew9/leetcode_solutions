@@ -2,7 +2,6 @@
 # https://leetcode.com/problems/minimum-time-to-revert-word-to-initial-state-ii/solutions/4687845/kmp-o-n-neetcode-style/
 #
 import math
-
 class Solution:
     def minimumTimeToInitialState(self, word: str, k: int) -> int:
         # LPS = Longest Prefix Suffix
