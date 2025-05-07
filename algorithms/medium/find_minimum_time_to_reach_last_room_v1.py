@@ -1,6 +1,5 @@
 from typing import List
 from sortedcontainers import SortedList
-
 class Solution:
     def minTimeToReach(self, moveTime: List[List[int]]) -> int:
         rows = len(moveTime)
