@@ -27,6 +27,7 @@ class Solution:
         lenToBeRemoved = len(word) - prevLPS
         return math.ceil(lenToBeRemoved / k)
 
+
 # Main section
 for word, k in [
                    ('abacaba', 3),
