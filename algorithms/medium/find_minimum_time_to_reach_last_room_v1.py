@@ -35,4 +35,3 @@ for moveTime in [
     r = sol.minTimeToReach(moveTime)
     print(f'r = {r}')
     print('=========================')
-
