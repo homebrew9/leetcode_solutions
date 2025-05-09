@@ -38,4 +38,3 @@ for moveTime in [
     print(f'r = {r}')
     print('=========================')
 
-
