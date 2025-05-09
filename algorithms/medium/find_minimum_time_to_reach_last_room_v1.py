@@ -21,6 +21,7 @@ class Solution:
                     if (rnew, cnew) not in visited:
                         visited.add((rnew, cnew))
                         sl.add((dist_new, rnew, cnew))
+
 # Main section
 for moveTime in [
                    [[0,1,4],[2,1,3],[4,2,1],[1,1,4]],
