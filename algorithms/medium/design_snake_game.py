@@ -36,4 +36,3 @@ class SnakeGame:
 #["SnakeGame","move","move","move","move","move","move"]
 #[[3,2,[[1,2],[0,1]]],["R"],["D"],["R"],["U"],["L"],["U"]]
 
-
