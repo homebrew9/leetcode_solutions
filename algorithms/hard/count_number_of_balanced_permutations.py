@@ -23,6 +23,7 @@ class Solution:
             return 0
 
         return dfs(9, len(num) - len(num) // 2, len(num) // 2, total // 2)
+
 # Main section
 for num in [
               '123',
