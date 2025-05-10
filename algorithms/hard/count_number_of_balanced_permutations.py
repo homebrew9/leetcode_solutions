@@ -17,7 +17,6 @@ class Solution:
             for j in range(0, cnt[i] + 1):
                 res += comb(odd, j) * comb(even, cnt[i] - j) * dfs(i - 1, odd - j, even - cnt[i] + j, balance - i * j)
             return res % MOD
-
         if total % 2 == 1:
             return 0
 
