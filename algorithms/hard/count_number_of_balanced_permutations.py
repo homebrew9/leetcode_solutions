@@ -1,6 +1,7 @@
 from collections import Counter
 from math import comb
 from functools import cache
+
 class Solution:
     def countBalancedPermutations(self, num: str) -> int:
         MOD = 10**9 + 7
