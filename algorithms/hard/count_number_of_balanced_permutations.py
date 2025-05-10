@@ -7,7 +7,6 @@ class Solution:
         MOD = 10**9 + 7
         cnt = Counter(int(ch) for ch in num)
         total = sum(int(ch) for ch in num)
-
         @cache
         def dfs(i, odd, even, balance):
             if odd == 0 and even == 0 and balance == 0:
