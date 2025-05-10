@@ -13,7 +13,6 @@ class Solution:
         if zn1 > 0:
             return sn2 if sn1 + zn1 <= sn2 else -1
 
-
 # Main section
 for nums1, nums2 in [
                        ([3,2,0,1,0], [6,5,0]),
