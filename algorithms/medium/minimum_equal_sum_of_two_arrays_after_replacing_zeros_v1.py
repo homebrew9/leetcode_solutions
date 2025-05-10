@@ -18,7 +18,6 @@ class Solution:
             return -1
         return max(sum1, sum2)
 
-
 # Main section
 for nums1, nums2 in [
                        ([3,2,0,1,0], [6,5,0]),
