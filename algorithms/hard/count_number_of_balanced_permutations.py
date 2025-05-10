@@ -19,7 +19,6 @@ class Solution:
             return res % MOD
         if total % 2 == 1:
             return 0
-
         return dfs(9, len(num) - len(num) // 2, len(num) // 2, total // 2)
 
 # Main section
