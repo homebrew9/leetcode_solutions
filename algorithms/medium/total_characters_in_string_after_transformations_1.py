@@ -2,6 +2,7 @@
 # This solution works in my local setup but throws MLE in the LC Judge.
 # ========================================================================
 import sys
+
 class Solution:
     def lengthAfterTransformations(self, s: str, t: int) -> int:
         def solve(s, t):
