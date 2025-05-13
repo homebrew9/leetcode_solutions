@@ -25,6 +25,7 @@ class Solution:
         for ch in s:
             res = (res + solve(ch, t)) % MOD
         return res % MOD
+
 # Main section
 sys.setrecursionlimit(100000)
 for s, t in [
