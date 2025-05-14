@@ -15,6 +15,15 @@ class Solution:
                 total += -heapq.heappop(v)
             res.append([k, total//5])
         return sorted(res)
+    def highFive_1(self, items: List[List[int]]) -> List[List[int]]:
+        hsh = defaultdict(list)
+        for id, score in items:
+            hsh[id] += [score]
+        res = list()
+        for k, v in hsh.items():
+            avg = sum(sorted(v)[-5:])//5
+            res.append([k, avg])
+        return sorted(res)
 
 # Main section
 for items in [
@@ -24,6 +33,10 @@ for items in [
     print(f'items = {items}')
     sol = Solution()
     r = sol.highFive(items)
+    r1 = sol.highFive_1(items)
     print(f'r     = {r}')
+    print(f'r1    = {r1}')
     print('============================')
+
+
 
