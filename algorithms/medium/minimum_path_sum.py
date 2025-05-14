@@ -16,6 +16,25 @@ class Solution:
         cols = len(grid[0])
         res = solve(0, 0)
         return res
+    def minPathSum_1(self, grid: List[List[int]]) -> int:
+        def solve(r, c):
+            if r == rows - 1 and c == cols - 1:
+                return grid[r][c]
+            if (r, c) in memo:
+                return memo[(r, c)]
+            if c == cols - 1:
+                val = grid[r][c] + solve(r+1, c)
+            elif r == rows - 1:
+                val = grid[r][c] + solve(r, c+1)
+            else:
+                val = grid[r][c] + min(solve(r, c+1), solve(r+1, c))
+            memo[(r, c)] = val
+            return memo[(r, c)]
+        memo = dict()
+        rows = len(grid)
+        cols = len(grid[0])
+        res = solve(0, 0)
+        return res
 
 # Main section
 for grid in [
@@ -28,6 +47,9 @@ for grid in [
     print(f'grid = {grid}')
     sol = Solution()
     r = sol.minPathSum(grid)
-    print(f'r = {r}')
+    r1 = sol.minPathSum_1(grid)
+    print(f'r  = {r}')
+    print(f'r1 = {r1}')
     print('============================')
+
 
