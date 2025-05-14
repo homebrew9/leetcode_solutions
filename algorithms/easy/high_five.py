@@ -1,6 +1,7 @@
 from typing import List
 from collections import defaultdict
 import heapq
+from itertools import groupby
 
 class Solution:
     def highFive(self, items: List[List[int]]) -> List[List[int]]:
@@ -24,6 +25,9 @@ class Solution:
             avg = sum(sorted(v)[-5:])//5
             res.append([k, avg])
         return sorted(res)
+    def highFive_2(self, items: List[List[int]]) -> List[List[int]]:
+        return [[p[0][0], sum([n for _, n in p])//5] for p in [list(g)[-5:] for k, g in groupby(sorted(items), key=lambda x: x[0])]]
+    
 
 # Main section
 for items in [
@@ -34,7 +38,11 @@ for items in [
     sol = Solution()
     r = sol.highFive(items)
     r1 = sol.highFive_1(items)
+    r2 = sol.highFive_2(items)
     print(f'r     = {r}')
     print(f'r1    = {r1}')
+    print(f'r2    = {r2}')
     print('============================')
+
+
 
