@@ -1,0 +1,31 @@
+from typing import List
+from collections import defaultdict
+import heapq
+
+class Solution:
+    def highFive(self, items: List[List[int]]) -> List[List[int]]:
+        hsh = defaultdict(list)
+        for id, score in items:
+            hsh[id] += [-score]
+        res = list()
+        for k, v in hsh.items():
+            heapq.heapify(v)
+            total = 0
+            for _ in range(5):
+                total += -heapq.heappop(v)
+            res.append([k, total//5])
+        return sorted(res)
+
+# Main section
+for items in [
+                [[1,91],[1,92],[2,93],[2,97],[1,60],[2,77],[1,65],[1,87],[1,100],[2,100],[2,76]],
+                [[1,100],[7,100],[1,100],[7,100],[1,100],[7,100],[1,100],[7,100],[1,100],[7,100]],
+             ]:
+    print(f'items = {items}')
+    sol = Solution()
+    r = sol.highFive(items)
+    print(f'r     = {r}')
+    print('============================')
+
+
+
