@@ -45,5 +45,3 @@ for words, groups in [
     print(f'r      = {r}')
     print('============================')
 
-
-
