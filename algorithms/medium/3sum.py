@@ -3,9 +3,14 @@ from typing import List
 class Solution:
     def threeSum(self, nums: List[int]) -> List[List[int]]:
         N = len(nums)
+        # Sort the list first and then iterate from index 0 to N-3
         nums.sort()
         i = 0
         res = list()
+        # For each index i in [0, N-3] use two-pointer technique with j and k
+        # where j = i + 1 and k = N-1. If nums[j] + nums[k] = -nums[i] then bring
+        # j and k closer while skipping duplicates. Otherwise advance j or k as needed.
+        # If nums[i] > 0 then we cannot find a triplet since the list is sorted!
         while i < N - 2:
             if nums[i] > 0:
                 break
@@ -17,6 +22,7 @@ class Solution:
                 kval = nums[k]
                 if jval + kval == -ival:
                     res.append([nums[i], nums[j], nums[k]])
+                    # Make sure to skip duplicates
                     while j < N and nums[j] == jval:
                         j += 1
                     while k > i and nums[k] == kval:
@@ -25,6 +31,7 @@ class Solution:
                     j += 1
                 else:
                     k -= 1
+            # Skip duplicates of ival
             while i < N-2 and nums[i] == ival:
                 i += 1
         return res
