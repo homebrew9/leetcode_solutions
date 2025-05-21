@@ -85,10 +85,3 @@ def find_category_recommendation_pairs(product_purchases: pd.DataFrame, product_
             .sort_values(by=['customer_count','category1','category2'], ascending=[False,True,True])
            )
 
-
-
-
-
-
-
-
