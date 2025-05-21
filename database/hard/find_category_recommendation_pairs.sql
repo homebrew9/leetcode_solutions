@@ -71,4 +71,26 @@ order by customer_count desc, category1, category2
 
 
 # Pandas
+import pandas as pd
+
+def find_category_recommendation_pairs(product_purchases: pd.DataFrame, product_info: pd.DataFrame) -> pd.DataFrame:
+    df = product_purchases.merge(product_info, how='inner', on='product_id')[['user_id', 'category']]
+    return ( df
+            .merge(df, how='inner', on='user_id')
+            .query('category_x < category_y')
+            .groupby(['category_x','category_y'], as_index=0)['user_id']
+            .nunique()
+            .query('user_id >= 3')
+            .rename(columns={'category_x':'category1', 'category_y':'category2', 'user_id':'customer_count'})
+            .sort_values(by=['customer_count','category1','category2'], ascending=[False,True,True])
+           )
+
+
+
+
+
+
+
+
+
 
