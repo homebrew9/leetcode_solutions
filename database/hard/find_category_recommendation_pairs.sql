@@ -52,9 +52,6 @@ order by customer_count desc, category1, category2
 ;
 
 
-
-
-
 # MySQL
 
 
