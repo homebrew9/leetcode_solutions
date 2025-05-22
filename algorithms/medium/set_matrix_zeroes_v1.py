@@ -5,28 +5,15 @@ class Solution:
         """
         Do not return anything, modify matrix in-place instead.
         """
-        # TC = O(M*N), SC = O(1)
+        # TC = O(M*N), SC = O(M+N)
         rows = len(matrix)
         cols = len(matrix[0])
-        is_first_row_zero, is_first_col_zero = False, False
+        row_set = set([r for r in range(rows) for c in range(cols) if matrix[r][c] == 0])
+        col_set = set([c for r in range(rows) for c in range(cols) if matrix[r][c] == 0])
         for r in range(rows):
             for c in range(cols):
-                if matrix[r][c] == 0:
-                    if r == 0:
-                        is_first_row_zero = True
-                    if c == 0:
-                        is_first_col_zero = True
-                    matrix[0][c] = matrix[r][0] = 0
-        for r in range(1, rows):
-            for c in range(1, cols):
-                if matrix[0][c] == 0 or matrix[r][0] == 0:
+                if r in row_set or c in col_set:
                     matrix[r][c] = 0
-        if is_first_row_zero:
-            for c in range(cols):
-                matrix[0][c] = 0
-        if is_first_col_zero:
-            for r in range(rows):
-                matrix[r][0] = 0
         print(f'~~~~~~~~>{matrix}')
  
 # Main section
@@ -39,4 +26,19 @@ for matrix in [
     r = sol.setZeroes(matrix)
     print(f'r = {r}')
     print('============================')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
