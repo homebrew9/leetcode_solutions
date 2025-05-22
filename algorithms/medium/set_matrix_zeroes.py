@@ -39,7 +39,6 @@ for matrix in [
     r = sol.setZeroes(matrix)
     print(f'r = {r}')
     print('============================')
-       
 
 
 
