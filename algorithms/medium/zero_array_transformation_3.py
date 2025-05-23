@@ -46,5 +46,3 @@ for nums, queries in [
 
 
 
-
-
