@@ -56,4 +56,3 @@ for nums, queries in [
 
 
 
-
