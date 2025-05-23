@@ -49,4 +49,3 @@ for nums, queries in [
 
 
 
-
