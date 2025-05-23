@@ -48,4 +48,3 @@ for nums, queries in [
 
 
 
-
