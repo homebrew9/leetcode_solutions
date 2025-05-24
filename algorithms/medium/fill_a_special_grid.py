@@ -30,6 +30,7 @@ for n in [
             7,
             8,
             9,
+            10,
          ]:
     print(f'n = {n}')
     sol = Solution()
