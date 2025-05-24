@@ -22,6 +22,7 @@ class Solution:
 for n in [
             0,
             1,
+            2,
          ]:
     print(f'n = {n}')
     sol = Solution()
