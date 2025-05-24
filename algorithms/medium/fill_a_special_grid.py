@@ -27,6 +27,7 @@ for n in [
             4,
             5,
             6,
+            7,
          ]:
     print(f'n = {n}')
     sol = Solution()
