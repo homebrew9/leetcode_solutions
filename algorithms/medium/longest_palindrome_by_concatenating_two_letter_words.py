@@ -1,5 +1,5 @@
 from typing import List
-from collections import defaultdict
+from collections import defaultdict, Counter
 
 class Solution:
     def longestPalindrome(self, words: List[str]) -> int:
@@ -34,6 +34,44 @@ class Solution:
                 res += 2
                 break
         return res
+    def longestPalindrome_1(self, words: List[str]) -> int:
+        seen = defaultdict(int)
+        res = 0
+        for i in words:
+            reverse_i = i[1] + i[0]
+            if seen[reverse_i] > 0:
+                res += 4
+                seen[reverse_i] -= 1
+            else:
+                seen[i] += 1
+            #print(f'\t\ti, seen, res, res = {i}, {seen}, {res}')
+        #print(f'\tseen = {seen}')
+        for i in seen:
+            if i[0] == i[1] and seen[i] > 0:
+                res += 2
+                break
+        return res
+    def longestPalindrome_2(self, words: List[str]) -> int:
+        # a count variable contains the number of occurrences of each word
+        count = Counter(words)
+        answer = 0
+        central = False
+        for word, count_of_the_word in count.items():
+            # if the word is a palindrome
+            if word[0] == word[1]:
+                if count_of_the_word % 2 == 0:
+                    answer += count_of_the_word
+                else:
+                    answer += count_of_the_word - 1
+                    central = True
+            # consider a pair of non-palindrome words,
+            # such that one is the reverse of another
+            # word[1] + word[0] is the reversed word
+            elif word[0] < word[1]:
+                answer += 2 * min(count_of_the_word, count[word[1] + word[0]])
+        if central:
+            answer += 1
+        return 2 * answer    
 
 # Main section
 for words in [
@@ -46,6 +84,8 @@ for words in [
     print(f'words = {words}')
     sol = Solution()
     r = sol.longestPalindrome(words)
+    r1 = sol.longestPalindrome_1(words)
     print(f'r  = {r}')
+    print(f'r1 = {r1}')
     print('============================')
 
