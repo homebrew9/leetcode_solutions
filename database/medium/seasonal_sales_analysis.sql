@@ -143,4 +143,3 @@ def seasonal_sales_analysis(products: pd.DataFrame, sales: pd.DataFrame) -> pd.D
                  )
     return df[df['drnk']==1][['season','category','total_quantity','total_revenue']].sort_values('season')
 
-
