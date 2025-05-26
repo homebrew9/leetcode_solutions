@@ -85,7 +85,9 @@ for words in [
     sol = Solution()
     r = sol.longestPalindrome(words)
     r1 = sol.longestPalindrome_1(words)
+    r2 = sol.longestPalindrome_2(words)
     print(f'r  = {r}')
     print(f'r1 = {r1}')
+    print(f'r2 = {r2}')
     print('============================')
 
