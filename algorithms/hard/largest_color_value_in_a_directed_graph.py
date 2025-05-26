@@ -46,9 +46,3 @@ for colors, edges in [
     print(f'r  = {r}')
     print('============================')
 
-
-
-
-
-
-
