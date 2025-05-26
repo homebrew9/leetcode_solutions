@@ -58,7 +58,6 @@ select season, category, total_quantity, total_revenue
 ;
 
 
-
 -- SQL Server
 
 
