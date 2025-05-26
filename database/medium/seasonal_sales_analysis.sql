@@ -28,7 +28,6 @@ select season, category, total_quantity, total_revenue
 ;
 
 
-
 -- PostgreSQL
 
 
