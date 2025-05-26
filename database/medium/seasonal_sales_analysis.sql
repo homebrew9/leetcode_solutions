@@ -119,4 +119,28 @@ select season, category, total_quantity, total_revenue
 
 
 # Pandas
+import pandas as pd
+
+def seasonal_sales_analysis(products: pd.DataFrame, sales: pd.DataFrame) -> pd.DataFrame:
+    sales['month'] = sales['sale_date'].dt.strftime('%b')
+    sales['season'] = np.where(sales['month'].isin(['Dec','Jan','Feb']), 'Winter',
+                               np.where(sales['month'].isin(['Mar','Apr','May']), 'Spring',
+                                        np.where(sales['month'].isin(['Jun','Jul','Aug']), 'Summer', 'Fall'
+                                        )
+                               )
+                      )
+    sales['revenue'] = sales['quantity'] * sales['price']
+    df = ( sales
+          .merge(products, how='inner', on='product_id')
+          .groupby(['season','category'], as_index=0)
+          .agg(total_quantity=('quantity','sum'), total_revenue=('revenue','sum'))
+         )
+    # In order to do "partition by x order by y, z", we first combine [y,z] into a single combined column
+    df['combined'] = list(zip(df['total_quantity'],df['total_revenue']))
+    df['drnk'] = ( df
+                  .groupby('season', as_index=0)['combined']
+                  .rank(method='dense',ascending=False).astype(int)
+                 )
+    return df[df['drnk']==1][['season','category','total_quantity','total_revenue']].sort_values('season')
+
 
