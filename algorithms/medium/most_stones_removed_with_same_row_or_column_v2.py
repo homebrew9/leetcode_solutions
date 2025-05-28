@@ -48,5 +48,3 @@ for stones in [
 
 
 
-
-
