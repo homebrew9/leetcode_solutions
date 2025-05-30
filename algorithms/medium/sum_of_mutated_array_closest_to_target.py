@@ -15,6 +15,38 @@ class Solution:
         N = len(arr)
         arr.sort()
         return solve(0, target)
+    def findBestValue_1(self, arr: List[int], target: int) -> int:
+        def sign(x):
+            if x < 0: return -1
+            if x > 0: return 1
+            return 0
+        N = len(arr)
+        arr.sort()
+        #print(arr)
+        res = 0
+        diff, diff_abs, diff_sign = None, None, None
+        prev_diff_abs, prev_diff_sign = None, None
+        while res <= max(arr):
+            total = sum([res if v > res else v for v in arr])
+            # ==============================================
+            diff      = target - total
+            diff_abs  = abs(diff)
+            diff_sign = sign(diff)
+            # ==============================================
+            #print(f'\tres, diff, diff_abs, diff_sign = {res}, {diff}, {diff_abs}, {diff_sign}')
+            if prev_diff_sign and diff_sign != prev_diff_sign:
+                if prev_diff_abs <= diff_abs:
+                    return res - 1
+                if diff_abs < prev_diff_abs:
+                    return res
+                break
+            # ==============================================
+            prev_diff_abs  = diff_abs
+            prev_diff_sign = diff_sign
+            # ==============================================
+            #print(f'\tres, diff, diff_abs, diff_sign, prev_diff_abs, prev_diff_sign = {res}, {diff}, {diff_abs}, {diff_sign}, {prev_diff_abs}, {prev_diff_sign}')
+            res += 1
+        return min(max(arr), res)
 
 # Main section
 for arr, target in [
@@ -28,6 +60,12 @@ for arr, target in [
     print(f'arr, target = {arr}, {target}')
     sol = Solution()
     r = sol.findBestValue(arr, target)
-    print(f'r = {r}')
+    r1 = sol.findBestValue_1(arr, target)
+    print(f'r  = {r}')
+    print(f'r1 = {r1}')
     print('========================================')
+
+
+
+
 
