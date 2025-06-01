@@ -48,4 +48,3 @@ for edges, node1, node2 in [
     print(f'r = {r}')
     print('============================')
 
-
