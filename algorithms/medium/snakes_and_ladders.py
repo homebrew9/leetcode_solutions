@@ -1,0 +1,55 @@
+from typing import List
+from collections import deque
+
+class Solution:
+    def snakesAndLadders(self, board: List[List[int]]) -> int:
+        n = len(board)
+        cells = [None] * (n**2 + 1)
+        label = 1
+        columns = list(range(0, n))
+        for row in range(n - 1, -1, -1):
+            for column in columns:
+                cells[label] = (row, column)
+                label += 1
+            columns.reverse()
+        dist = [-1] * (n * n + 1)
+        q = deque([1])
+        dist[1] = 0
+        while q:
+            curr = q.popleft()
+            for next in range(curr + 1, min(curr + 6, n**2) + 1):
+                row, column = cells[next]
+                destination = (board[row][column] if board[row][column] != -1
+                               else next)
+                if dist[destination] == -1:
+                    dist[destination] = dist[curr] + 1
+                    q.append(destination)
+        return dist[n * n]
+
+# Main section
+for board in [
+                [[-1,-1,-1,-1,-1,-1],[-1,-1,-1,-1,-1,-1],[-1,-1,-1,-1,-1,-1],[-1,35,-1,-1,13,-1],[-1,-1,-1,-1,-1,-1],[-1,15,-1,-1,-1,-1]],
+                [[-1,-1],[-1,3]],
+             ]:
+    print(f'board = {board}')
+    sol = Solution()
+    r = sol.snakesAndLadders(board)
+    print(f'r = {r}')
+    print('============================')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
