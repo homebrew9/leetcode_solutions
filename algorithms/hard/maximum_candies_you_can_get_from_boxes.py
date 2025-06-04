@@ -48,8 +48,3 @@ for status, candies, keys, containedBoxes, initialBoxes in [
     print(f'r = {r}')
     print('=======================')
 
-
-
-
-
-
