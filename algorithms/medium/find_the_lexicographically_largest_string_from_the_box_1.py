@@ -22,10 +22,3 @@ for word, numFriends in [
     print(f'r = {r}')
     print('=======================')
 
-
-
-
-
-
-
-
