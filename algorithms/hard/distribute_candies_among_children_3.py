@@ -24,4 +24,3 @@ for n, limit in [
     print(f'r = {r}')
     print('=============')
 
-
