@@ -63,4 +63,21 @@ select book_id, title, author, genre, publication_year, current_borrowers
 
 
 # Pandas
+import pandas as pd
+
+def find_books_with_no_available_copies(library_books: pd.DataFrame, borrowing_records: pd.DataFrame) -> pd.DataFrame:
+    df = ( borrowing_records[borrowing_records['return_date'].isna()]
+          .groupby('book_id', as_index=0)
+          .size()
+          .rename(columns={'size':'current_borrowers'})
+         )
+    return ( library_books
+            .merge(df, how='inner', left_on=['book_id','total_copies'], right_on=['book_id','current_borrowers'])
+            .drop('total_copies', axis=1)
+            .sort_values(by=['current_borrowers','title'], ascending=[False,True])
+           )
+
+
+
+
 
