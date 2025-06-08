@@ -1,3 +1,4 @@
+from sortedcontainers import SortedList
 class Solution:
     def clearStars(self, s: str) -> str:
         arr = list(s)
@@ -13,6 +14,16 @@ class Solution:
                 ind = ord(v) - ord('a')
                 chars[ind].append(i)
         return ''.join([ch for ch in arr if ch != '*'])
+    def clearStars_1(self, s: str) -> str:
+        arr = list(s)
+        sl = SortedList()
+        for i, v in enumerate(arr):
+            if v == '*':
+                _, ind = sl.pop(0)
+                arr[-ind] = '*'
+            else:
+                sl.add((v, -i))
+        return ''.join([ch for ch in arr if ch != '*'])
 
 # Main section
 for s in [
@@ -20,9 +31,11 @@ for s in [
             'abc',
             'yxzkrclb*foemxxqbzufnajeqaj**yzrzvvfdctdhp***pnavby*osklnzkqdzultlszdgi**tilujoianyehwimvdtip*vbmazsyuqqyl**drcd*',
          ]:
-    print(f's = {s}')
+    print(f's  = {s}')
     sol = Solution()
     r = sol.clearStars(s)
-    print(f'r = {r}')
+    r1 = sol.clearStars_1(s)
+    print(f'r  = {r}')
+    print(f'r1 = {r1}')
     print('=============')
 
