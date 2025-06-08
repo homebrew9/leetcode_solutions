@@ -77,6 +77,3 @@ def find_books_with_no_available_copies(library_books: pd.DataFrame, borrowing_r
             .sort_values(by=['current_borrowers','title'], ascending=[False,True])
            )
 
-
-
-
