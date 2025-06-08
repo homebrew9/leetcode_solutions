@@ -16,7 +16,6 @@ select book_id, title, author, genre, publication_year, current_borrowers
 
 
 
-
 -- PostgreSQL
 
 
