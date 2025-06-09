@@ -2,6 +2,8 @@ from typing import List
 
 class Solution:
     def verifyPreorder(self, preorder: List[int]) -> bool:
+        # Intuition: Whenever we pop a node, it becomes the next lower bound.
+        # All subsequent nodes must be greater than this lower bound.
         lower_bound = float('-inf')
         stack = list()
         for n in preorder:
