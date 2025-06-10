@@ -9,6 +9,15 @@ class Solution:
             for even in even_freq:
                 res = max(res, odd - even)
         return res
+    def maxDifference_1(self, s: str) -> int:
+        cntr = Counter(s)
+        max_odd_freq, min_even_freq = float('-inf'), float('inf')
+        for v in cntr.values():
+            if v % 2 == 1:
+                max_odd_freq = max(max_odd_freq, v)
+            else:
+                min_even_freq = min(min_even_freq, v)
+        return max_odd_freq - min_even_freq
 
 # Main section
 for s in [
@@ -19,6 +28,10 @@ for s in [
     print(f's = {s}')
     sol = Solution()
     r = sol.maxDifference(s)
-    print(f'r = {r}')
+    r1 = sol.maxDifference_1(s)
+    print(f'r  = {r}')
+    print(f'r1 = {r1}')
     print('===================')
+
+
 
