@@ -18,6 +18,11 @@ class Solution:
             else:
                 min_even_freq = min(min_even_freq, v)
         return max_odd_freq - min_even_freq
+    def maxDifference_2(self, s: str) -> int:
+        cntr = Counter(s)
+        maxOdd = max([v for v in cntr.values() if v % 2 == 1])
+        minEven = min([v for v in cntr.values() if v % 2 == 0])
+        return maxOdd - minEven
 
 # Main section
 for s in [
@@ -29,7 +34,12 @@ for s in [
     sol = Solution()
     r = sol.maxDifference(s)
     r1 = sol.maxDifference_1(s)
+    r2 = sol.maxDifference_1(s)
     print(f'r  = {r}')
     print(f'r1 = {r1}')
+    print(f'r2 = {r2}')
     print('===================')
+
+
+
 
