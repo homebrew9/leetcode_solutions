@@ -66,10 +66,6 @@ select employee_id, name, improvement_score
 ;
 
 
-
-
-
-
 -- SQL Server
 
 
