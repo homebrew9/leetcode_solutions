@@ -35,7 +35,6 @@ select employee_id, name, improvement_score
 
 
 
-
 -- PostgreSQL
 
 
