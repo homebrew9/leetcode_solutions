@@ -134,7 +134,5 @@ select employee_id, name, improvement_score
 ;
 
 
-
-
 # Pandas
 
