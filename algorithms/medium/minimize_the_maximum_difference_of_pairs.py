@@ -41,6 +41,3 @@ for nums, p in [
     print(f'r  = {r}')
     print('===================')
 
-
-
-
