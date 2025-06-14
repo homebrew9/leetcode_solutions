@@ -154,4 +154,3 @@ def find_consistently_improving_employees(employees: pd.DataFrame, performance_r
             .sort_values(by=['improvement_score', 'name'], ascending=[False, True])
            )
 
-
