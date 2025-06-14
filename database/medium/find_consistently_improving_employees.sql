@@ -135,4 +135,38 @@ select employee_id, name, improvement_score
 
 
 # Pandas
+import pandas as pd
+
+def find_consistently_improving_employees(employees: pd.DataFrame, performance_reviews: pd.DataFrame) -> pd.DataFrame:
+    performance_reviews['drnk'] = ( performance_reviews
+                                   .groupby('employee_id',as_index=0)['review_date']
+                                   .rank(method='dense', ascending=False)
+                                  )
+    df = ( performance_reviews[performance_reviews['drnk']==1]
+          .merge(performance_reviews[performance_reviews['drnk']==2], how='inner', on='employee_id')
+          .query('rating_y < rating_x')
+          .merge(performance_reviews[performance_reviews['drnk']==3], how='inner', on='employee_id')
+          .query('rating < rating_y')
+         )
+    df['improvement_score'] = df['rating_x'] - df['rating']
+    return ( df[['employee_id', 'improvement_score']]
+            .merge(employees, how='inner', on='employee_id')[['employee_id','name','improvement_score']]
+            .sort_values(by=['improvement_score', 'name'], ascending=[False, True])
+           )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
