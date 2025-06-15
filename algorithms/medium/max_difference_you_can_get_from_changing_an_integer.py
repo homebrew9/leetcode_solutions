@@ -31,4 +31,3 @@ for num in [
     print(f'r   = {r}')
     print('===================')
 
-
