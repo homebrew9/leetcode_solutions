@@ -20,9 +20,3 @@ for nums, key, k in [
     print(f'r = {r}')
     print('=======================')
 
-
-
-
-
-
-
