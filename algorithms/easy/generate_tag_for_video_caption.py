@@ -25,8 +25,3 @@ for caption in [
     print(f'r = {r}')
     print('=======================')
 
-
-
-
-
-
