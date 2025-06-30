@@ -50,6 +50,3 @@ for nums in [
 
 
 
-
-
-
