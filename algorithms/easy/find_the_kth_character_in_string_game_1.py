@@ -3,6 +3,7 @@
 # How is bit count relevant here? Check solutions by lee215 or Spaulding.
 #
 import string
+
 class Solution:
     def kthCharacter(self, k: int) -> str:
         hsh = {chr(97+i) : chr(97+(i+1)%26) for i in range(26)}
@@ -37,5 +38,4 @@ for k in [
     print(f'r  = {r}')
     print(f'r1 = {r1}')
     print('===================')
-
 
