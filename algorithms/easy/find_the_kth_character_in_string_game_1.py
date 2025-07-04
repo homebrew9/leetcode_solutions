@@ -18,7 +18,6 @@ class Solution:
             word += ''.join([chars[(chars.index(ch)+1)%26] for ch in word])
         return word[k-1]
 
-
 # Main section
 for k in [
             1,
