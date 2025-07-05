@@ -31,4 +31,3 @@ for bulbs, k in [
 
 
 
-
