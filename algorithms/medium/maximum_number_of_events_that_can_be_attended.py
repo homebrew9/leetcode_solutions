@@ -30,4 +30,3 @@ for events in [
     print(f'r  = {r}')
     print('===================')
 
-
