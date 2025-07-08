@@ -25,4 +25,3 @@ for code, businessLine, isActive in [
     print(f'r            = {r}')
     print('===================')
 
-
