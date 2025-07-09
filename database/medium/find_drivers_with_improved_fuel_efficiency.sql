@@ -132,4 +132,3 @@ def find_improved_efficiency_drivers(drivers: pd.DataFrame, trips: pd.DataFrame)
             .sort_values(by=['efficiency_improvement', 'driver_name'], ascending=[False, True])
            )
 
-
