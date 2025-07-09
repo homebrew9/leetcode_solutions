@@ -103,4 +103,34 @@ select f.driver_id, d.driver_name,
 
 
 # Pandas
+import pandas as pd
+
+def find_improved_efficiency_drivers(drivers: pd.DataFrame, trips: pd.DataFrame) -> pd.DataFrame:
+    trips['trip_date'] = pd.to_datetime(trips['trip_date'])
+    trips['month'] = trips['trip_date'].dt.strftime('%m').astype(int)
+    trips['fuel_efficiency'] = trips['distance_km'] / trips['fuel_consumed']
+    df_first_half = ( trips
+                     .query('1 <= month <= 6')
+                     .groupby('driver_id', as_index=0)
+                     .agg(first_half_avg=('fuel_efficiency', 'mean'))
+                    )
+    df_second_half = ( trips
+                      .query('7 <= month <= 12')
+                      .groupby('driver_id', as_index=0)
+                      .agg(second_half_avg=('fuel_efficiency', 'mean'))
+                     )
+    df = ( df_first_half
+          .merge(df_second_half, how='inner', on='driver_id')
+          .query('second_half_avg > first_half_avg')
+         )
+    df['efficiency_improvement'] = df['second_half_avg'] - df['first_half_avg']
+    df['first_half_avg'] = round(df['first_half_avg'], 2)
+    df['second_half_avg'] = round(df['second_half_avg'], 2)
+    df['efficiency_improvement'] = round(df['efficiency_improvement'], 2)
+    return ( drivers
+            .merge(df, how='inner', on='driver_id')
+            .sort_values(by=['efficiency_improvement', 'driver_name'], ascending=[False, True])
+           )
+
+
 
