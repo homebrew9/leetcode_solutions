@@ -39,4 +39,3 @@ for eventTime, startTime, endTime in [
     print('============================')
 
 
-
