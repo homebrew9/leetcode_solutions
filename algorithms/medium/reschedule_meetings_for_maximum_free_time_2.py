@@ -38,4 +38,3 @@ for eventTime, startTime, endTime in [
     print(f'r = {r}')
     print('============================')
 
-
