@@ -54,10 +54,3 @@ for n, firstPlayer, secondPlayer in [
     print(f'r = {r}')
     print('============================')
 
-
-
-
-
-
-
-
