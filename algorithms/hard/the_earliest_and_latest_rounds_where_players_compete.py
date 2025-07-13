@@ -67,4 +67,3 @@ for n, firstPlayer, secondPlayer in [
 
 
 
-
