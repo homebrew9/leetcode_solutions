@@ -78,5 +78,3 @@ for word in [
 
 
 
-
-
