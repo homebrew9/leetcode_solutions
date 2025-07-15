@@ -72,5 +72,3 @@ for word in [
 
 
 
-
-
