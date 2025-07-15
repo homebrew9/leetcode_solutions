@@ -43,5 +43,3 @@ for word in [
 
 
 
-
-
