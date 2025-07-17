@@ -310,12 +310,3 @@ def find_study_spiral_pattern(students: pd.DataFrame, study_sessions: pd.DataFra
           )
     return students.merge(df3, how='inner', on='student_id').sort_values(by=['cycle_length','total_study_hours'], ascending=[0,0])
 
-
-
-
-
-
-
-
-
-
