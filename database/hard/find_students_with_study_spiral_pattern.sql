@@ -183,8 +183,6 @@ select sc.student_id, s.student_name, s.major, sc.cycle_length, sc.total_study_h
 ;
 
 
-
-
 # MySQL
 
 
