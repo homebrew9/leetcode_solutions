@@ -249,4 +249,75 @@ select sc.student_id, s.student_name, s.major, sc.cycle_length, sc.total_study_h
 
 
 # Pandas
+import pandas as pd
+
+def find_study_spiral_pattern(students: pd.DataFrame, study_sessions: pd.DataFrame) -> pd.DataFrame:
+    # 1) Generate dense ranks (drnk) per student ordered by session date
+    # 2) Determine student_ids with total study length < 6 and session date diff > 2 days and remove them
+    # 3) Merge df with itself on student and subject and find rank_offset = diff of curr and previous drnk
+    # 4) Remove all rank_offsets that are NaN or 0. In this dataset, find all invalid student_ids who
+    #    have distinct subjects < 3 or distinct rank_offset != 1. Remove these student_ids.
+    # 5) Now we have the final clean dataset. Find distinct tuples (student_id, session_date, subject, hours_studied)
+    #    and calculate the required aggregations.
+    study_sessions.session_date = pd.to_datetime(study_sessions.session_date)
+    study_sessions.sort_values(['student_id','session_date'], inplace=True)
+    study_sessions['drnk'] = ( study_sessions
+                              .groupby('student_id', as_index=0)['session_date']
+                              .rank(method='dense')
+                             )
+    invalid_student_ids1 = ( study_sessions
+                            .groupby('student_id', as_index=0)
+                            .size()
+                            .query('size < 6')['student_id']
+                           )
+    invalid_student_ids2 = ( study_sessions
+                            .merge(study_sessions, how='inner', on='student_id')
+                            .query('drnk_y == drnk_x + 1 and (session_date_y - session_date_x).dt.days > 2')['student_id']
+                           )
+    df = ( study_sessions[ (~study_sessions['student_id'].isin(invalid_student_ids1))
+                           &
+                           (~study_sessions['student_id'].isin(invalid_student_ids2))
+                         ]
+         )
+    df1 = ( df
+           .merge(df, how='inner', on=['student_id','subject'])
+           .sort_values(['student_id','session_date_x','session_date_y'])
+          )
+    df1['prev_drnk'] = ( df1
+                        .groupby(['student_id','session_date_x'], as_index=0)['drnk_y']
+                        .shift(1)
+                       )
+    df1['rank_offset'] = df1['drnk_y'] - df1['prev_drnk']
+    df2 = df1.query('~rank_offset.isna() and rank_offset != 0') 
+    invalid_student_ids3 = ( df2
+                            .groupby('student_id', as_index=0)
+                            .agg(dist_rank_offsets=('rank_offset', 'nunique'))
+                            .query('dist_rank_offsets != 1')['student_id']
+                           )
+    invalid_student_ids4 = ( df2
+                            .groupby('student_id', as_index=0)
+                            .agg(dist_subjects=('subject', 'nunique'))
+                            .query('dist_subjects < 3')['student_id']
+                           )
+    df3 = ( df2[ (~df2['student_id'].isin(invalid_student_ids3))
+                 &
+                 (~df2['student_id'].isin(invalid_student_ids4))
+               ]
+           .sort_values(['student_id','session_date_x','subject','hours_studied_x'])[['student_id','subject','session_date_x','hours_studied_x']]
+           .drop_duplicates()
+           .groupby('student_id', as_index=0)
+           .agg(cycle_length=('subject', 'nunique'), total_study_hours=('hours_studied_x', 'sum'))
+          )
+    return students.merge(df3, how='inner', on='student_id').sort_values(by=['cycle_length','total_study_hours'], ascending=[0,0])
+
+
+
+
+
+
+
+
+
+
+
 
