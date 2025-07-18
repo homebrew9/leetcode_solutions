@@ -27,4 +27,3 @@ for ranks in [
 
 
 
-
