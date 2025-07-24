@@ -27,6 +27,25 @@ class Solution:
             else:
                 stack.append(ch)
         return res
+    def maximumGain_1(self, s: str, x: int, y: int) -> int:
+        # This algorithm is inefficient for very long strings. It throws TLE for the
+        # last test case. This code has string rebuilding inside a while loop, which
+        # is highly inefficient as string rebuilding is an expensive operation. Each
+        # string rebuild creates a new string, as strings are immutable in Python.
+        def get_points(s, txt, points):
+            while s.find(txt) != -1:
+                i = s.find(txt)
+                points += hsh[txt]
+                s = s[:i] + s[i+2:]
+            return s, points
+        hsh = {'ab': x, 'ba': y}
+        if x >= y:
+            s1, points1 = get_points(s, 'ab', 0)
+            _, res = get_points(s1, 'ba', points1)
+        else:
+            s1, points1 = get_points(s, 'ba', 0)
+            _, res = get_points(s1, 'ab', points1)
+        return res
 
 # Main section
 for s, x, y in [
@@ -38,8 +57,12 @@ for s, x, y in [
     print(f'x, y = {x}, {y}')
     sol = Solution()
     r = sol.maximumGain(s, x, y)
-    print(f'r = {r}')
+    print(f'r  = {r}')
+    r1 = sol.maximumGain_1(s, x, y)
+    print(f'r1 = {r1}')
     print('============================')
+
+
 
 
 
