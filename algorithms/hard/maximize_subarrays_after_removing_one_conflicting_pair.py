@@ -37,4 +37,3 @@ for n, conflictingPairs in [
     print(f'r = {r}')
     print('============================')
 
-
