@@ -38,4 +38,3 @@ for n, conflictingPairs in [
     print('============================')
 
 
-
