@@ -1,4 +1,5 @@
 from typing import List
+from collections import defaultdict
 
 class Solution:
     def longestSubarray(self, nums: List[int]) -> int:
@@ -12,6 +13,17 @@ class Solution:
                 streak = 0
             res = max(res, streak)
         return res
+    def longestSubarray_1(self, nums: List[int]) -> int:
+        N = len(nums)
+        hsh = defaultdict(int)
+        i, j = 0, 0
+        while j < N:
+            if nums[j] != nums[i]:
+                hsh[nums[i]] = max(hsh[nums[i]], j - i)
+                i = j
+            j += 1
+        hsh[nums[i]] = max(hsh[nums[i]], j - i)
+        return hsh[max(nums)]
 
 # Main section
 for nums in [
@@ -25,8 +37,17 @@ for nums in [
     print(f'nums = {nums}')
     sol = Solution()
     r = sol.longestSubarray(nums)
+    r1 = sol.longestSubarray_1(nums)
     print(f'r    = {r}')
+    print(f'r1   = {r1}')
     print('=================')
+
+
+
+
+
+
+
 
 
 
