@@ -20,4 +20,3 @@ for arr in [
     print(f'r   = {r}')
     print('=================')
 
-
