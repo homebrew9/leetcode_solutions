@@ -35,4 +35,3 @@ for numRows in [
     print('==============')
 
 
-
