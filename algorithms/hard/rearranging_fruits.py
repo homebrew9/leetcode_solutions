@@ -41,9 +41,3 @@ for basket1, basket2 in [
     print(f'r = {r}')
     print('==============')
 
-
-
-
-
-
-
