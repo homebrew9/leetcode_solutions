@@ -32,5 +32,3 @@ class Solution:
 # [3,9,8,4,0,1,7]
 # [1,2,3,4,10,9,11,null,5,null,null,null,null,null,null,null,6]
 
-
-
