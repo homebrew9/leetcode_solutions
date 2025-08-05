@@ -57,7 +57,6 @@ select s.store_id, s.store_name, s.location,
 
 
 
-
 -- SQL Server
 
 
