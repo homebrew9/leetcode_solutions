@@ -143,12 +143,3 @@ def find_inventory_imbalance(stores: pd.DataFrame, inventory: pd.DataFrame) -> p
             .sort_values(by=['imbalance_ratio','store_name'], ascending=[False,True])
            )
 
-
-
-
-
-
-
-
-
-
