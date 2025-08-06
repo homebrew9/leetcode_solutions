@@ -29,4 +29,3 @@ for players, trainers in [
     print(f'r = {r}')
     print('================')
 
-
