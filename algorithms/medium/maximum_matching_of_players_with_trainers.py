@@ -36,5 +36,3 @@ for players, trainers in [
 
 
 
-
-
