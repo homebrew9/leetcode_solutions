@@ -50,5 +50,3 @@ for players, trainers in [
 
 
 
-
-
