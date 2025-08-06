@@ -30,3 +30,4 @@ for players, trainers in [
     print('================')
 
 
+
