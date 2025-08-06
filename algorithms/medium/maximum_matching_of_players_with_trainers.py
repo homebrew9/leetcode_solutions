@@ -32,5 +32,3 @@ for players, trainers in [
 
 
 
-
-
