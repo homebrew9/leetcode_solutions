@@ -44,5 +44,3 @@ for players, trainers in [
 
 
 
-
-
