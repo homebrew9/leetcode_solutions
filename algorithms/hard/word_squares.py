@@ -60,5 +60,3 @@ for words in [
 
 
 
-
-
