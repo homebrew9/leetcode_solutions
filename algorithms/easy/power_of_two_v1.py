@@ -11,6 +11,9 @@ class Solution:
         return n in {2**n for n in range(31)}
 
     def isPowerOfTwo_3(self, n: int) -> bool:
+        return n > 0 and 2**31 % n == 0
+
+    def isPowerOfTwo_4(self, n: int) -> bool:
         while n > 1:
             q, r = divmod(n, 2)
             if r != 0:
@@ -32,10 +35,12 @@ for n in [
     r1 = sol.isPowerOfTwo_1(n)
     r2 = sol.isPowerOfTwo_2(n)
     r3 = sol.isPowerOfTwo_3(n)
+    r4 = sol.isPowerOfTwo_4(n)
     print(f'r  = {r}')
     print(f'r1 = {r1}')
     print(f'r2 = {r2}')
     print(f'r3 = {r3}')
+    print(f'r4 = {r4}')
     print('================')
 
 
