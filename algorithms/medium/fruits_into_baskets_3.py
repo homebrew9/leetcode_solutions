@@ -50,5 +50,3 @@ for fruits, baskets in [
 
 
 
-
-
