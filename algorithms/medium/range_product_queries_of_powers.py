@@ -41,5 +41,3 @@ for n, queries in [
 
 
 
-
-
