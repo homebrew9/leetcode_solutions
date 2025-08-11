@@ -43,4 +43,3 @@ for fruits, baskets in [
     print(f'r = {r}')
     print('==============================')
 
-
