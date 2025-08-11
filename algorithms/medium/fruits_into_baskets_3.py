@@ -46,5 +46,3 @@ for fruits, baskets in [
 
 
 
-
-
