@@ -49,8 +49,6 @@ select t1.book_id,
 
 
 
-
-
 # MySQL
 # Write your MySQL query statement below
 # MySQL
