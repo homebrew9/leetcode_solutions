@@ -49,8 +49,5 @@ select t1.book_id,
 ;
 
 
-
-
-
 # Pandas
 
