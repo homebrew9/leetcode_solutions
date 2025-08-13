@@ -82,7 +82,6 @@ select t1.book_id,
 
 
 
-
 -- SQL Server
 /* Write your T-SQL query statement below */
 with t as (
