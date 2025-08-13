@@ -163,4 +163,40 @@ select t1.book_id,
 
 
 # Pandas
+import pandas as pd
+
+def find_polarized_books(books: pd.DataFrame, reading_sessions: pd.DataFrame) -> pd.DataFrame:
+    atleast_5_session_book_ids = reading_sessions.groupby('book_id', as_index=0).size().query('size >= 5')['book_id']
+    atleast_one_lowest_rating_book_ids = reading_sessions.query('session_rating <= 2')['book_id']
+    atleast_one_highest_rating_book_ids = reading_sessions.query('session_rating >= 4')['book_id']
+    df = ( reading_sessions[(reading_sessions['book_id'].isin(atleast_5_session_book_ids)) & \
+                            (reading_sessions['book_id'].isin(atleast_one_lowest_rating_book_ids)) & \
+                            (reading_sessions['book_id'].isin(atleast_one_highest_rating_book_ids))
+                           ]
+         )
+    df['extreme_rating'] = np.where((df['session_rating'] <= 2) | (df['session_rating'] >= 4), 1, 0)
+    df1 = ( df
+           .groupby('book_id', as_index=0)
+           .agg(min_rating=('session_rating','min'), max_rating=('session_rating','max'), extreme_count=('extreme_rating','sum'), total_count=('session_id','count'))
+          )
+    df1['rating_spread'] = df1['max_rating'] - df1['min_rating']
+    df1['polarization_score'] = df1['extreme_count'] / df1['total_count']
+    df1['polarization_score'] = df1['polarization_score'].apply(round_half_up, p=2)
+    df2 = df1.query('polarization_score >= 0.6')
+    return ( df2
+            .merge(books, how='inner', on='book_id')[['book_id','title','author','genre','pages','rating_spread', 'polarization_score']]
+            .sort_values(by=['polarization_score','title'], ascending=[False,False])
+           )
+
+def round_half_up(n, p=0):
+    # Custom function to fix "Banker's rounding" which is the default in Python
+    # In Python: round(2.5) = 2, round(3.5) = 4 i.e. it returns the nearest even neighbor
+    # round_half_up(2.5) = 3, round_half_up(3.5) = 4, round_half_up(0.625, 2) = 0.63
+    v = 10**p
+    return math.floor(n * v + 0.5) / v
+
+
+
+
+
 
