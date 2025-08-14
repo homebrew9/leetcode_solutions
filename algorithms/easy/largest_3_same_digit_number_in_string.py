@@ -26,5 +26,3 @@ for num in [
 
 
 
-
-
