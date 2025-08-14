@@ -25,6 +25,15 @@ class Solution:
                 res = chunk
         return res
 
+    def largestGoodInteger_3(self, num: str) -> str:
+        largest_substring = ''
+        for i in range(len(num)-2):
+            if num[i] == num[i+1] == num[i+2]:
+                sub = num[i:i+3]
+                if sub > largest_substring:
+                    largest_substring = sub
+        return largest_substring
+
 # Main section
 for num in [
               '6777133339',
@@ -36,9 +45,11 @@ for num in [
     r = sol.largestGoodInteger(num)
     r1 = sol.largestGoodInteger_1(num)
     r2 = sol.largestGoodInteger_2(num)
+    r3 = sol.largestGoodInteger_3(num)
     print(f'r   = {r}')
     print(f'r1  = {r1}')
     print(f'r2  = {r2}')
+    print(f'r3  = {r3}')
     print('==============================')
 
 
