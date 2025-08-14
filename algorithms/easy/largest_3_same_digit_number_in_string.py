@@ -13,7 +13,6 @@ class Solution:
             if v in num:
                 return v
         return ''
-    
 
 # Main section
 for num in [
