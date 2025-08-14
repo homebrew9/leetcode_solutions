@@ -7,6 +7,14 @@ class Solution:
                 res = s
         return res
 
+    def largestGoodInteger_1(self, num: str) -> str:
+        for n in range(9, -1, -1):
+            v = str(n) * 3
+            if v in num:
+                return v
+        return ''
+    
+
 # Main section
 for num in [
               '6777133339',
@@ -16,7 +24,9 @@ for num in [
     print(f'num = {num}')
     sol = Solution()
     r = sol.largestGoodInteger(num)
+    r1 = sol.largestGoodInteger_1(num)
     print(f'r   = {r}')
+    print(f'r1  = {r1}')
     print('==============================')
 
 
