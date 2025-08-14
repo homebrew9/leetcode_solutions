@@ -14,6 +14,17 @@ class Solution:
                 return v
         return ''
 
+    def largestGoodInteger_2(self, num: str) -> str:
+        N = len(num)
+        max_val = -1
+        res = ''
+        for i in range(N-2):
+            chunk = num[i:i+3]
+            if len(set(chunk)) == 1 and int(chunk) > max_val:
+                max_val = int(chunk)
+                res = chunk
+        return res
+
 # Main section
 for num in [
               '6777133339',
@@ -24,8 +35,10 @@ for num in [
     sol = Solution()
     r = sol.largestGoodInteger(num)
     r1 = sol.largestGoodInteger_1(num)
+    r2 = sol.largestGoodInteger_2(num)
     print(f'r   = {r}')
     print(f'r1  = {r1}')
+    print(f'r2  = {r2}')
     print('==============================')
 
 
