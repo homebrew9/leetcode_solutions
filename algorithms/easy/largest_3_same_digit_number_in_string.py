@@ -32,5 +32,3 @@ for num in [
 
 
 
-
-
