@@ -29,4 +29,3 @@ for landStartTime, landDuration, waterStartTime, waterDuration in [
     print('==============================')
 
 
-
