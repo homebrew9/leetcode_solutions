@@ -23,4 +23,3 @@ for n, k, maxPts in [
     print(f'r = {r}')
     print('==============================')
 
-
