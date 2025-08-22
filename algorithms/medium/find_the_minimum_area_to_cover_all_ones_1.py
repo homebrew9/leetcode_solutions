@@ -4,8 +4,8 @@ class Solution:
     def minimumArea(self, grid: List[List[int]]) -> int:
         rows = len(grid)
         cols = len(grid[0])
-        min_row, min_col = float('inf'), float('inf')
-        max_row, max_col = float('-inf'), float('-inf')
+        min_row, min_col = 1001, 1001
+        max_row, max_col = 0, 0
         for r in range(rows):
             for c in range(cols):
                 if grid[r][c] == 1:
