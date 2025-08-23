@@ -60,5 +60,3 @@ for phrases in [
 
 
 
-
-
