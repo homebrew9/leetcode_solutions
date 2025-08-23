@@ -44,5 +44,3 @@ for phrases in [
 
 
 
-
-
