@@ -36,4 +36,3 @@ for phrases in [
     print(f'r = {r}')
     print('==============================')
 
-
