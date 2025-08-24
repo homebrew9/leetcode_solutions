@@ -106,5 +106,3 @@ for grid in [
 
 
 
-
-
