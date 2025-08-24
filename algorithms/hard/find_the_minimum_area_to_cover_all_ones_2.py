@@ -98,5 +98,3 @@ for grid in [
 
 
 
-
-
