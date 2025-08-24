@@ -82,5 +82,3 @@ for grid in [
 
 
 
-
-
