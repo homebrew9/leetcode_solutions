@@ -102,5 +102,3 @@ for grid in [
 
 
 
-
-
