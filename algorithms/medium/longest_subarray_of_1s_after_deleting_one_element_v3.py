@@ -54,8 +54,3 @@ for nums in [
     print(f'r = {r}')
     print('===================')
 
-
-
-
-
-
