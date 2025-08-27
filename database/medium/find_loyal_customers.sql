@@ -44,7 +44,6 @@ select distinct customer_id
 
 
 
-
 -- SQL Server
 /* Write your T-SQL query statement below */
 with t (customer_id, transaction_date, transaction_type, n_purchases, n_days, n_refund_rate) as (
