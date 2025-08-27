@@ -22,7 +22,6 @@ select distinct customer_id
 
 
 
-
 -- PostgreSQL
 
 
