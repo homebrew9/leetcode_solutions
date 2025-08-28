@@ -5,6 +5,9 @@ class Solution:
         return math.gcd(sum(range(1, 2*n+1, 2)), sum(range(2, 2*n+1, 2)))
 
     def gcdOfOddEvenSums_1(self, n: int) -> int:
+        # Sum of first n odd ints = (n/2)*(1 + 1 + (n-1)*2) = (n/2)*(2+2n-2) = n*n
+        # Sum of first n even ints = (n/2)*(2 + 2 + (n-1)*2) = (n/2)*(4+2n-2) = n*n + n
+        # GCD(n^2, n^2 + n) = GCD(n^2, n^2 + n - n^2) = GCD(n^2, n) = n  # Euclid algorithm
         return n
 
     def gcdOfOddEvenSums_2(self, n: int) -> int:
