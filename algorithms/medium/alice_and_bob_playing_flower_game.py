@@ -29,6 +29,17 @@ class Solution:
             res = (n//2 + 1) * (m//2) + (n//2) * (m//2 + 1)
         return res
 
+    def flowerGame_1(self, n: int, m: int) -> int:
+        res = 0
+        n_range_even, n_range_odd = n//2, n//2
+        if n % 2 == 1:
+            n_range_odd += 1
+        m_range_even, m_range_odd = m//2, m//2
+        if m % 2 == 1:
+            m_range_odd += 1
+        res = n_range_odd * m_range_even + n_range_even * m_range_odd
+        return res
+
 # Main section
 for n, m in [
                (3, 2),
@@ -39,6 +50,14 @@ for n, m in [
     print(f'n, m = {n}, {m}')
     sol = Solution()
     r = sol.flowerGame(n, m)
-    print(f'r  = {r}')
+    r1 = sol.flowerGame_1(n, m)
+    print(f'r   = {r}')
+    print(f'r1  = {r1}')
     print('===================')
+
+
+
+
+
+
 
