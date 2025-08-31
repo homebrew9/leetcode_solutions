@@ -60,4 +60,3 @@ for colors, queries in [
 
 
 
-
