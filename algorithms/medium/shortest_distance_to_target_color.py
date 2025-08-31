@@ -45,4 +45,3 @@ for colors, queries in [
     print('==========================')
 
 
-
