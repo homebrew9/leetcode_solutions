@@ -58,4 +58,3 @@ for colors, queries in [
 
 
 
-
