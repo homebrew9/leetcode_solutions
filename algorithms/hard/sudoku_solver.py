@@ -64,5 +64,3 @@ for board in [
 
 
 
-
-
