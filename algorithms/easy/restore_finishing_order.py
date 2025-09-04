@@ -33,5 +33,3 @@ for order, friends in [
     print(f'r1      = {r1}')
     print('========================')
 
-
-
