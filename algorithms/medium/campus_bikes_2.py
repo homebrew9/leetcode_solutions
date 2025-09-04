@@ -43,5 +43,3 @@ for workers, bikes in [
 
 
 
-
-
