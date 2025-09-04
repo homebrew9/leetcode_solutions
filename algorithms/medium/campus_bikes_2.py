@@ -35,5 +35,3 @@ for workers, bikes in [
     print('========================')
 
 
-
-
