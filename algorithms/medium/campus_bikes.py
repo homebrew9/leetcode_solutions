@@ -35,4 +35,3 @@ for workers, bikes in [
     print(f'r       = {r}')
     print('========================')
 
-
