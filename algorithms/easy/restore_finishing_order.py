@@ -35,5 +35,3 @@ for order, friends in [
 
 
 
-
-
