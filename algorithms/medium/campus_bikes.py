@@ -48,5 +48,3 @@ for workers, bikes in [
 
 
 
-
-
