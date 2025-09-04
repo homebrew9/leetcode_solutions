@@ -43,5 +43,3 @@ for order, friends in [
 
 
 
-
-
