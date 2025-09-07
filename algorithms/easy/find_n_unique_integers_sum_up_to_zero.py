@@ -43,5 +43,3 @@ for n in [
     print(f'r : (len, sum) = ({len(r)}, {sum(r)}) \nr1: (len, sum) = ({len(r1)}, {sum(r1)}) \nr2: (len, sum) = ({len(r2)}, {sum(r2)})  ')
     print('===================')
 
-
-
