@@ -29,5 +29,3 @@ for nums in [
 
 
 
-
-
