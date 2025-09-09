@@ -36,5 +36,3 @@ for n, delay, forget in [
     print(f'r = {r}')
     print('========================')
 
-
-
