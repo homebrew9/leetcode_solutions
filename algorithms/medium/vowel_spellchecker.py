@@ -79,5 +79,3 @@ for wordlist, queries in [
 
 
 
-
-
