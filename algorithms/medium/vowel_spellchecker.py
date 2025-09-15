@@ -45,11 +45,3 @@ for wordlist, queries in [
     print(f'r = {r}')
     print('===================')
 
-
-
-
-
-
-
-
-
