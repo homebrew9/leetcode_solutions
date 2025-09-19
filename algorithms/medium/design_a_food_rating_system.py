@@ -37,4 +37,3 @@ class FoodRatings:
 # [[['kimchi','miso','sushi','moussaka','ramen','bulgogi'],['korean','japanese','japanese','greek','japanese','korean'],[9,12,8,15,14,7]],['korean'],['japanese'],['sushi',16],['japanese'],['ramen',16],['japanese']]
 #
 
-
