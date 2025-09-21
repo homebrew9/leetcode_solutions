@@ -25,5 +25,3 @@ for text, brokenLetters in [
     print('===================')
 
 
-
-
