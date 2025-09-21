@@ -55,5 +55,3 @@ for text, brokenLetters in [
 
 
 
-
-
