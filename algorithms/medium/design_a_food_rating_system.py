@@ -24,7 +24,7 @@ class FoodRatings:
         while i >= 0 and self.rating[cuisine][i][0] == rating:
             food = self.rating[cuisine][i][1]
             i -= 1
-        return food
+        return str(food)
 
 # Your FoodRatings object will be instantiated and called as such:
 # obj = FoodRatings(foods, cuisines, ratings)

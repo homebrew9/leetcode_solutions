@@ -4,10 +4,12 @@ class Solution:
     def smallestAbsent(self, nums: List[int]) -> int:
         avg = sum(nums) / len(nums)
         num_set = set(nums)
-        start_val = max(1, int(avg) + 1)
-        for n in range(start_val, 102):
+        n = max(1, int(avg) + 1)
+        while n <= 101:
             if n not in num_set:
-                return n
+                break
+            n += 1
+        return n
 
 # Main section
 for nums in [
