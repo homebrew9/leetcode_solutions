@@ -49,5 +49,3 @@ for text, brokenLetters in [
 
 
 
-
-
