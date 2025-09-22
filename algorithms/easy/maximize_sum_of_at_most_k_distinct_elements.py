@@ -21,5 +21,3 @@ for nums, k in [
 
 
 
-
-
