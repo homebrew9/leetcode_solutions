@@ -19,5 +19,3 @@ for nums, k in [
 
 
 
-
-
