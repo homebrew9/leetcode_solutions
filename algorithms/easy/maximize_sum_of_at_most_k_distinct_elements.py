@@ -10,7 +10,7 @@ for nums, k in [
                   ([84,93,100,77,93], 3),
                   ([1,1,1,2,2,2], 6),
                ]:
-    print(f'nums = {nums}')
+    print(f'nums, k = {nums}, {k}')
     sol = Solution()
     r = sol.maxKDistinct(nums, k)
     print(f'r = {r}')
