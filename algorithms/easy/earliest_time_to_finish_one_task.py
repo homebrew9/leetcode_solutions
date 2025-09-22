@@ -15,4 +15,3 @@ for tasks in [
     print(f'r = {r}')
     print('===================')
 
-
