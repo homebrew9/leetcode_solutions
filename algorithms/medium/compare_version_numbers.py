@@ -26,5 +26,3 @@ for version1, version2 in [
     print(f'r = {r}')
     print('===================')
 
-
-
