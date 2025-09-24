@@ -83,5 +83,3 @@ for numerator, denominator in [
     assert(r == r1)
     print('==============')
 
-
-
