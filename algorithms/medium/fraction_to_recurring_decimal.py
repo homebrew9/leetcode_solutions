@@ -95,5 +95,3 @@ for numerator, denominator in [
 
 
 
-
-
