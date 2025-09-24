@@ -87,5 +87,3 @@ for numerator, denominator in [
 
 
 
-
-
