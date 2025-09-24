@@ -105,5 +105,3 @@ for numerator, denominator in [
 
 
 
-
-
