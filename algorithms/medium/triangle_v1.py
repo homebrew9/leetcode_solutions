@@ -50,5 +50,3 @@ for triangle in [
 
 
 
-
-
