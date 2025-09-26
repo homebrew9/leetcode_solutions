@@ -24,5 +24,3 @@ for triangle in [
     print('==================')
 
 
-
-
