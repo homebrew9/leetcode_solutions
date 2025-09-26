@@ -46,5 +46,3 @@ for triangle in [
 
 
 
-
-
