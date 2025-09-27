@@ -62,5 +62,3 @@ for nums in [
 
 
 
-
-
