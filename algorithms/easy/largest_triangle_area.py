@@ -43,5 +43,3 @@ for points in [
     print('=============')
 
 
-
-
