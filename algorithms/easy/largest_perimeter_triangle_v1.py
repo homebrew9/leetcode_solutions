@@ -14,6 +14,18 @@ class Solution:
             if nums[i] + nums[i+1] > nums[i+2]:
                 return nums[i] + nums[i+1] + nums[i+2]
         return 0
+    def largestPerimeter_1(self, nums: List[int]) -> int:
+        N = len(nums)
+        nums.sort()
+        res = 0
+        for i in range(N-1, -1, -1):
+            res += nums[i]
+            if i <= N - 3:
+                # The condition below is the same as: "if nums[i] + nums[i+1] > nums[i+2]"
+                if res > 2 * nums[i+2]:
+                    return res
+                res -= nums[i+2]
+        return 0
 
 # Main section
 for nums in [
@@ -30,6 +42,9 @@ for nums in [
     print(f'nums = {nums}')
     sol = Solution()
     r = sol.largestPerimeter(nums)
-    print(f'r = {r}')
+    r1 = sol.largestPerimeter_1(nums)
+    print(f'r  = {r}')
+    print(f'r1 = {r1}')
+    assert(r == r1)
     print('=============================')
 
