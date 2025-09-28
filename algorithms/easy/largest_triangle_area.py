@@ -53,5 +53,3 @@ for points in [
 
 
 
-
-
