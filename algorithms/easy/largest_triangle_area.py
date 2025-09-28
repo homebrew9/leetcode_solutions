@@ -42,4 +42,3 @@ for points in [
     print(f'r = {r}')
     print('=============')
 
-
