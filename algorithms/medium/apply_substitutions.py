@@ -32,5 +32,3 @@ for replacements, text in [
 
 
 
-
-
