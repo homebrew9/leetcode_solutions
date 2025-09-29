@@ -36,5 +36,3 @@ for replacements, text in [
 
 
 
-
-
