@@ -110,5 +110,3 @@ for replacements, text in [
 
 
 
-
-
