@@ -48,5 +48,3 @@ for replacements, text in [
     print('=============================')
 
 
-
-
