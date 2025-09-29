@@ -17,6 +17,7 @@ class Solution:
             if not found:
                 break
         return res
+
     def applySubstitutions_1(self, replacements: List[List[str]], text: str) -> str:
         # Recursive solution
         def solve(s):
@@ -30,6 +31,7 @@ class Solution:
             hsh[f'%{k}%'] = v
         res = solve(text)
         return res
+
     def applySubstitutions_2(self, replacements: List[List[str]], text: str) -> str:
         # Topological sort
         hsh = defaultdict(str)
@@ -65,6 +67,27 @@ class Solution:
                         del hsh1[k]
         return '_'.join([hsh[k] for k in text.split('_')])
 
+    def applySubstitutions_3(self, replacements: List[List[str]], text: str) -> str:
+        # Recursive solution - different logic
+        def solve(s):
+            result = ''
+            N = len(s)
+            i = 0
+            while i < N:
+                if s[i] == '%':
+                    result += solve(hsh[s[i:i+3]])
+                    i += 3
+                else:
+                    result += s[i]
+                    i += 1
+            return result
+        hsh = defaultdict(str)
+        for k, v in replacements:
+            key = f'%{k}%'
+            hsh[key] = v
+        res = solve(text)
+        return res
+
 # Main section
 for replacements, text in [
                              ([['A','abc'],['B','def']], '%A%_%B%'),
@@ -77,9 +100,15 @@ for replacements, text in [
     r = sol.applySubstitutions(replacements, text)
     r1 = sol.applySubstitutions_1(replacements, text)
     r2 = sol.applySubstitutions_2(replacements, text)
+    r3 = sol.applySubstitutions_3(replacements, text)
     print(f'r  = {r}')
     print(f'r1 = {r1}')
     print(f'r2 = {r2}')
-    assert(r == r1 == r2)
+    print(f'r3 = {r3}')
+    assert(r == r1 == r2 == r3)
     print('=============================')
+
+
+
+
 
