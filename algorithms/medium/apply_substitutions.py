@@ -83,5 +83,3 @@ for replacements, text in [
     assert(r == r1 == r2)
     print('=============================')
 
-
-
