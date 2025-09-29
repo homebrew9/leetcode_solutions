@@ -50,5 +50,3 @@ for replacements, text in [
 
 
 
-
-
