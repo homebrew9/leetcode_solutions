@@ -43,5 +43,3 @@ for values in [
 
 
 
-
-
