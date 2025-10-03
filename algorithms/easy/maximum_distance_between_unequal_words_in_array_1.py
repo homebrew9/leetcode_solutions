@@ -25,5 +25,3 @@ for words in [
 
 
 
-
-
