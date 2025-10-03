@@ -37,5 +37,3 @@ for words in [
 
 
 
-
-
