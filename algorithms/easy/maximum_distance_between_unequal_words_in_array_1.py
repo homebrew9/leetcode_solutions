@@ -39,5 +39,3 @@ for words in [
 
 
 
-
-
