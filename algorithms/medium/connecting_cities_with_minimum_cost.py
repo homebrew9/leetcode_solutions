@@ -46,5 +46,3 @@ for N, connections in [
     print('=====================')
 
 
-
-
