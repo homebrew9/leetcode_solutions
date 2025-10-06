@@ -25,11 +25,3 @@ for numBottles, numExchange in [
     print(f'r = {r}')
     print('=====================')
 
-
-
-
-
-
-
-
-
