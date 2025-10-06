@@ -50,5 +50,3 @@ for N, connections in [
 
 
 
-
-
