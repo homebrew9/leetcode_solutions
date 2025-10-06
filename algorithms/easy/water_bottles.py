@@ -40,5 +40,3 @@ for numBottles, numExchange in [
 
 
 
-
-
