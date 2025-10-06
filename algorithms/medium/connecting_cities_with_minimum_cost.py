@@ -45,4 +45,3 @@ for N, connections in [
     print(f'r = {r}')
     print('=====================')
 
-
