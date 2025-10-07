@@ -37,4 +37,3 @@ for richer, quiet in [
     print('=====================')
 
 
-
