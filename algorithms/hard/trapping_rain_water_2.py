@@ -106,5 +106,3 @@ for heightMap in [
     print(f'r = {r}')
     print('=====================')
 
-
-
