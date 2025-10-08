@@ -130,5 +130,3 @@ for heightMap in [
 
 
 
-
-
