@@ -26,5 +26,3 @@ for nums1, nums2 in [
     print(f'r = {r}')
     print('=====================')
 
-
-
