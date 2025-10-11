@@ -146,4 +146,3 @@ def find_golden_hour_customers(restaurant_orders: pd.DataFrame) -> pd.DataFrame:
     df2 = df1.sort_values(by=['average_rating','customer_id'], ascending=[False,False])
     return df2
 
-
