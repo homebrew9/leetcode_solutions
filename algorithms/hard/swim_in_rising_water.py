@@ -52,5 +52,3 @@ for grid in [
 
 
 
-
-
