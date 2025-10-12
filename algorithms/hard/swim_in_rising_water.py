@@ -30,5 +30,3 @@ for grid in [
     print(f'r = {r}')
     print('=====================')
 
-
-
