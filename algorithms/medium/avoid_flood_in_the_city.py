@@ -55,5 +55,3 @@ for rains in [
 
 
 
-
-
