@@ -43,5 +43,3 @@ for rains in [
 
 
 
-
-
