@@ -37,5 +37,3 @@ for numCourses, prerequisites in [
     print('=====================')
 
 
-
-
