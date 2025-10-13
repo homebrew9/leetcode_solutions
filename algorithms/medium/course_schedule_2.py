@@ -36,4 +36,3 @@ for numCourses, prerequisites in [
     print(f'r = {r}')
     print('=====================')
 
-
