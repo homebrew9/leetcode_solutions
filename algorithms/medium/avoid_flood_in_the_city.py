@@ -32,4 +32,3 @@ for rains in [
     print(f'r = {r}')
     print('=====================')
 
-
