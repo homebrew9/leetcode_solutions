@@ -42,5 +42,3 @@ for stations, k in [
 
 
 
-
-
