@@ -50,5 +50,3 @@ for stations, k in [
 
 
 
-
-
