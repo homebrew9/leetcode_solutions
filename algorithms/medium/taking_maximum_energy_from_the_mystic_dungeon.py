@@ -28,4 +28,3 @@ for energy, k in [
 
 
 
-
