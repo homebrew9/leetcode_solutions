@@ -24,5 +24,3 @@ for words in [
     print(f'r = {r}')
     print('=====================')
 
-
-
