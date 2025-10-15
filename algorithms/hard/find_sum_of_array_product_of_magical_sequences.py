@@ -78,5 +78,3 @@ for m, k, nums in [
     print(f'r = {r}')
     print('=====================')
 
-
-
