@@ -36,5 +36,3 @@ for n, relations in [
     print('=====================')
 
 
-
-
