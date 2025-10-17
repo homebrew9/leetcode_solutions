@@ -35,4 +35,3 @@ for n, relations in [
     print(f'r = {r}')
     print('=====================')
 
-
