@@ -80,5 +80,3 @@ for coins, maxJump in [
 
 
 
-
-
