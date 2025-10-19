@@ -56,5 +56,3 @@ for coins, maxJump in [
     print('=====================')
 
 
-
-
