@@ -55,4 +55,3 @@ for coins, maxJump in [
     print(f'r = {r}')
     print('=====================')
 
-
