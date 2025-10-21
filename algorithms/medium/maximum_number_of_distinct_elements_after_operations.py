@@ -54,5 +54,3 @@ for nums, k in [
 
 
 
-
-
