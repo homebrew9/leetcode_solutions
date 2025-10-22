@@ -28,4 +28,3 @@ for operations in [
     assert(r == r1)
     print('=====================')
 
-
