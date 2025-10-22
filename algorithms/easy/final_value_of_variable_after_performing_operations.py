@@ -38,5 +38,3 @@ for operations in [
 
 
 
-
-
