@@ -66,5 +66,3 @@ for operations in [
 
 
 
-
-
