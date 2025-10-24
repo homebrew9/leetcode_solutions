@@ -12,6 +12,7 @@ class Solution:
     def finalValueAfterOperations_1(self, operations: List[str]) -> int:
         hsh = {'++X': 1, 'X++': 1, '--X': -1, 'X--': -1}
         return reduce(lambda x,y: x+y, [hsh[o] for o in operations])
+
 # Main section
 for operations in [
                      ['--X','X++','X++'],
