@@ -70,6 +70,3 @@ for logs, n in [
 
 
 
-
-
-
