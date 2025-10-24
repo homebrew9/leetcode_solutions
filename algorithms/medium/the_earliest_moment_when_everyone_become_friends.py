@@ -61,6 +61,3 @@ for logs, n in [
 
 
 
-
-
-
