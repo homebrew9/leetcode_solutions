@@ -53,6 +53,3 @@ for n, wells, pipes in [
     print('=====================')
 
 
-
-
-
