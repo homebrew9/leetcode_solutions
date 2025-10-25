@@ -52,4 +52,3 @@ for n, wells, pipes in [
     print(f'r = {r}')
     print('=====================')
 
-
