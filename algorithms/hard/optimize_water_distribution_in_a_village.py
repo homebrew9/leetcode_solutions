@@ -77,6 +77,3 @@ for n, wells, pipes in [
 
 
 
-
-
-
