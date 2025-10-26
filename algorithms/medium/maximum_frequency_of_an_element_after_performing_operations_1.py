@@ -30,4 +30,3 @@ for nums, k, numOperations in [
     print(f'r = {r}')
     print('=====================')
 
-
