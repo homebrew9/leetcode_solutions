@@ -29,6 +29,11 @@ class Solution:
         res += ((weeks + days) * (weeks + days + 1))//2 - (weeks * (weeks + 1))//2
         return res
 
+    def totalMoney_2(self, n: int) -> int:
+        w, d = divmod(n, 7)
+        res = 28 * w + ((w * (w - 1))//2) * 7 + ((w + d) * (w + d + 1))//2 - (w * (w + 1))//2
+        return res
+
 # Main section
 for n in [
             4,
@@ -39,7 +44,12 @@ for n in [
     sol = Solution()
     r = sol.totalMoney(n)
     r1 = sol.totalMoney_1(n)
+    r2 = sol.totalMoney_2(n)
     print(f'r  = {r}')
     print(f'r1 = {r1}')
+    print(f'r2 = {r2}')
     print('=====================')
+
+
+
 
