@@ -1,5 +1,6 @@
 from typing import List
 from math import gcd
+from functools import cache
 
 class Solution:
     def validSubarraySplit(self, nums: List[int]) -> int:
@@ -14,6 +15,24 @@ class Solution:
                     dp[i] = min(dp[i], dp[j - 1] + 1)
         return -1 if dp[n] == INF else dp[n]
 
+    def validSubarraySplit_1(self, nums: List[int]) -> int:
+        @cache
+        def solve(i):
+            if i >= N:
+                return 0
+            if nums[i] == 1:
+                return -1
+            res = 10**10
+            for k in range(i, N):
+                if gcd(nums[i], nums[k]) != 1:
+                    tmp = solve(k+1)
+                    if tmp != -1:
+                        res = min(res, 1 + tmp)
+            return -1 if res == 10**10 else res
+        N = len(nums)
+        res = solve(0)
+        return res
+
 # Main section
 for nums in [
                [2,6,3,4,3],
@@ -26,6 +45,12 @@ for nums in [
     print(f'nums = {nums}')
     sol = Solution()
     r = sol.validSubarraySplit(nums)
-    print(f'r = {r}')
+    r1 = sol.validSubarraySplit_1(nums)
+    print(f'r  = {r}')
+    print(f'r1 = {r1}')
     print('=====================')
+
+
+
+
 
