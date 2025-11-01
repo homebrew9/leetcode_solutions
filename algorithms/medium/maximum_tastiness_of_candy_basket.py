@@ -38,5 +38,3 @@ for price, k in [
 
 
 
-
-
