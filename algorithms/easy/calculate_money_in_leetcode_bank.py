@@ -14,15 +14,32 @@ class Solution:
         res += (days * (2*a + (days - 1))) // 2
         return res
 
+    def totalMoney_1(self, n: int) -> int:
+        # Week # 1 = [1,2,3,4,5,6,7]         = 28 + 0*7
+        # Week # 2 =   [2,3,4,5,6,7,8]       = 28 + (8-1) = 28 + 1*7
+        # Week # 3 =      [3,4,5,6,7,8,9]    = (28 + 1*7) + (9-2) = 28 + 2*7
+        # Total for all weeks = 28*w + (1+2+...+w-1)*7
+        # To calculate money on the additional days, note that it is an
+        # arithmetic series (w+1)...(w+d) i.e. S(w+d) - S(w+1)
+        # All of them are arithmetic series with a = 1,2,3,... n = 7 or less, and d = 1
+        # Sum of n terms of arithmetic series = (n/2)*(2a + (n-1)d)
+        res = 0
+        weeks, days = divmod(n, 7)
+        res += 28 * weeks + ((weeks * (weeks - 1))//2) * 7
+        res += ((weeks + days) * (weeks + days + 1))//2 - (weeks * (weeks + 1))//2
+        return res
+
 # Main section
 for n in [
             4,
             10,
             20,
          ]:
-    print(f'n = {n}')
+    print(f'n  = {n}')
     sol = Solution()
     r = sol.totalMoney(n)
-    print(f'r = {r}')
+    r1 = sol.totalMoney_1(n)
+    print(f'r  = {r}')
+    print(f'r1 = {r1}')
     print('=====================')
 
