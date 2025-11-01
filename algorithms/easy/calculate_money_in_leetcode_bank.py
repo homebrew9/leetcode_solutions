@@ -34,6 +34,21 @@ class Solution:
         res = 28 * w + ((w * (w - 1))//2) * 7 + ((w + d) * (w + d + 1))//2 - (w * (w + 1))//2
         return res
 
+    def totalMoney_3(self, n: int) -> int:
+        w, d = divmod(n, 7)
+        res = (7 * w * (w + 7))//2 + (d * (d + 2*w + 1))//2
+        return res
+
+    def totalMoney_4(self, n: int) -> int:
+        w, d = divmod(n, 7)
+        res = (w * (6 * w + 49) + (d + w)**2 + d)//2
+        return res
+
+    def totalMoney_5(self, n: int) -> int:
+        w, d = divmod(n, 7)
+        res = (6 * (w + 4)**2 + (w + d)**2 + (w + d - 96))//2
+        return res
+
 # Main section
 for n in [
             4,
@@ -45,8 +60,19 @@ for n in [
     r = sol.totalMoney(n)
     r1 = sol.totalMoney_1(n)
     r2 = sol.totalMoney_2(n)
+    r3 = sol.totalMoney_3(n)
+    r4 = sol.totalMoney_4(n)
+    r5 = sol.totalMoney_5(n)
     print(f'r  = {r}')
     print(f'r1 = {r1}')
     print(f'r2 = {r2}')
+    print(f'r3 = {r3}')
+    print(f'r4 = {r4}')
+    print(f'r5 = {r5}')
     print('=====================')
+
+
+
+
+
 
