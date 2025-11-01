@@ -36,5 +36,3 @@ for price, k in [
     print(f'r = {r}')
     print('=====================')
 
-
-
