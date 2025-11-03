@@ -20,5 +20,3 @@ for target in [
     print(f'r = {r}')
     print('=====================')
 
-
-
