@@ -22,5 +22,3 @@ for nums in [
 
 
 
-
-
