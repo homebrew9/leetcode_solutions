@@ -20,4 +20,3 @@ class Codec:
 #  ["Hello","World"]
 #  [""]
 
-
