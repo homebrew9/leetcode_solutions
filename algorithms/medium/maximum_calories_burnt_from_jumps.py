@@ -50,5 +50,3 @@ for heights in [
 
 
 
-
-
