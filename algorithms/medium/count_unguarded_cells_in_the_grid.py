@@ -66,9 +66,3 @@ for m, n, guards, walls in [
     print(f'r = {r}')
     print('=====================')
 
-
-
-
-
-
-
