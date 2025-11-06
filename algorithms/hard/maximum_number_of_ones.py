@@ -19,5 +19,3 @@ for width, height, sideLength, maxOnes in [
     print(f'r = {r}')
     print('=====================')
 
-
-
