@@ -25,5 +25,3 @@ for width, height, sideLength, maxOnes in [
 
 
 
-
-
