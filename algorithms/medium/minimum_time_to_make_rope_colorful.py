@@ -43,6 +43,3 @@ for colors, neededTime in [
 
 
 
-
-
-
