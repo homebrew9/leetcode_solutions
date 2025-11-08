@@ -51,5 +51,3 @@ for colors, neededTime in [
 
 
 
-
-
