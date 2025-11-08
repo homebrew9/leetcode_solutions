@@ -37,4 +37,3 @@ for colors, neededTime in [
     print(f'r = {r}')
     print('=====================')
 
-
