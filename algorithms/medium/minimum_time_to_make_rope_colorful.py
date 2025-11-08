@@ -38,5 +38,3 @@ for colors, neededTime in [
     print('=====================')
 
 
-
-
