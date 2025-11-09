@@ -43,4 +43,3 @@ for nums, k, x in [
     print(f'r1 = {r1}')
     print('=====================')
 
-
