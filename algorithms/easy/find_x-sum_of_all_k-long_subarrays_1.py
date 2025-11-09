@@ -48,5 +48,3 @@ for nums, k, x in [
 
 
 
-
-
