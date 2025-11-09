@@ -2,10 +2,20 @@ from typing import List
 
 class Solution:
     def minMoves(self, nums: List[int]) -> int:
+        # TC = O(1), SC = O(1)
         total = sum(nums)
         min_val = min(nums)
         N = len(nums)
         return total - min_val * N
+
+    def minMoves_1(self, nums: List[int]) -> int:
+        # TC = O(nLogn), SC = O(1)
+        nums.sort()
+        res = 0
+        sentinel = nums[0]
+        for n in nums[1:]:
+            res += n - sentinel
+        return res
 
 # Main section
 for nums in [
@@ -17,6 +27,20 @@ for nums in [
     print(f'nums = {nums}')
     sol = Solution()
     r = sol.minMoves(nums)
-    print(f'r = {r}')
+    r1 = sol.minMoves_1(nums)
+    print(f'r  = {r}')
+    print(f'r1 = {r1}')
     print('=====================')
+
+
+
+
+
+
+
+
+
+
+
+
 
