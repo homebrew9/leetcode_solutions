@@ -17,6 +17,19 @@ class Solution:
                 res.append(calculate_xsum(list(dq)))
         return res
 
+    def findXSum_1(self, nums: List[int], k: int, x: int) -> List[int]:
+        def xsum(arr, x):
+            cntr = Counter(arr)
+            lst = sorted([(k, v) for k, v in cntr.items()], key=lambda x: (-x[1], -x[0]))
+            ans = sum([v * f for v, f in lst[:x]])
+            return ans
+        N = len(nums)
+        res = list()
+        for i in range(0, N - k + 1):
+            val = xsum(nums[i:i+k], x)
+            res.append(val)
+        return res
+
 # Main section
 for nums, k, x in [
                      ([1,1,2,2,3,4,2,3], 6, 2),
@@ -25,6 +38,20 @@ for nums, k, x in [
     print(f'nums, k, x = {nums}, {k}, {x}')
     sol = Solution()
     r = sol.findXSum(nums, k, x)
-    print(f'r = {r}')
+    r1 = sol.findXSum_1(nums, k, x)
+    print(f'r  = {r}')
+    print(f'r1 = {r1}')
     print('=====================')
+
+
+
+
+
+
+
+
+
+
+
+
 
