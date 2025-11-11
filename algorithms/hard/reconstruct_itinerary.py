@@ -46,6 +46,3 @@ for tickets in [
 
 
 
-
-
-
