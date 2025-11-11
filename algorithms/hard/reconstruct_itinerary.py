@@ -64,6 +64,3 @@ for tickets in [
 
 
 
-
-
-
