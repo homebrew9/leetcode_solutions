@@ -28,6 +28,3 @@ for tickets in [
 
 
 
-
-
-
