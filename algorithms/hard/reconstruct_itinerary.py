@@ -40,6 +40,3 @@ for tickets in [
 
 
 
-
-
-
