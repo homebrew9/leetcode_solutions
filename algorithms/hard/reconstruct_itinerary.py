@@ -43,6 +43,3 @@ for tickets in [
 
 
 
-
-
-
