@@ -26,5 +26,3 @@ for tickets in [
     print(f'r = {r}')
     print('=====================')
 
-
-
