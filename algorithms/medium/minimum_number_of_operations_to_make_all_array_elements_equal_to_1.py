@@ -73,6 +73,3 @@ for nums in [
 
 
 
-
-
-
