@@ -49,6 +49,3 @@ for nums in [
 
 
 
-
-
-
