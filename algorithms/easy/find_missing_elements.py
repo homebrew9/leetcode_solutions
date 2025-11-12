@@ -45,6 +45,3 @@ for nums in [
 
 
 
-
-
-
