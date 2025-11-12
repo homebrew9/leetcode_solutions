@@ -33,6 +33,3 @@ for nums in [
 
 
 
-
-
-
