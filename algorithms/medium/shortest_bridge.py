@@ -61,5 +61,3 @@ for grid in [
 
 
 
-
-
