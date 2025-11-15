@@ -31,6 +31,3 @@ for n, edges, source, destination in [
     print(f'r = {r}')
     print('=====================')
 
-
-
-
