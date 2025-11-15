@@ -72,5 +72,3 @@ for nums in [
 
 
 
-
-
