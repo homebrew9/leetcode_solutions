@@ -14,8 +14,6 @@ class Solution:
         for i in range(N-2, -1, -1):
             if nums[i] <= nums[i+1]:
                 suff[i] = suff[i+1] + 1
-        #print(f'pref = {pref}')
-        #print(f'suff = {suff}')
         res = max(max(pref), max(suff))
         span = 0
         for i in range(N):
@@ -45,6 +43,4 @@ for nums in [
     r = sol.longestSubarray(nums)
     print(f'r = {r}')
     print('=====================')
-
-
 
