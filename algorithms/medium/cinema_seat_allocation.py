@@ -38,5 +38,3 @@ for n, reservedSeats in [
 
 
 
-
-
