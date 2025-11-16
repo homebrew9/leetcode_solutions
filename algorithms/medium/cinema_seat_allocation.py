@@ -33,8 +33,3 @@ for n, reservedSeats in [
     print(f'r = {r}')
     print('=====================')
 
-
-
-
-
-
