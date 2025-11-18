@@ -32,5 +32,3 @@ for ghosts, target in [
 
 
 
-
-
