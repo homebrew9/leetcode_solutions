@@ -36,5 +36,3 @@ for nums, target in [
 
 
 
-
-
