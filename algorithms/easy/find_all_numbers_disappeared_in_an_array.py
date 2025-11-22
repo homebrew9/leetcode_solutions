@@ -18,7 +18,7 @@ class Solution:
         # This means that the number has been spotted. Don't mark a number more than once.
         # Use abs(v) while considering a number that is present.
         # TC = O(N), SC = O(1)
-        #  0     1    2    3   4   5    6    7
+        #   0    1    2    3   4   5    6    7
         # [ 4 ,  3 ,  2 ,  7 , 8 , 2 ,  3 ,  1]
         # [-4 , -3 , -2 , -7 , 8 , 2 , -3 , -1]
         for n in nums:
