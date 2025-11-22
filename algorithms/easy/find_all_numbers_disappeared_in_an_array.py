@@ -9,6 +9,8 @@ class Solution:
             if n not in seen:
                 res.append(n)
         return res
+    def findDisappearedNumbers_1(self, nums: List[int]) -> List[int]:
+        return list(set(range(1, len(nums)+1)) - set(nums))
 
 # Main section
 for nums in [
@@ -18,6 +20,10 @@ for nums in [
     print(f'nums = {nums}')
     sol = Solution()
     r = sol.findDisappearedNumbers(nums)
-    print(f'r = {r}')
+    r1 = sol.findDisappearedNumbers_1(nums)
+    print(f'r  = {r}')
+    print(f'r1 = {r1}')
     print('===========================')
+
+
 
