@@ -35,7 +35,7 @@ class Solution:
             if len(stack) == 0:
                 stack.append([id, 1])
             else:
-                diff = max(0, ts - prev_ts - 1)
+                diff = max(0, ts - prev_ts - 1) # type: ignore
                 stack[-1][1] += diff
                 if action == 'end':
                     idx, time = stack.pop()
