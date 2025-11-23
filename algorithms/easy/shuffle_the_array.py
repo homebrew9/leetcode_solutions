@@ -39,5 +39,3 @@ for nums, n in [
 
 
 
-
-
