@@ -34,4 +34,3 @@ for intervals in [
     print(f'r = {r}')
     print('===========================')
 
-
