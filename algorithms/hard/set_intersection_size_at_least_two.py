@@ -36,4 +36,3 @@ for intervals in [
 
 
 
-
