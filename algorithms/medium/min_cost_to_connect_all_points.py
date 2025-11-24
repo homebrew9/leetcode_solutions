@@ -102,5 +102,3 @@ for points in [
 
 
 
-
-
