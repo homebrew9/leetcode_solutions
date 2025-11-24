@@ -104,5 +104,3 @@ for points in [
 
 
 
-
-
