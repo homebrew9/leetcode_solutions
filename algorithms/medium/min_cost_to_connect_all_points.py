@@ -96,5 +96,3 @@ for points in [
 
 
 
-
-
