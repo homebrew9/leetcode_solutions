@@ -37,5 +37,3 @@ for intervals in [
 
 
 
-
-
