@@ -47,4 +47,3 @@ for s, queries in [
     print(f'r = {r}')
     print('===========================')
 
-
