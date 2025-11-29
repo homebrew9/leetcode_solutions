@@ -35,4 +35,3 @@ for n, target in [
     print(f'r = {r}')
     print('===========================')
 
-
