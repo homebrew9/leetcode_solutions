@@ -52,5 +52,3 @@ for s, queries in [
 
 
 
-
-
