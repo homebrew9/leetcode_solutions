@@ -67,4 +67,3 @@ class Solution:
 #  nestedList = [1,[4,[6]]]
 
 
-
