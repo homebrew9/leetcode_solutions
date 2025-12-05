@@ -24,5 +24,3 @@ for length, updates in [
 
 
 
-
-
