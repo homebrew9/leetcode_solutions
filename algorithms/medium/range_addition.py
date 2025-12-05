@@ -38,5 +38,3 @@ for length, updates in [
 
 
 
-
-
