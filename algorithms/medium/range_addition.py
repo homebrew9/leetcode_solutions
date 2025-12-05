@@ -22,5 +22,3 @@ for length, updates in [
     print(f'r = {r}')
     print('===========================')
 
-
-
