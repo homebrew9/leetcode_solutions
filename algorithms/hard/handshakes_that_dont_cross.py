@@ -59,4 +59,3 @@ for numPeople in [
     assert(r == r1 == r2)
     print('===========================')
 
-
