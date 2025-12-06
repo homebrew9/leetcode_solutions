@@ -76,5 +76,3 @@ for numPeople in [
 
 
 
-
-
