@@ -37,5 +37,3 @@ for points in [
 
 
 
-
-
