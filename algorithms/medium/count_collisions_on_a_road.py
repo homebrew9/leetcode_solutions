@@ -67,4 +67,3 @@ for directions in [
     assert(r == r1)
     print('===========================')
 
-
