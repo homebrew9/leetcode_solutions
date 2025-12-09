@@ -29,4 +29,3 @@ for n, batteries in [
     print(f'r = {r}')
     print('===========================')
 
-
