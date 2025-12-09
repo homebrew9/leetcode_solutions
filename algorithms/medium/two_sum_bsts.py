@@ -35,10 +35,3 @@ class Solution:
 #  root1, root2, target = [0,-10,10], [5,1,7,0,2], 18  => Output = False
 #
 
-
-
-
-
-
-
-
