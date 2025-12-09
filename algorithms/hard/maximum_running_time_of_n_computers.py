@@ -31,4 +31,3 @@ for n, batteries in [
 
 
 
-
