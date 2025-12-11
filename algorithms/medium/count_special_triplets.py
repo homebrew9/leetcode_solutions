@@ -75,5 +75,3 @@ for nums in [
 
 
 
-
-
