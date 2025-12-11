@@ -48,6 +48,3 @@ for nums in [
 
 
 
-
-
-
