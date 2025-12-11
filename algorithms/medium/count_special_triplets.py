@@ -60,6 +60,3 @@ for nums in [
 
 
 
-
-
-
