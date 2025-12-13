@@ -25,4 +25,3 @@ for complexity in [
     print(f'r = {r}')
     print('===========================')
 
-
