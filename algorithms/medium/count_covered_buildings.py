@@ -53,5 +53,3 @@ for n, buildings in [
 
 
 
-
-
