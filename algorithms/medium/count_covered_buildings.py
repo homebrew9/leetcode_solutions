@@ -51,4 +51,3 @@ for n, buildings in [
     assert(r == r1)
     print('===========================')
 
-
