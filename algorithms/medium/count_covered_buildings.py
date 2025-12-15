@@ -58,4 +58,3 @@ for n, buildings in [
 
 
 
-
