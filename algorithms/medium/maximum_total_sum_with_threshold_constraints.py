@@ -30,5 +30,3 @@ for nums, threshold in [
     print(f'r = {r}')
     print('===========================')
 
-
-
