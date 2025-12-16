@@ -40,5 +40,3 @@ for nums, threshold in [
 
 
 
-
-
