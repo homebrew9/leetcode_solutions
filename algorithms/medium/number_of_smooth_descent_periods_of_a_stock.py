@@ -36,5 +36,3 @@ for prices in [
 
 
 
-
-
