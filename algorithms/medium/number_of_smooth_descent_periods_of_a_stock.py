@@ -28,5 +28,3 @@ for prices in [
 
 
 
-
-
