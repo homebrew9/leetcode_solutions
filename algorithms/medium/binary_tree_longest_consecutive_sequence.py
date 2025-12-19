@@ -27,4 +27,3 @@ class Solution:
 #  [2,null,3,2,null,1] => 2
 
 
-
