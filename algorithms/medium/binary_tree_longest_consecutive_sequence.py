@@ -26,4 +26,3 @@ class Solution:
 #  [1,null,3,2,4,null,null,null,5] => 3
 #  [2,null,3,2,null,1] => 2
 
-
