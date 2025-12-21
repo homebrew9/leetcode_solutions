@@ -69,6 +69,3 @@ for n, meetings, firstPerson in [
 
 
 
-
-
-
