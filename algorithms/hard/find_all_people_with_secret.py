@@ -39,6 +39,3 @@ for n, meetings, firstPerson in [
     print(f'r = {r}')
     print('===========================')
 
-
-
-
