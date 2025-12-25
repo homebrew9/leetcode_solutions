@@ -45,4 +45,3 @@ for prices, strategy, k in [
 
 
 
-
