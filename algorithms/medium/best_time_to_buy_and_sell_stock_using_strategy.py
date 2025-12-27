@@ -28,4 +28,3 @@ for prices, strategy, k in [
     print('==========================')
 
 
-
