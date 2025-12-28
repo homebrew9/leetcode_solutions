@@ -21,4 +21,3 @@ for apple, capacity in [
 
 
 
-
