@@ -43,4 +43,3 @@ for squares in [
 
 
 
-
