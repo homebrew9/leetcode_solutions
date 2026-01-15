@@ -38,4 +38,3 @@ for maze, start, destination in [
 
 
 
-
