@@ -32,4 +32,3 @@ for maze, start, destination in [
     print('==========================')
 
 
-
