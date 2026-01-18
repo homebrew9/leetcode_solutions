@@ -26,4 +26,3 @@ for bottomLeft, topRight in [
     print('==========================')
 
 
-
