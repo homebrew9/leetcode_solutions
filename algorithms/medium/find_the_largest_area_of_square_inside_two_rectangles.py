@@ -32,4 +32,3 @@ for bottomLeft, topRight in [
 
 
 
-
