@@ -27,4 +27,3 @@ for bottomLeft, topRight in [
 
 
 
-
