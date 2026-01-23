@@ -14,6 +14,10 @@ class Solution:
             elif diff == min_diff:
                 res.append([arr[i-1], arr[i]])
         return res
+    def minimumAbsDifference_1(self, arr: List[int]) -> List[List[int]]:
+        arr.sort()
+        min_diff = min([arr[i] - arr[i-1] for i in range(1, len(arr))])
+        return [[a, b] for a, b in zip(arr, arr[1:]) if b - a == min_diff]
 
 # Main section
 for arr in [
@@ -26,7 +30,21 @@ for arr in [
     print(f'arr = {arr}')
     sol = Solution()
     r = sol.minimumAbsDifference(arr)
-    print(f'r = {r}')
+    r1 = sol.minimumAbsDifference_1(arr)
+    print(f'r  = {r}')
+    print(f'r1 = {r1}')
+    assert(r == r1)
     print('==========================')
+
+
+
+
+
+
+
+
+
+
+
 
 
