@@ -8,6 +8,9 @@ class Solution:
             diff = nums[i] - nums[i-k+1]
             res = min(res, diff)
         return res
+    def minimumDifference_1(self, nums: List[int], k: int) -> int:
+        nums.sort()
+        return min([nums[i] - nums[i-k+1] for i in range(k-1, len(nums))])
 
 # Main section
 for nums, k in [
@@ -18,7 +21,10 @@ for nums, k in [
     print(f'nums, k = {nums}, {k}')
     sol = Solution()
     r = sol.minimumDifference(nums, k)
+    r1 = sol.minimumDifference_1(nums, k)
     print(f'r  = {r}')
+    print(f'r1 = {r1}')
+    assert(r == r1)
     print('==========================')
 
 
