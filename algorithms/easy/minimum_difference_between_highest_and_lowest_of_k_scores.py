@@ -1,4 +1,5 @@
 from typing import List
+from operator import sub
 
 class Solution:
     def minimumDifference(self, nums: List[int], k: int) -> int:
@@ -11,6 +12,8 @@ class Solution:
     def minimumDifference_1(self, nums: List[int], k: int) -> int:
         nums.sort()
         return min([nums[i] - nums[i-k+1] for i in range(k-1, len(nums))])
+    def minimumDifference_2(self, nums: List[int], k: int) -> int:
+        return min(map(sub, (b:=sorted(nums))[k-1:], b))
 
 # Main section
 for nums, k in [
@@ -22,9 +25,35 @@ for nums, k in [
     sol = Solution()
     r = sol.minimumDifference(nums, k)
     r1 = sol.minimumDifference_1(nums, k)
+    r2 = sol.minimumDifference_2(nums, k)
     print(f'r  = {r}')
     print(f'r1 = {r1}')
-    assert(r == r1)
+    print(f'r2 = {r2}')
+    assert(r == r1 == r2)
     print('==========================')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
