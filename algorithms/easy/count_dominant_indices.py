@@ -35,6 +35,20 @@ class Solution:
         solve(0)
         return res
 
+    def dominantIndices_3(self, nums: List[int]) -> int:
+        # Pure recursive function with no side-effects
+        def solve(i):
+            if i == N-1:
+                return (0, nums[i]) # Base: no dominant at last index
+            count_next, suffix_sum_next = solve(i+1)
+            # Check if current index is dominant
+            is_dominant = nums[i] > suffix_sum_next / (N - i - 1)
+            new_count = count_next + int(is_dominant)
+            return (new_count, suffix_sum_next + nums[i])
+        N = len(nums)
+        count, _ = solve(0)
+        return count
+
 # Main section
 for nums in [
                [5,4,3],
@@ -48,10 +62,16 @@ for nums in [
     r = sol.dominantIndices(nums)
     r1 = sol.dominantIndices_1(nums)
     r2 = sol.dominantIndices_2(nums)
+    r3 = sol.dominantIndices_3(nums)
     print(f'r  = {r}')
     print(f'r1 = {r1}')
     print(f'r2 = {r2}')
-    assert(r == r1 == r2)
+    print(f'r3 = {r3}')
+    assert(r == r1 == r2 == r3)
     print('=================================================')
  
+
+
+
+
 
