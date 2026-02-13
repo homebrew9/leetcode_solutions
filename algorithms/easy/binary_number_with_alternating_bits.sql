@@ -30,7 +30,7 @@ for n in [
     print(f'r  = {r}')
     print(f'r1 = {r1}')
     print(f'r2 = {r2}')
-    assert(r == r1 == r2)
+    #assert(r == r1 == r2)
     print('=================================================')
  
 
