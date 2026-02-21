@@ -211,4 +211,3 @@ def consecutive_increasing_transactions(transactions: pd.DataFrame) -> pd.DataFr
 
 
 
-
