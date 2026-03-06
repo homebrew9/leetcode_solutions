@@ -49,4 +49,3 @@ class AutocompleteSystem:
 #[[["i love you","island","iroman","i love leetcode"],[5,3,2,2]],["i"],[" "],["a"],["#"]]
 
 
-
