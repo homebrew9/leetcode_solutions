@@ -19,7 +19,7 @@ for nums, k in [
                   ([1,2,4,3,5,6], 3),
                   ([5,4,4,2], 1),
                ]:
-    print(f'nums, k = {nums}, {k}')
+    print(f'nums = {nums}, k = {k}')
     sol = Solution()
     r = sol.reverseSubarrays(nums, k)
     print(f'r = {r}')
