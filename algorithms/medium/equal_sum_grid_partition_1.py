@@ -28,4 +28,3 @@ for grid in [
     r = sol.canPartitionGrid(grid)
     print(f'r = {r}')
     print('==================================')
-
