@@ -62,4 +62,3 @@ for source, target, allowedSwaps in [
     print('==================================')
 
 
-
