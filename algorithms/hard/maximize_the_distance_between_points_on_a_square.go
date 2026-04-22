@@ -68,4 +68,3 @@ for side, points, k in [
 
 
 
-
