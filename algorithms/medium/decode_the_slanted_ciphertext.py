@@ -32,4 +32,3 @@ for encodedText, rows in [
     print('==================================')
 
 
-
