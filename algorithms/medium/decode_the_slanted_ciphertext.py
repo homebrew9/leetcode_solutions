@@ -38,4 +38,3 @@ for encodedText, rows in [
 
 
 
-
