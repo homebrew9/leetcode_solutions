@@ -55,4 +55,3 @@ for encodedText, rows in [
 
 
 
-
