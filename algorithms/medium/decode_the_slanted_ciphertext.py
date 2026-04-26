@@ -48,4 +48,3 @@ for encodedText, rows in [
 
 
 
-
