@@ -21,4 +21,3 @@ for nums, target, start in [
     print('==================================')
 
 
-
