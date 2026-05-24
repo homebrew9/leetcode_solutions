@@ -42,4 +42,3 @@ for nums, queries in [
 
 
 
-
