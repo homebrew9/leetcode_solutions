@@ -27,4 +27,3 @@ for s, minJump, maxJump in [
     print('==================================')
 
 
-
