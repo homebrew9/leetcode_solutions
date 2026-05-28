@@ -36,4 +36,3 @@ for s, minJump, maxJump in [
 
 
 
-
