@@ -18,4 +18,3 @@ for s, goal in [
 
 
 
-
