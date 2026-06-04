@@ -21,4 +21,3 @@ for s, goal in [
 
 
 
-
