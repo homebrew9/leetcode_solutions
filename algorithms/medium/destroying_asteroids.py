@@ -24,4 +24,3 @@ for mass, asteroids in [
 
 
 
-
