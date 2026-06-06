@@ -22,4 +22,3 @@ for mass, asteroids in [
     print('==============================')
 
 
-
